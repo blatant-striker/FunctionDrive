@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services - Function Drive | Your Function | Our Drive</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="images/Function_Drive_logo_no_background(PNG).png">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <div class="navbar-logo">
+                    <img src="images/Function_Drive_logo_no_background(PNG).png" alt="Function Drive" height="50">
+                    <span>FUNCTION DRIVE</span>
+                </div>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="services.html">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <button id="theme-toggle" class="btn theme-toggle" aria-label="Toggle Theme">
+                            <i class="fas fa-moon dark-icon"></i>
+                            <i class="fas fa-sun light-icon"></i>
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <h1 data-aos="fade-up">Our Services</h1>
+                    <nav aria-label="breadcrumb" data-aos="fade-up" data-aos-delay="100">
+                        <ol class="breadcrumb justify-content-center">
+                            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Services</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Services Section -->
+    <section class="services py-5">
+        <div class="container">
+            <div class="section-title mb-5">
+                <h2 data-aos="fade-up">What We Offer</h2>
+                <p data-aos="fade-up" data-aos-delay="100">Comprehensive AI automation solutions tailored to your business needs.</p>
+            </div>
+            
+            <div class="row">
+                <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <h3>AI-Powered Chatbots</h3>
+                        <p>Custom chatbots using GPT and other LLMs to enhance customer service and streamline communication.</p>
+                        <ul class="mt-3">
+                            <li>24/7 customer support automation</li>
+                            <li>Lead qualification and nurturing</li>
+                            <li>Internal knowledge base assistants</li>
+                            <li>Multi-platform integration (website, social, messaging)</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-cogs"></i>
+                        </div>
+                        <h3>Workflow Automation</h3>
+                        <p>Automate repetitive tasks and workflows using Zapier, Make, and other integration platforms.</p>
+                        <ul class="mt-3">
+                            <li>Cross-platform data synchronization</li>
+                            <li>Document processing and management</li>
+                            <li>Approval workflows and notifications</li>
+                            <li>Custom API integrations</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h3>Lead Generation</h3>
+                        <p>Automated lead generation systems from LinkedIn, Instagram, and email campaigns.</p>
+                        <ul class="mt-3">
+                            <li>Social media prospect identification</li>
+                            <li>Automated outreach sequences</li>
+                            <li>Lead scoring and qualification</li>
+                            <li>CRM integration and enrichment</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="400">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-clipboard-list"></i>
+                        </div>
+                        <h3>Client Onboarding</h3>
+                        <p>Streamline your client onboarding process with automated workflows and AI assistants.</p>
+                        <ul class="mt-3">
+                            <li>Automated welcome sequences</li>
+                            <li>Document collection and verification</li>
+                            <li>Personalized training materials</li>
+                            <li>Progress tracking and reporting</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="500">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h3>Data Scraping & Analysis</h3>
+                        <p>Automated data collection and analysis to provide actionable business insights.</p>
+                        <ul class="mt-3">
+                            <li>Web scraping and data extraction</li>
+                            <li>Competitive intelligence gathering</li>
+                            <li>Market trend analysis</li>
+                            <li>Automated reporting dashboards</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="600">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-laptop-code"></i>
+                        </div>
+                        <h3>Custom AI Dashboards</h3>
+                        <p>Build internal tools and dashboards using Retool, Appsmith, or custom development.</p>
+                        <ul class="mt-3">
+                            <li>No-code/low-code internal tools</li>
+                            <li>Custom reporting interfaces</li>
+                            <li>Data visualization solutions</li>
+                            <li>Cross-platform data aggregation</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="700">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-globe"></i>
+                        </div>
+                        <h3>Website Design & Development</h3>
+                        <p>Create stunning, responsive websites using modern technologies and frameworks.</p>
+                        <ul class="mt-3">
+                            <li>HTML, CSS, JavaScript, React, Bootstrap</li>
+                            <li>Next.js, Vue.js, Express.js, Node.js</li>
+                            <li>WordPress, Webflow, GitHub Pages</li>
+                            <li>SEO-optimized, mobile-friendly designs</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="800">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-phone-alt"></i>
+                        </div>
+                        <h3>Voice Bots & IVR Systems</h3>
+                        <p>Intelligent voice response systems and calling bots to streamline communication.</p>
+                        <ul class="mt-3">
+                            <li>AI-powered voice assistants</li>
+                            <li>Automated appointment scheduling</li>
+                            <li>Customer service voice bots</li>
+                            <li>Integration with existing phone systems</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="900">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-palette"></i>
+                        </div>
+                        <h3>Graphic Design</h3>
+                        <p>Professional graphic design services for all your branding and marketing needs.</p>
+                        <ul class="mt-3">
+                            <li>Logo design and brand identity</li>
+                            <li>Marketing materials and social media graphics</li>
+                            <li>UI/UX design for web and mobile</li>
+                            <li>Print-ready designs for physical materials</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Process Section -->
+    <section class="process py-5 bg-darker">
+        <div class="container">
+            <div class="section-title mb-5">
+                <h2 data-aos="fade-up">Our Process</h2>
+                <p data-aos="fade-up" data-aos-delay="100">How we implement AI automation solutions for your business.</p>
+            </div>
+            
+            <div class="row">
+                <div class="col-md-3 mb-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="process-card text-center">
+                        <div class="process-icon">
+                            <i class="fas fa-search"></i>
+                            <span class="process-number">01</span>
+                        </div>
+                        <h3>Discovery</h3>
+                        <p>We analyze your business processes to identify automation opportunities.</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-3 mb-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="process-card text-center">
+                        <div class="process-icon">
+                            <i class="fas fa-pencil-ruler"></i>
+                            <span class="process-number">02</span>
+                        </div>
+                        <h3>Design</h3>
+                        <p>We design custom automation solutions tailored to your specific needs.</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-3 mb-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="process-card text-center">
+                        <div class="process-icon">
+                            <i class="fas fa-code"></i>
+                            <span class="process-number">03</span>
+                        </div>
+                        <h3>Development</h3>
+                        <p>We build and integrate the automation solutions into your workflow.</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-3 mb-4" data-aos="fade-up" data-aos-delay="400">
+                    <div class="process-card text-center">
+                        <div class="process-icon">
+                            <i class="fas fa-rocket"></i>
+                            <span class="process-number">04</span>
+                        </div>
+                        <h3>Deployment</h3>
+                        <p>We launch, monitor, and continuously improve your automation systems.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Pricing Section -->
+    <section class="pricing py-5">
+        <div class="container">
+            <div class="section-title mb-5">
+                <h2 data-aos="fade-up">Our Packages</h2>
+                <p data-aos="fade-up" data-aos-delay="100">Flexible pricing options to suit businesses of all sizes.</p>
+            </div>
+            
+            <div class="row">
+                <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="pricing-card">
+                        <div class="pricing-header">
+                            <h3>Starter</h3>
+                            <div class="price">$299<span>/month</span></div>
+                        </div>
+                        <div class="pricing-body">
+                            <ul>
+                                <li><i class="fas fa-check"></i> 1 AI Automation Workflow</li>
+                                <li><i class="fas fa-check"></i> Basic Chatbot Integration</li>
+                                <li><i class="fas fa-check"></i> 5 Automation Actions</li>
+                                <li><i class="fas fa-check"></i> Email Support</li>
+                                <li><i class="fas fa-check"></i> Monthly Reporting</li>
+                            </ul>
+                        </div>
+                        <div class="pricing-footer">
+                            <a href="contact.html" class="btn btn-outline-primary">Get Started</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="pricing-card featured">
+                        <div class="pricing-badge">Popular</div>
+                        <div class="pricing-header">
+                            <h3>Professional</h3>
+                            <div class="price">$799<span>/month</span></div>
+                        </div>
+                        <div class="pricing-body">
+                            <ul>
+                                <li><i class="fas fa-check"></i> 3 AI Automation Workflows</li>
+                                <li><i class="fas fa-check"></i> Advanced Chatbot with Training</li>
+                                <li><i class="fas fa-check"></i> 15 Automation Actions</li>
+                                <li><i class="fas fa-check"></i> Priority Support</li>
+                                <li><i class="fas fa-check"></i> Weekly Reporting</li>
+                                <li><i class="fas fa-check"></i> 1 Custom Dashboard</li>
+                            </ul>
+                        </div>
+                        <div class="pricing-footer">
+                            <a href="contact.html" class="btn btn-primary">Get Started</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="pricing-card">
+                        <div class="pricing-header">
+                            <h3>Enterprise</h3>
+                            <div class="price">Custom<span>/solution</span></div>
+                        </div>
+                        <div class="pricing-body">
+                            <ul>
+                                <li><i class="fas fa-check"></i> Unlimited AI Workflows</li>
+                                <li><i class="fas fa-check"></i> Custom AI Solutions</li>
+                                <li><i class="fas fa-check"></i> Unlimited Automation Actions</li>
+                                <li><i class="fas fa-check"></i> 24/7 Dedicated Support</li>
+                                <li><i class="fas fa-check"></i> Real-time Reporting</li>
+                                <li><i class="fas fa-check"></i> Multiple Custom Dashboards</li>
+                                <li><i class="fas fa-check"></i> API Development</li>
+                            </ul>
+                        </div>
+                        <div class="pricing-footer">
+                            <a href="contact.html" class="btn btn-outline-primary">Contact Us</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- CTA Section -->
+    <section class="cta py-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-8 mb-4 mb-lg-0" data-aos="fade-right">
+                    <h2>Ready to automate your business?</h2>
+                    <p>Get in touch with us today to discuss how we can help you leverage AI and automation.</p>
+                </div>
+                <div class="col-lg-4 text-lg-end" data-aos="fade-left">
+                    <a href="contact.html" class="btn btn-primary">Contact Us</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="footer">
+        <!-- Glass dividers -->
+        <div class="glass-divider left"></div>
+        <div class="glass-divider right"></div>
+        <div class="container">
+            <div class="row footer-main">
+                <div class="col-md-4 footer-brand">
+                    <div class="footer-logo">
+                        <img src="images/Function_Drive_logo_no_background(PNG).png" alt="Function Drive" height="40">
+                        <span>FUNCTION DRIVE</span>
+                    </div>
+                    <p>We help businesses leverage AI and automation to streamline workflows, reduce costs, and boost productivity.</p>
+                    <div class="footer-social">
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                
+                <div class="col-md-8">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <h4>Services</h4>
+                            <ul class="footer-links">
+                                <li><a href="services.html">AI Chatbots</a></li>
+                                <li><a href="services.html">Workflow Automation</a></li>
+                                <li><a href="services.html">Lead Generation</a></li>
+                                <li><a href="services.html">Client Onboarding</a></li>
+                                <li><a href="services.html">Data Scraping</a></li>
+                            </ul>
+                        </div>
+                        
+                        <div class="col-md-4">
+                            <h4>Company</h4>
+                            <ul class="footer-links">
+                                <li><a href="about.html">About Us</a></li>
+                                <li><a href="about.html#team">Our Team</a></li>
+                                <li><a href="#">Careers</a></li>
+                                <li><a href="contact.html">Contact</a></li>
+                            </ul>
+                        </div>
+                        
+                        <div class="col-md-4">
+                            <h4>Newsletter</h4>
+                            <p>Subscribe to our newsletter for the latest updates on AI automation.</p>
+                            <div class="newsletter-form">
+                                <div class="input-group">
+                                    <input type="email" class="form-control" placeholder="Email" required>
+                                    <button class="btn btn-arrow" type="submit">
+                                        <i class="fas fa-arrow-right"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- AOS Animation -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <!-- Custom JS -->
+    <script src="js/main.js"></script>
+    
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true
+        });
+    </script>
+</body>
+</html>

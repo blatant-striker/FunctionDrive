@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Function Drive - Your Function | Our Drive</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="images/Function_Drive_logo_no_background(PNG).png">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <div class="navbar-logo">
+                    <img src="images/Function_Drive_logo_no_background(PNG).png" alt="Function Drive" height="50">
+                    <span>FUNCTION DRIVE</span>
+                </div>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="services.html">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <button id="theme-toggle" class="btn theme-toggle" aria-label="Toggle Theme">
+                            <i class="fas fa-moon dark-icon"></i>
+                            <i class="fas fa-sun light-icon"></i>
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 hero-content text-center mx-auto">
+                    <h3 class="tagline" data-aos="fade-up" data-aos-delay="50">Your Function | Our Drive</h3>
+                    <h1 data-aos="fade-up" data-aos-delay="100">Automate Your Business With AI</h1>
+                    <p data-aos="fade-up" data-aos-delay="200">We help businesses leverage AI and automation to streamline workflows, reduce costs, and boost productivity.</p>
+                    <div class="hero-buttons" data-aos="fade-up" data-aos-delay="300">
+                        <a href="#services" class="btn btn-primary">Our Services</a>
+                        <a href="#contact" class="btn btn-outline-dark">Get in Touch</a>
+                    </div>
+                </div>
+                <div class="col-lg-6 d-none d-lg-block" data-aos="fade-left" data-aos-delay="400">
+                    <img src="images/hero-illustration.png" alt="AI Automation" class="img-fluid floating">
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="container">
+            <div class="section-title">
+                <h2 data-aos="fade-up">Our Services</h2>
+                <p data-aos="fade-up" data-aos-delay="100">We offer a range of AI-powered automation solutions to help your business thrive.</p>
+                <div class="text-center mt-4">
+                    <a href="services.html" class="btn btn-outline-primary">View All Services</a>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <h3>AI-Powered Chatbots</h3>
+                        <p>Custom chatbots using GPT and other LLMs to enhance customer service and streamline communication.</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-cogs"></i>
+                        </div>
+                        <h3>Workflow Automation</h3>
+                        <p>Automate repetitive tasks and workflows using Zapier, Make, and other integration platforms.</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h3>Lead Generation</h3>
+                        <p>Automated lead generation systems from LinkedIn, Instagram, and email campaigns.</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="400">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-clipboard-list"></i>
+                        </div>
+                        <h3>Client Onboarding</h3>
+                        <p>Streamline your client onboarding process with automated workflows and AI assistants.</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="500">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h3>Data Scraping & Analysis</h3>
+                        <p>Automated data collection and analysis to provide actionable business insights.</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="600">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-laptop-code"></i>
+                        </div>
+                        <h3>Custom AI Dashboards</h3>
+                        <p>Build internal tools and dashboards using Retool, Appsmith, or custom development.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="700">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-globe"></i>
+                        </div>
+                        <h3>Website Design & Development</h3>
+                        <p>Create stunning, responsive websites using modern technologies and frameworks.</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="800">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-phone-alt"></i>
+                        </div>
+                        <h3>Voice Bots & IVR Systems</h3>
+                        <p>Intelligent voice response systems and calling bots to streamline communication.</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="900">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-palette"></i>
+                        </div>
+                        <h3>Graphic Design</h3>
+                        <p>Professional graphic design services for all your branding and marketing needs.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-4 mb-lg-0" data-aos="fade-right">
+                    <div class="about-img">
+                        <img src="images/about-img.png" alt="About Us" class="img-fluid">
+                    </div>
+                </div>
+                <div class="col-lg-6 about-content" data-aos="fade-left">
+                    <h2>Why Choose Function Drive?</h2>
+                    <p>We're a team of AI automation experts dedicated to helping businesses leverage the power of artificial intelligence and automation to streamline operations and boost productivity.</p>
+                    <p>Our approach combines the latest AI technologies with practical automation solutions that deliver real business value. We focus on high-ROI implementations that make a tangible difference to your bottom line.</p>
+                    
+                    <div class="about-stats">
+                        <div class="stat-item">
+                            <h3 data-count="0">0</h3>
+                            <p>Happy Clients</p>
+                        </div>
+                        <div class="stat-item">
+                            <h3 data-count="0">0</h3>
+                            <p>Projects Completed</p>
+                        </div>
+                        <div class="stat-item">
+                            <h3 data-count="0">0</h3>
+                            <p>Hours Saved</p>
+                        </div>
+                        <div class="coming-soon-text text-center mt-3">Stats Coming Soon</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <div class="container">
+            <div class="section-title">
+                <h2 data-aos="fade-up">What Our Clients Say</h2>
+                <p data-aos="fade-up" data-aos-delay="100">Hear from businesses that have transformed with our AI automation solutions.</p>
+            </div>
+            
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="coming-soon-container" data-aos="fade-up">
+                        <div class="coming-soon-icon">
+                            <i class="fas fa-comment-dots"></i>
+                        </div>
+                        <h3 class="coming-soon-title">Testimonials Coming Soon</h3>
+                        <p class="coming-soon-text">We're collecting success stories from our amazing clients. Check back soon to read about their experiences!</p>
+                        <div class="coming-soon-dots">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2 data-aos="fade-up">Get In Touch</h2>
+                <p data-aos="fade-up" data-aos-delay="100">Ready to automate your business with AI? Contact us today!</p>
+            </div>
+            
+            <div class="row">
+                <div class="col-lg-5 mb-4 mb-lg-0" data-aos="fade-up" data-aos-delay="100">
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h4>Location</h4>
+                                <p>123 Innovation Street, Tech City</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h4>Email</h4>
+                                <p>info@automateai.com</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone-alt"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h4>Phone</h4>
+                                <p>+1 (555) 123-4567</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-4">
+                        <h4>Follow Us</h4>
+                        <div class="contact-social mt-3">
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-7" data-aos="fade-up" data-aos-delay="200">
+                    <div class="contact-form">
+                        <form id="contactForm">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control" id="name" placeholder="Your Name" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="email" class="form-control" id="email" placeholder="Your Email" required>
+                                </div>
+                            </div>
+                            
+                            <input type="text" class="form-control" id="subject" placeholder="Subject">
+                            
+                            <textarea class="form-control" id="message" rows="5" placeholder="Your Message" required></textarea>
+                            
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-primary mt-3">Send Message</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="footer">
+        <!-- Glass dividers -->
+        <div class="glass-divider left"></div>
+        <div class="glass-divider right"></div>
+        <div class="container">
+            <div class="row footer-main">
+                <div class="col-md-4 footer-brand">
+                    <div class="footer-logo">
+                        <img src="images/Function_Drive_logo_no_background(PNG).png" alt="Function Drive" height="50">
+                        <span>FUNCTION DRIVE</span>
+                    </div>
+                    <p>We help businesses leverage AI and automation to streamline workflows, reduce costs, and boost productivity.</p>
+                    <div class="footer-social">
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                
+                <div class="col-md-8">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <h4>Services</h4>
+                            <ul class="footer-links">
+                                <li><a href="services.html">AI Chatbots</a></li>
+                                <li><a href="services.html">Workflow Automation</a></li>
+                                <li><a href="services.html">Lead Generation</a></li>
+                                <li><a href="services.html">Client Onboarding</a></li>
+                                <li><a href="services.html">Data Scraping</a></li>
+                            </ul>
+                        </div>
+                        
+                        <div class="col-md-4">
+                            <h4>Company</h4>
+                            <ul class="footer-links">
+                                <li><a href="about.html">About Us</a></li>
+                                <li><a href="about.html#team">Our Team</a></li>
+                                <li><a href="#">Careers</a></li>
+                                <li><a href="contact.html">Contact</a></li>
+                            </ul>
+                        </div>
+                        
+                        <div class="col-md-4">
+                            <h4>Newsletter</h4>
+                            <p>Subscribe to our newsletter for the latest updates on AI automation.</p>
+                            <div class="newsletter-form">
+                                <div class="input-group">
+                                    <input type="email" class="form-control" placeholder="Email" required>
+                                    <button class="btn btn-arrow" type="submit">
+                                        <i class="fas fa-arrow-right"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- AOS Animation -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <!-- Custom JS -->
+    <script src="js/main.js"></script>
+    
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true
+        });
+    </script>
+</body>
+</html>

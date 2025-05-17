@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Function Drive | Your Function | Our Drive</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="images/Function_Drive_logo_no_background(PNG).png">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <div class="navbar-logo">
+                    <img src="images/Function_Drive_logo_no_background(PNG).png" alt="Function Drive" height="50">
+                    <span>FUNCTION DRIVE</span>
+                </div>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="services.html">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="contact.html">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <button id="theme-toggle" class="btn theme-toggle" aria-label="Toggle Theme">
+                            <i class="fas fa-moon dark-icon"></i>
+                            <i class="fas fa-sun light-icon"></i>
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <h1 data-aos="fade-up">Contact Us</h1>
+                    <nav aria-label="breadcrumb" data-aos="fade-up" data-aos-delay="100">
+                        <ol class="breadcrumb justify-content-center">
+                            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Contact</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Contact Info Section -->
+    <section class="contact-info-section py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4 mb-md-0" data-aos="fade-up" data-aos-delay="100">
+                    <div class="contact-info-card text-center">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <h3>Our Location</h3>
+                        <p>123 Innovation Street<br>Tech City, TC 12345</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-4 mb-4 mb-md-0" data-aos="fade-up" data-aos-delay="200">
+                    <div class="contact-info-card text-center">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <h3>Email Us</h3>
+                        <p>info@functiondrive.com<br>support@functiondrive.com</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="contact-info-card text-center">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone-alt"></i>
+                        </div>
+                        <h3>Call Us</h3>
+                        <p>+1 (555) 123-4567<br>+1 (555) 987-6543</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Contact Form Section -->
+    <section class="contact-form-section py-5 bg-darker">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-center mb-5" data-aos="fade-up">
+                    <h2>Get In Touch</h2>
+                    <p class="lead">Have a question or want to discuss how we can help your business? Fill out the form below and we'll get back to you as soon as possible.</p>
+                </div>
+            </div>
+            
+            <div class="row justify-content-center">
+                <div class="col-lg-8" data-aos="fade-up" data-aos-delay="100">
+                    <div class="contact-form">
+                        <form id="contactForm">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group mb-4">
+                                        <label for="name">Your Name</label>
+                                        <input type="text" class="form-control" id="name" placeholder="Enter your name" required>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-md-6">
+                                    <div class="form-group mb-4">
+                                        <label for="email">Your Email</label>
+                                        <input type="email" class="form-control" id="email" placeholder="Enter your email" required>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group mb-4">
+                                <label for="subject">Subject</label>
+                                <input type="text" class="form-control" id="subject" placeholder="Enter subject">
+                            </div>
+                            
+                            <div class="form-group mb-4">
+                                <label for="message">Message</label>
+                                <textarea class="form-control" id="message" rows="5" placeholder="Enter your message" required></textarea>
+                            </div>
+                            
+                            <div class="form-group mb-4">
+                                <label>Services You're Interested In</label>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-check mb-2">
+                                            <input class="form-check-input" type="checkbox" id="service1">
+                                            <label class="form-check-label" for="service1">AI Chatbots</label>
+                                        </div>
+                                        <div class="form-check mb-2">
+                                            <input class="form-check-input" type="checkbox" id="service2">
+                                            <label class="form-check-label" for="service2">Workflow Automation</label>
+                                        </div>
+                                        <div class="form-check mb-2">
+                                            <input class="form-check-input" type="checkbox" id="service3">
+                                            <label class="form-check-label" for="service3">Lead Generation</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-check mb-2">
+                                            <input class="form-check-input" type="checkbox" id="service4">
+                                            <label class="form-check-label" for="service4">Client Onboarding</label>
+                                        </div>
+                                        <div class="form-check mb-2">
+                                            <input class="form-check-input" type="checkbox" id="service5">
+                                            <label class="form-check-label" for="service5">Data Scraping & Analysis</label>
+                                        </div>
+                                        <div class="form-check mb-2">
+                                            <input class="form-check-input" type="checkbox" id="service6">
+                                            <label class="form-check-label" for="service6">Custom AI Dashboards</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-primary">Send Message</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- FAQ Section -->
+    <section class="faq-section py-5">
+        <div class="container">
+            <div class="section-title mb-5">
+                <h2 data-aos="fade-up">Frequently Asked Questions</h2>
+                <p data-aos="fade-up" data-aos-delay="100">Find answers to common questions about our services.</p>
+            </div>
+            
+            <div class="row justify-content-center">
+                <div class="col-lg-8" data-aos="fade-up" data-aos-delay="200">
+                    <div class="accordion" id="faqAccordion">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingOne">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    What types of businesses do you work with?
+                                </button>
+                            </h2>
+                            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    We work with businesses of all sizes across various industries, including e-commerce, professional services, healthcare, real estate, and more. Our solutions are customized to meet the specific needs of each client, regardless of their industry or size.
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingTwo">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                    How long does it take to implement an AI automation solution?
+                                </button>
+                            </h2>
+                            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    The implementation timeline varies depending on the complexity of the solution. Simple automations can be set up in as little as 1-2 weeks, while more complex AI integrations might take 4-8 weeks. During our initial consultation, we'll provide you with a more accurate timeline based on your specific requirements.
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingThree">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                    Do I need technical knowledge to use your solutions?
+                                </button>
+                            </h2>
+                            <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    No, our solutions are designed to be user-friendly and accessible to non-technical users. We provide comprehensive training and documentation to ensure your team can effectively use and manage the automation tools. Our goal is to make AI automation accessible to everyone, regardless of technical background.
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingFour">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                    What kind of ROI can I expect from AI automation?
+                                </button>
+                            </h2>
+                            <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Most of our clients see a positive ROI within 3-6 months of implementing our solutions. The exact return depends on various factors, including the type of automation, your current processes, and the scale of implementation. Our clients typically report time savings of 15-30 hours per week, cost reductions of 20-40%, and significant improvements in accuracy and customer satisfaction.
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingFive">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                                    Do you offer ongoing support after implementation?
+                                </button>
+                            </h2>
+                            <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Yes, all our service packages include ongoing support and maintenance. We offer different support tiers based on your needs, ranging from basic email support to dedicated account management with 24/7 availability. We're committed to ensuring your automation solutions continue to run smoothly and adapt to your evolving business needs.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Map Section -->
+    <section class="map-section py-5 bg-darker">
+        <div class="container">
+            <div class="row">
+                <div class="col-12" data-aos="fade-up">
+                    <div class="map-container">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.2146408553286!2d-73.98784492346177!3d40.75798597138558!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c259a9b30eac9f%3A0xaca05ca48ab0c525!2sEmpire%20State%20Building!5e0!3m2!1sen!2sus!4v1683123456789!5m2!1sen!2sus" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="footer">
+        <!-- Glass dividers -->
+        <div class="glass-divider left"></div>
+        <div class="glass-divider right"></div>
+        <div class="container">
+            <div class="row footer-main">
+                <div class="col-md-4 footer-brand">
+                    <div class="footer-logo">
+                        <img src="images/Function_Drive_logo_no_background(PNG).png" alt="Function Drive" height="40">
+                        <span>FUNCTION DRIVE</span>
+                    </div>
+                    <p>We help businesses leverage AI and automation to streamline workflows, reduce costs, and boost productivity.</p>
+                    <div class="footer-social">
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                
+                <div class="col-md-8">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <h4>Services</h4>
+                            <ul class="footer-links">
+                                <li><a href="services.html">AI Chatbots</a></li>
+                                <li><a href="services.html">Workflow Automation</a></li>
+                                <li><a href="services.html">Lead Generation</a></li>
+                                <li><a href="services.html">Client Onboarding</a></li>
+                                <li><a href="services.html">Data Scraping</a></li>
+                            </ul>
+                        </div>
+                        
+                        <div class="col-md-4">
+                            <h4>Company</h4>
+                            <ul class="footer-links">
+                                <li><a href="about.html">About Us</a></li>
+                                <li><a href="about.html#team">Our Team</a></li>
+                                <li><a href="#">Careers</a></li>
+                                <li><a href="contact.html">Contact</a></li>
+                            </ul>
+                        </div>
+                        
+                        <div class="col-md-4">
+                            <h4>Newsletter</h4>
+                            <p>Subscribe to our newsletter for the latest updates on AI automation.</p>
+                            <div class="newsletter-form">
+                                <div class="input-group">
+                                    <input type="email" class="form-control" placeholder="Email" required>
+                                    <button class="btn btn-arrow" type="submit">
+                                        <i class="fas fa-arrow-right"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- AOS Animation -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <!-- Custom JS -->
+    <script src="js/main.js"></script>
+    
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true
+        });
+        
+        // Form validation
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Basic validation
+            let isValid = true;
+            const name = document.getElementById('name');
+            const email = document.getElementById('email');
+            const message = document.getElementById('message');
+            
+            if (!name.value.trim()) {
+                isValid = false;
+                name.classList.add('is-invalid');
+            } else {
+                name.classList.remove('is-invalid');
+            }
+            
+            if (!email.value.trim() || !isValidEmail(email.value)) {
+                isValid = false;
+                email.classList.add('is-invalid');
+            } else {
+                email.classList.remove('is-invalid');
+            }
+            
+            if (!message.value.trim()) {
+                isValid = false;
+                message.classList.add('is-invalid');
+            } else {
+                message.classList.remove('is-invalid');
+            }
+            
+            if (isValid) {
+                // In a real scenario, you would send the form data to a server
+                // For demo purposes, we'll just show a success message
+                this.innerHTML = '<div class="alert alert-success">Thank you for your message! We\'ll get back to you soon.</div>';
+            }
+        });
+        
+        // Email validation helper function
+        function isValidEmail(email) {
+            const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return regex.test(email);
+        }
+    </script>
+</body>
+</html>
