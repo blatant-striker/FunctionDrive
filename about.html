@@ -24,8 +24,26 @@
     
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/style.css">
+
+    <!-- Preload critical assets -->
+    <link rel="preload" href="css/style.css" as="style">
+    <link rel="preload" href="js/main.js" as="script">
+
+    <!-- Prefetch other pages -->
+    <link rel="prefetch" href="index.html" as="document">
+    <link rel="prefetch" href="services.html" as="document">
+    <link rel="prefetch" href="contact.html" as="document">
+    <link rel="prefetch" href="team.html" as="document">
 </head>
 <body>
+    <!-- Animated Background -->
+    <div class="animated-background">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+    <!-- Grid Background -->
+    <div class="grid-background"></div>
     
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
@@ -357,29 +375,19 @@
         </div>
     </section>
     
-    <!-- Team Section -->
-    <section id="team" class="team py-5 bg-darker">
-        <div class="container">
-            <div class="section-title">
-                <h2 data-aos="fade-up">Our Team</h2>
-                <p data-aos="fade-up" data-aos-delay="100">Meet the experts behind Function Drive.</p>
-            </div>
-        </div>
-    </section>
-    
     <!-- Founders Section -->
     <section class="founders py-5">
         <div class="container">
             <div class="section-title mb-5">
                 <h2 data-aos="fade-up">Our Founders</h2>
-                <p data-aos="fade-up" data-aos-delay="100">The visionaries who started Function Drive.</p>
+                <p data-aos="fade-up" data-aos-delay="100">Meet the founders of Function Drive.</p>
             </div>
             
             <div class="row">
                 <div class="col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="100">
                     <div class="founder-card">
                         <div class="founder-img">
-                            <img src="images/team-1.jpg" alt="Chaitanya" class="img-fluid">
+                            <img src="images/Chaitanya Kashyap.jpg" alt="Chaitanya" class="img-fluid">
                             <div class="founder-social">
                                 <a href="#"><i class="fab fa-linkedin-in"></i></a>
                                 <a href="#"><i class="fab fa-twitter"></i></a>
@@ -402,7 +410,7 @@
                 <div class="col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="200">
                     <div class="founder-card">
                         <div class="founder-img">
-                            <img src="images/team-2.jpg" alt="Aashish" class="img-fluid">
+                            <img src="images/Aashish Atwal.jpg" alt="Aashish" class="img-fluid">
                             <div class="founder-social">
                                 <a href="#"><i class="fab fa-linkedin-in"></i></a>
                                 <a href="#"><i class="fab fa-twitter"></i></a>
@@ -425,7 +433,7 @@
                 <div class="col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="300">
                     <div class="founder-card">
                         <div class="founder-img">
-                            <img src="images/team-3.jpg" alt="Rohan" class="img-fluid">
+                            <img src="images/Blank_profile_pic.webp" alt="Rohan" class="img-fluid">
                             <div class="founder-social">
                                 <a href="#"><i class="fab fa-linkedin-in"></i></a>
                                 <a href="#"><i class="fab fa-twitter"></i></a>
@@ -441,86 +449,6 @@
                                 <span>Business Strategy</span>
                                 <span>Client Relations</span>
                             </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <!-- Core Team Section -->
-    <section class="core-team py-5 bg-darker">
-        <div class="container">
-            <div class="section-title mb-5">
-                <h2 data-aos="fade-up">Core Team</h2>
-                <p data-aos="fade-up" data-aos-delay="100">The talented professionals who make our vision a reality.</p>
-            </div>
-            
-            <div class="row">
-                <div class="col-lg-3 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="100">
-                    <div class="team-card">
-                        <div class="team-img">
-                            <img src="images/team-4.jpg" alt="Team Member" class="img-fluid">
-                            <div class="team-social">
-                                <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                                <a href="#"><i class="fab fa-twitter"></i></a>
-                                <a href="#"><i class="fas fa-envelope"></i></a>
-                            </div>
-                        </div>
-                        <div class="team-info">
-                            <h3>Priya Sharma</h3>
-                            <p>Lead AI Developer</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="col-lg-3 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="200">
-                    <div class="team-card">
-                        <div class="team-img">
-                            <img src="images/team-5.jpg" alt="Team Member" class="img-fluid">
-                            <div class="team-social">
-                                <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                                <a href="#"><i class="fab fa-twitter"></i></a>
-                                <a href="#"><i class="fas fa-envelope"></i></a>
-                            </div>
-                        </div>
-                        <div class="team-info">
-                            <h3>Raj Patel</h3>
-                            <p>Automation Specialist</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="col-lg-3 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="300">
-                    <div class="team-card">
-                        <div class="team-img">
-                            <img src="images/team-6.jpg" alt="Team Member" class="img-fluid">
-                            <div class="team-social">
-                                <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                                <a href="#"><i class="fab fa-twitter"></i></a>
-                                <a href="#"><i class="fas fa-envelope"></i></a>
-                            </div>
-                        </div>
-                        <div class="team-info">
-                            <h3>Ananya Gupta</h3>
-                            <p>Frontend Developer</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="col-lg-3 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="400">
-                    <div class="team-card">
-                        <div class="team-img">
-                            <img src="images/team-7.jpg" alt="Team Member" class="img-fluid">
-                            <div class="team-social">
-                                <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                                <a href="#"><i class="fab fa-twitter"></i></a>
-                                <a href="#"><i class="fas fa-envelope"></i></a>
-                            </div>
-                        </div>
-                        <div class="team-info">
-                            <h3>Vikram Singh</h3>
-                            <p>Data Scientist</p>
                         </div>
                     </div>
                 </div>

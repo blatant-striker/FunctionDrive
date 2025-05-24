@@ -24,8 +24,30 @@
     
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/style.css">
+    
+    <!-- Preload critical assets -->
+    <link rel="preload" href="css/style.css" as="style">
+    <link rel="preload" href="js/main.js" as="script">
+
+    <!-- GSAP & ScrollTrigger -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <!-- Prefetch other pages -->
+    <link rel="prefetch" href="about.html" as="document">
+    <link rel="prefetch" href="services.html" as="document">
+    <link rel="prefetch" href="contact.html" as="document">
+    <link rel="prefetch" href="team.html" as="document">
 </head>
 <body>
+    <!-- Animated Background -->
+    <div class="animated-background">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+    <!-- Grid Background -->
+    <div class="grid-background"></div>
     
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
@@ -69,23 +91,24 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-6 hero-content text-center mx-auto">
-                    <h3 class="tagline" data-aos="fade-up" data-aos-delay="50">Your Function | Our Drive</h3>
-                    <h1 data-aos="fade-up" data-aos-delay="100">Automate Your Business With AI</h1>
-                    <p data-aos="fade-up" data-aos-delay="200">We help businesses leverage AI and automation to streamline workflows, reduce costs, and boost productivity.</p>
-                    <div class="hero-buttons" data-aos="fade-up" data-aos-delay="300">
+                    <h3 class="tagline">Your Function | Our Drive</h3>
+                    <h1>Automate Your Business With AI</h1>
+                    <p>We help businesses leverage AI and automation to streamline <br> workflows, reduce costs, and boost productivity.</p>
+                    <div class="hero-buttons">
                         <a href="#services" class="btn btn-primary">Our Services</a>
                         <a href="#contact" class="btn btn-outline-dark">Get in Touch</a>
                     </div>
                 </div>
-                <div class="col-lg-6 d-none d-lg-block" data-aos="fade-left" data-aos-delay="400">
-                    <img src="images/hero-illustration.png" alt="AI Automation" class="img-fluid floating">
+                <div id="hero-image-container" class="col-lg-6 d-none d-lg-block">
+                    <img id="hero-illustration-img" src="images/hero-illustration.png" alt="AI Automation" class="img-fluid floating">
                 </div>
             </div>
         </div>
     </section>
     
     <!-- Services Section -->
-    <section id="services" class="services">
+    <div id="services-sticky-container">
+        <section id="services" class="services">
         <div class="container">
             <div class="section-title">
                 <h2 data-aos="fade-up">Our Services</h2>
@@ -96,7 +119,7 @@
             </div>
 
             <div class="row">
-                <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="100">
+                <div class="col-md-4 mb-4">
                     <div class="service-card">
                         <div class="service-icon">
                             <i class="fas fa-robot"></i>
@@ -105,8 +128,7 @@
                         <p>Custom chatbots using GPT and other LLMs to enhance customer service and streamline communication.</p>
                     </div>
                 </div>
-                
-                <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="200">
+                <div class="col-md-4 mb-4">
                     <div class="service-card">
                         <div class="service-icon">
                             <i class="fas fa-cogs"></i>
@@ -115,8 +137,7 @@
                         <p>Automate repetitive tasks and workflows using Zapier, Make, and other integration platforms.</p>
                     </div>
                 </div>
-                
-                <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="300">
+                <div class="col-md-4 mb-4">
                     <div class="service-card">
                         <div class="service-icon">
                             <i class="fas fa-users"></i>
@@ -125,8 +146,7 @@
                         <p>Automated lead generation systems from LinkedIn, Instagram, and email campaigns.</p>
                     </div>
                 </div>
-                
-                <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="400">
+                <div class="col-md-4 mb-4">
                     <div class="service-card">
                         <div class="service-icon">
                             <i class="fas fa-clipboard-list"></i>
@@ -135,8 +155,7 @@
                         <p>Streamline your client onboarding process with automated workflows and AI assistants.</p>
                     </div>
                 </div>
-                
-                <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="500">
+                <div class="col-md-4 mb-4">
                     <div class="service-card">
                         <div class="service-icon">
                             <i class="fas fa-chart-line"></i>
@@ -145,8 +164,7 @@
                         <p>Automated data collection and analysis to provide actionable business insights.</p>
                     </div>
                 </div>
-                
-                <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="600">
+                <div class="col-md-4 mb-4">
                     <div class="service-card">
                         <div class="service-icon">
                             <i class="fas fa-laptop-code"></i>
@@ -155,7 +173,7 @@
                         <p>Build internal tools and dashboards using Retool, Appsmith, or custom development.</p>
                     </div>
                 </div>
-                <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="700">
+                <div class="col-md-4 mb-4">
                     <div class="service-card">
                         <div class="service-icon">
                             <i class="fas fa-globe"></i>
@@ -164,8 +182,7 @@
                         <p>Create stunning, responsive websites using modern technologies and frameworks.</p>
                     </div>
                 </div>
-                
-                <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="800">
+                <div class="col-md-4 mb-4">
                     <div class="service-card">
                         <div class="service-icon">
                             <i class="fas fa-phone-alt"></i>
@@ -174,20 +191,19 @@
                         <p>Intelligent voice response systems and calling bots to streamline communication.</p>
                     </div>
                 </div>
-                
-                <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="900">
+                <div class="col-md-4 mb-4">
                     <div class="service-card">
                         <div class="service-icon">
                             <i class="fas fa-palette"></i>
                         </div>
                         <h3>Graphic Design</h3>
-                        <p>Professional graphic design services for all your branding and marketing needs.</p>
+                        <p>Professional graphic design services for branding, marketing materials, and digital assets.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    
+    </div>
     <!-- About Section -->
     <section id="about" class="about">
         <div class="container">

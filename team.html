@@ -24,8 +24,26 @@
     
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/style.css">
+
+    <!-- Preload critical assets -->
+    <link rel="preload" href="css/style.css" as="style">
+    <link rel="preload" href="js/main.js" as="script">
+
+    <!-- Prefetch other pages -->
+    <link rel="prefetch" href="index.html" as="document">
+    <link rel="prefetch" href="about.html" as="document">
+    <link rel="prefetch" href="services.html" as="document">
+    <link rel="prefetch" href="contact.html" as="document">
 </head>
 <body>
+    <!-- Animated Background -->
+    <div class="animated-background">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+    <!-- Grid Background -->
+    <div class="grid-background"></div>
     
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top">

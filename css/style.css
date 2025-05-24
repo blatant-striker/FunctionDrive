@@ -2,8 +2,11 @@
 :root {
   /* Dark Mode (Default) */
   --primary: #ff6b6b;
+  --primary-color-rgb: 255, 107, 107;
   --secondary: #8a3ab9;
+  --secondary-color-rgb: 138, 58, 185;
   --accent: #00c9a7;
+  --accent-color-rgb: 0, 201, 167;
   --dark: #121212;
   --darker: #0a0a0a;
   --medium-dark: #1e1e1e;
@@ -13,6 +16,7 @@
   --success: #00c9a7;
   --gradient: linear-gradient(45deg, var(--primary), var(--secondary));
   --bg-color: var(--dark);
+  --bg-color-rgb: 18, 18, 18;
   --card-bg: var(--medium-dark);
   --border-color: rgba(255, 255, 255, 0.05);
   --shadow-color: rgba(0, 0, 0, 0.3);
@@ -27,12 +31,16 @@
   --text: #2d2d2d;
   --text-muted: #555555;
   --bg-color: #ffffff;
+  --bg-color-rgb: 255, 255, 255;
   --card-bg: #ffffff;
   --border-color: rgba(0, 0, 0, 0.05);
   --shadow-color: rgba(0, 0, 0, 0.1);
   --primary: #ff4f7b;
+  --primary-color-rgb: 255, 79, 123;
   --secondary: #7b3fa8;
+  --secondary-color-rgb: 123, 63, 168;
   --accent: #00b396;
+  --accent-color-rgb: 0, 179, 150;
   --gradient: linear-gradient(45deg, var(--primary), var(--secondary));
 }
 
@@ -49,6 +57,44 @@ body {
   overflow-x: hidden;
   transition: background-color 0.3s ease, color 0.3s ease;
 }
+
+/* --- Services Scroll Stacking CSS --- */
+#services-sticky-container {
+    position: relative; /* Ensures proper layout flow and reference for pinning */
+    /* The height of this container will naturally be the height of its content (.services section) */
+    /* ScrollTrigger's pinSpacing:true will add bottom padding to this if .services is pinned */
+}
+
+.services { /* This is the element that will be pinned by GSAP ScrollTrigger */
+    /* GSAP will dynamically make this 'sticky' or 'fixed' during the pin duration */
+    /* We can set a default top offset here if desired, e.g., for the navbar */
+    /* top: 80px; /* Example: if your navbar is 80px tall and you want to pin below it */
+    width: 100%; /* Ensure it takes full width when pinned */
+    /* z-index: 5; /* Optional: if needed to manage stacking with other fixed/sticky elements */
+}
+
+/* Ensure service cards have a consistent height for better stacking visuals */
+.service-card {
+    min-height: 280px; /* Adjust as needed for your content */
+    height: 100%; /* Make cards in a row take up equal height if using Bootstrap's default flex behavior for columns */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Pushes content like button to bottom if card has extra space */
+    will-change: transform, opacity; /* Hint to browser for animations */
+    /* transform-origin will be set by GSAP for finer control */
+}
+
+/* Optional: Adjust typography within cards if they scale down significantly */
+.service-card h3 {
+    font-size: 1.1rem; /* Default, adjust if needed */
+    margin-bottom: 0.75rem;
+}
+.service-card p {
+    font-size: 0.9rem; /* Default, adjust if needed */
+    flex-grow: 1; /* Allows paragraph to take available space before button */
+    margin-bottom: 1rem;
+}
+/* --- End Services Scroll Stacking CSS --- */
 
 /* Navbar */
 .navbar {
@@ -127,6 +173,23 @@ body {
   font-weight: 500;
   margin: 0 0.5rem;
   position: relative;
+  transition: color 0.3s ease;
+}
+
+.nav-link.active {
+  color: var(--primary) !important;
+  font-weight: 600;
+}
+
+.nav-link.active::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--gradient);
+  border-radius: 5px;
 }
 
 /* Theme Toggle Button */
@@ -233,6 +296,7 @@ body {
   background-size: cover;
   position: relative;
   padding: 100px 0;
+  z-index: 1;
 }
 
 [data-theme="light"] .hero {
@@ -271,11 +335,9 @@ body {
 }
 
 .hero-buttons {
+  margin-top: 2rem;
   display: flex;
   justify-content: center;
-  align-items: center;
-  margin-top: 2rem;
-  width: 100%;
   gap: 1rem;
 }
 
@@ -371,7 +433,12 @@ body {
   color: white;
   font-weight: 600;
   padding: 0.85rem 2rem;
+  border-radius: 50px;
   box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  transition: all 0.3s ease;
 }
 
 .btn-primary::before {
@@ -702,7 +769,7 @@ body {
 
 /* Founder Card Styles */
 .founder-card {
-  border-radius: 15px;
+  border-radius: 210px 210px 50px 50px; /* More pronounced rounded top and bottom */
   overflow: hidden;
   box-shadow: 0 10px 30px var(--shadow-color);
   background: var(--medium-dark);
@@ -723,43 +790,81 @@ body {
 
 .founder-img {
   position: relative;
-  overflow: hidden;
-  border-radius: 10px 10px 0 0;
+  overflow: hidden; 
+  width: 100%; 
+  padding-top: 100%; /* This creates a square aspect ratio */
+  border-radius: 50%; /* Make the container circular */
+}
+
+.founder-img img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: auto;
+  transform: translate(-50%, -50%); /* Center the image */
+  object-fit: cover; 
+  border-radius: 50%;
+  min-height: 100%; /* Ensure it covers the full height */
+  min-width: 100%; /* Ensure it covers the full width */
 }
 
 .founder-social {
   position: absolute;
-  bottom: -50px;
+  bottom: -50px; /* Start hidden below the image */
   left: 0;
   right: 0;
+  display: flex;
   justify-content: center;
-  margin-top: 1rem;
+  align-items: center;
+  padding: 0.5rem 0;
   background: rgba(0, 0, 0, 0.7);
   transition: all 0.3s ease;
+  opacity: 0; /* Start fully transparent */
+  z-index: 2;
 }
 
 [data-theme="light"] .founder-social {
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.7);
 }
 
+/* Show on hover of the founder card */
 .founder-card:hover .founder-social {
   bottom: 0;
+  opacity: 1;
+}
+
+/* Ensure the image container has proper positioning for the overlay */
+.founder-img {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  padding-top: 100%;
 }
 
 .founder-info {
-  padding: 1.5rem;
+  padding: 1.5rem; 
+  text-align: center; 
 }
 
 .founder-info h3 {
-  font-size: 1.5rem;
-  font-weight: 600;
-  margin-bottom: 0.5rem;
+  font-size: 1.6rem; 
+  font-weight: 700; 
+  margin-bottom: 0.35rem; 
+  color: var(--text); 
+}
+
+[data-theme="light"] .founder-info h3 {
+  color: var(--text);
 }
 
 .founder-info .position {
+  font-size: 0.95rem; 
   color: var(--primary);
-  font-weight: 500;
-  margin-bottom: 1rem;
+  font-weight: 600; 
+  margin-bottom: 0.8rem; 
+  text-transform: uppercase; 
+  letter-spacing: 0.5px;
 }
 
 [data-theme="light"] .founder-info .position {
@@ -767,8 +872,14 @@ body {
 }
 
 .founder-info .bio {
-  margin-bottom: 1.5rem;
-  font-size: 0.95rem;
+  font-size: 0.9rem; 
+  line-height: 1.6; 
+  color: var(--text-muted); 
+  margin-bottom: 1.2rem; 
+}
+
+[data-theme="light"] .founder-info .bio {
+  color: var(--text-muted);
 }
 
 .founder-skills {
@@ -779,16 +890,29 @@ body {
 
 .founder-skills span {
   background: var(--dark);
-  color: var(--text);
-  padding: 0.35rem 0.8rem;
-  border-radius: 20px;
-  font-size: 0.8rem;
-  border: 1px solid var(--border-color);
+  color: var(--accent); 
+  border: 1px solid var(--accent);
+  padding: 0.35rem 0.75rem; 
+  font-size: 0.75rem; 
+  font-weight: 500;
+  border-radius: 20px; 
+  transition: all 0.3s ease;
+}
+
+.founder-skills span:hover {
+  background: var(--accent);
+  color: var(--bg-color); 
 }
 
 [data-theme="light"] .founder-skills span {
-  background: var(--medium-dark);
-  color: var(--text-muted);
+  background: var(--darker); 
+  color: var(--accent);
+  border: 1px solid var(--accent);
+}
+
+[data-theme="light"] .founder-skills span:hover {
+  background: var(--accent);
+  color: var(--bg-color);
 }
 
 .team-social a:hover {
@@ -1161,6 +1285,18 @@ body {
   border-color: var(--primary);
 }
 
+.newsletter-form .btn-arrow {
+  background-color: rgba(255, 255, 255, 0.25); /* More whitish frosted glass background */
+  backdrop-filter: blur(15px); /* Increased blur */
+  -webkit-backdrop-filter: blur(15px); /* For Safari - Increased blur */
+  border: 1px solid rgba(255, 255, 255, 0.3); /* Slightly more opaque border */
+  color: white;
+  border-radius: 0 4px 4px 0;
+  padding: 0.6rem 1rem;
+  position: relative; /* For stacking context with backdrop-filter */
+  z-index: 1;         /* For stacking context with backdrop-filter */
+}
+
 .made-with-love {
   font-size: 0.9rem;
   color: var(--text-muted);
@@ -1308,14 +1444,6 @@ body {
   margin-top: 1rem;
 }
 
-.newsletter-form .btn-arrow {
-  background: var(--primary);
-  color: white;
-  border: none;
-  border-radius: 0 4px 4px 0;
-  padding: 0.6rem 1rem;
-}
-
 [data-theme="light"] .footer {
   background-color: #000;
   color: white;
@@ -1449,6 +1577,205 @@ body {
 .accordion-body {
   padding: 1.25rem;
   color: var(--text-muted);
+}
+
+/* Animated Background */
+.animated-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none; /* Allows clicks to pass through */
+}
+
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(60px);
+  opacity: 0.7;
+  transform-origin: center;
+  mix-blend-mode: plus-lighter;
+  transition: all 0.3s ease;
+  will-change: transform, filter;
+  animation: pulse 8s ease-in-out infinite alternate;
+}
+
+@keyframes pulse {
+  0% { opacity: 0.6; }
+  50% { opacity: 0.8; }
+  100% { opacity: 0.6; }
+}
+
+.blob-1 {
+  width: 50vw;
+  height: 50vw;
+  background: rgba(var(--primary-color-rgb), 0.7);
+  top: 20%;
+  left: 10%;
+  animation: blob-move-1 18s ease-in-out infinite alternate;
+}
+
+.blob-2 {
+  width: 40vw;
+  height: 40vw;
+  background: rgba(var(--secondary-color-rgb), 0.7);
+  bottom: 10%;
+  right: 15%;
+  animation: blob-move-2 24s ease-in-out infinite alternate;
+}
+
+.blob-3 {
+  width: 30vw;
+  height: 30vw;
+  background: rgba(var(--accent-color-rgb), 0.7);
+  top: 10%;
+  right: 10%;
+  animation: blob-move-3 20s ease-in-out infinite alternate;
+}
+
+@keyframes blob-move-1 {
+  0% { transform: translate(0, 0) scale(1); filter: blur(60px) hue-rotate(0deg); }
+  50% { transform: translate(10vw, 5vh) scale(1.1); filter: blur(70px) hue-rotate(30deg); }
+  100% { transform: translate(-5vw, 10vh) scale(0.9); filter: blur(60px) hue-rotate(0deg); }
+}
+
+@keyframes blob-move-2 {
+  0% { transform: translate(0, 0) scale(1); filter: blur(60px) hue-rotate(0deg); }
+  50% { transform: translate(-8vw, -7vh) scale(1.2); filter: blur(80px) hue-rotate(-30deg); }
+  100% { transform: translate(8vw, -3vh) scale(0.9); filter: blur(60px) hue-rotate(0deg); }
+}
+
+@keyframes blob-move-3 {
+  0% { transform: translate(0, 0) scale(1); filter: blur(60px) hue-rotate(0deg); }
+  50% { transform: translate(-12vw, 6vh) scale(1.1); filter: blur(70px) hue-rotate(45deg); }
+  100% { transform: translate(5vw, -8vh) scale(0.85); filter: blur(60px) hue-rotate(0deg); }
+}
+
+/* Hero Section Animation */
+.hero-content {
+  position: relative;
+  z-index: 2;
+}
+
+.hero-content h1, .hero-content h3, .hero-content p, .hero-content .hero-buttons {
+  position: relative;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.hero-content h3.tagline {
+  animation: fadeSlideIn 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.3s forwards, glow 2.5s ease-in-out infinite alternate;
+  text-shadow: 0 0 5px rgba(var(--primary-color-rgb), 0.3);
+}
+
+.hero-content h1 {
+  animation: fadeSlideIn 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.5s forwards, glow 3s ease-in-out 1s infinite alternate;
+  text-shadow: 0 0 8px rgba(var(--bg-color-rgb), 0.5);
+}
+
+.hero-content p {
+  animation: fadeSlideIn 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.7s forwards;
+  text-shadow: 0 0 3px rgba(var(--bg-color-rgb), 0.4);
+}
+
+.hero-content .hero-buttons {
+  animation: fadeSlideIn 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.9s forwards;
+}
+
+@keyframes glow {
+  0% { text-shadow: 0 0 5px rgba(var(--primary-color-rgb), 0.3); }
+  50% { text-shadow: 0 0 12px rgba(var(--secondary-color-rgb), 0.5), 0 0 20px rgba(var(--accent-color-rgb), 0.3); }
+  100% { text-shadow: 0 0 5px rgba(var(--primary-color-rgb), 0.3); }
+}
+
+@keyframes fadeSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+#hero-image-container {
+  position: relative;
+  z-index: 1;
+}
+
+/* Grid Background */
+.grid-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -2;
+  background-image: linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+                    linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 25px 25px;
+  background-position: center center;
+}
+
+/* Standard Section Background (all sections except hero) */
+section:not(.hero) {
+  background-color: rgba(var(--bg-color-rgb), 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 10px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+  position: relative;
+  z-index: 1;
+  transition: background-color 0.5s ease;
+  margin: 15px 0;
+  overflow: hidden;
+}
+
+section:not(.hero):hover {
+  background-color: rgba(var(--bg-color-rgb), 0.6);
+}
+
+/* Additional specific class-based elements that need the same styling */
+.vision, .values, .about-page, .timeline-section, .team-section, .cta-section,
+.service-detail, .faq-section, .pricing-section, .contact-form-section, 
+.services-container, .service-card, .testimonial-section, .stats-container {
+  background-color: rgba(var(--bg-color-rgb), 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 10px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+  position: relative;
+  z-index: 1;
+  transition: all 0.5s ease;
+}
+
+.vision:hover, .values:hover, .about-page:hover, .timeline-section:hover, .team-section:hover, .cta-section:hover,
+.service-detail:hover, .faq-section:hover, .pricing-section:hover, .contact-form-section:hover,
+.services-container:hover, .service-card:hover, .testimonial-section:hover, .stats-container:hover {
+  background-color: rgba(var(--bg-color-rgb), 0.2);
+}
+
+/* White Mode Optimizations */
+[data-theme="light"] section:not(.hero),
+[data-theme="light"] .vision, [data-theme="light"] .values, [data-theme="light"] .about-page, 
+[data-theme="light"] .timeline-section, [data-theme="light"] .team-section, [data-theme="light"] .cta-section,
+[data-theme="light"] .service-detail, [data-theme="light"] .faq-section, [data-theme="light"] .pricing-section, 
+[data-theme="light"] .contact-form-section, [data-theme="light"] .services-container, 
+[data-theme="light"] .service-card, [data-theme="light"] .testimonial-section, [data-theme="light"] .stats-container {
+  background-color: rgba(var(--bg-color-rgb), 0.2);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  backdrop-filter: blur(8px);
+}
+
+[data-theme="light"] section:not(.hero):hover,
+[data-theme="light"] .vision:hover, [data-theme="light"] .values:hover, [data-theme="light"] .about-page:hover, 
+[data-theme="light"] .timeline-section:hover, [data-theme="light"] .team-section:hover, [data-theme="light"] .cta-section:hover,
+[data-theme="light"] .service-detail:hover, [data-theme="light"] .faq-section:hover, [data-theme="light"] .pricing-section:hover, 
+[data-theme="light"] .contact-form-section:hover, [data-theme="light"] .services-container:hover, 
+[data-theme="light"] .service-card:hover, [data-theme="light"] .testimonial-section:hover, [data-theme="light"] .stats-container:hover {
+  background-color: rgba(var(--bg-color-rgb), 0.3);
 }
 
 /* Floating Elements */
