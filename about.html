@@ -19,8 +19,7 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- AOS Animation -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Animation styles handled by GSAP and custom CSS -->
     
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/style.css">
@@ -29,11 +28,15 @@
     <link rel="preload" href="css/style.css" as="style">
     <link rel="preload" href="js/main.js" as="script">
 
+    <!-- GSAP & ScrollTrigger -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
     <!-- Prefetch other pages -->
-    <link rel="prefetch" href="index.html" as="document">
-    <link rel="prefetch" href="services.html" as="document">
-    <link rel="prefetch" href="contact.html" as="document">
-    <link rel="prefetch" href="team.html" as="document">
+    <link rel="prefetch" href="index.html">
+    <link rel="prefetch" href="services.html">
+    <link rel="prefetch" href="contact.html">
+    <link rel="prefetch" href="team.html">
 </head>
 <body>
     <!-- Animated Background -->
@@ -48,7 +51,7 @@
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
         <div class="container">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="index.html">
                 <div class="navbar-logo">
                     <img src="images/Function_Drive_logo_no_background(PNG).png" alt="Function Drive" height="50">
                     <span>FUNCTION DRIVE</span>
@@ -159,8 +162,8 @@
     <section class="skills py-5">
         <div class="container">
             <div class="section-title mb-5">
-                <h2 data-aos="fade-up">Our Core Skills</h2>
-                <p data-aos="fade-up" data-aos-delay="100">The expertise that powers our AI automation solutions.</p>
+                <h2>Our Core Skills</h2>
+                <p>The expertise that powers our AI automation solutions.</p>
             </div>
             
             <div class="row">

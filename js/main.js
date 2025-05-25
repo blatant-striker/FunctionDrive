@@ -1,4 +1,4 @@
-// Main JavaScript for AI Automation Agency Website
+// Main JavaScript for Function Drive - Optimized
 
 // Wait for DOM to be fully loaded
 document.addEventListener('DOMContentLoaded', function() {
@@ -29,7 +29,45 @@ document.addEventListener('DOMContentLoaded', function() {
         
         document.documentElement.setAttribute('data-theme', newTheme);
         localStorage.setItem('theme', newTheme);
+        
+        // Update star animation elements based on theme
+        updateStarAnimationElements(newTheme);
     });
+    
+    // Function to create or remove star animation elements based on theme
+    function updateStarAnimationElements(theme) {
+        const animatedBackground = document.querySelector('.animated-background');
+        if (!animatedBackground) return;
+        
+        // Clear existing star layers first
+        const existingStarLayers = animatedBackground.querySelectorAll('.stars-layer-1, .stars-layer-2, .stars-layer-3, .shooting-star, .bright-stars');
+        existingStarLayers.forEach(layer => layer.remove());
+        
+        // Only add star elements in dark mode
+        if (theme !== 'light') {
+            // Create special bright stars layer
+            const brightStars = document.createElement('div');
+            brightStars.className = 'bright-stars';
+            animatedBackground.appendChild(brightStars);
+            
+            // Create regular star layers
+            for (let i = 1; i <= 3; i++) {
+                const starLayer = document.createElement('div');
+                starLayer.className = `stars-layer-${i}`;
+                animatedBackground.appendChild(starLayer);
+            }
+            
+            // Create shooting stars
+            for (let i = 1; i <= 3; i++) {
+                const shootingStar = document.createElement('div');
+                shootingStar.className = `shooting-star shooting-star-${i}`;
+                animatedBackground.appendChild(shootingStar);
+            }
+        }
+    }
+    
+    // Initialize star animation elements based on current theme
+    updateStarAnimationElements(savedTheme);
     // Navbar scroll effect
     const navbar = document.querySelector('.navbar');
     
@@ -210,66 +248,141 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // --- GSAP Scroll-triggered Card Stacking ---
-    // Re-use 'serviceCards' declared earlier for the hover effect
+    // --- Exact Beam AI Card Stacking Implementation ---
     const servicesStickyContainer = document.getElementById('services-sticky-container');
     const servicesSection = document.getElementById('services');
-    // const serviceCards = gsap.utils.toArray('.service-card'); // This was the redundant declaration
-
-    if (servicesStickyContainer && servicesSection && serviceCards.length > 0) {
+    
+    if (servicesStickyContainer && servicesSection) {
+        // Get all cards and the track element
+        const serviceCards = document.querySelectorAll('.service-card');
+        const cardsTrack = document.querySelector('.beam-cards-track');
         
-        // Calculate a dynamic pin duration based on the number of cards and desired scroll speed for stacking
-        // This value might need tweaking for feel. Higher value = more scroll needed to stack.
-        let pinEffectDuration = (serviceCards.length / 3) * 100; // e.g., 3 rows * 100vh per row for stacking effect
-
+        // Reset any existing animations
+        ScrollTrigger.getAll().forEach(st => st.kill());
+        
+        // Separate cards into rows (assuming 3 cards per row for desktop layout)
+        const cardsPerRow = 3;
+        const rows = Math.ceil(serviceCards.length / cardsPerRow);
+        
+        // Assign layer classes to help with proper stacking (exactly like Beam AI)
+        serviceCards.forEach((card, index) => {
+            const rowIndex = Math.floor(index / cardsPerRow);
+            card.classList.add(`card-layer-${rowIndex + 1}`);
+        });
+        
+        // Set up the main scroll trigger for pinning the section
         ScrollTrigger.create({
-            trigger: servicesStickyContainer, // The outer container that has natural document flow height
-            start: "top top", // When the top of servicesStickyContainer hits the top of the viewport
-            // Pin for the natural height of servicesSection PLUS the extra scroll distance needed for the stacking effect
-            end: () => `+=${servicesSection.offsetHeight + pinEffectDuration}`,
-            pin: servicesSection, // Pin the .services section itself
-            pinSpacing: true, // Add padding to the bottom of servicesStickyContainer to push content down
-            scrub: 1, // Smooth scrubbing, takes 1 second to "catch up" to the scrollbar
-            // markers: true, // For debugging - remove for production
-            onUpdate: self => {
-                // Optional: log progress for debugging
-                // console.log("progress:", self.progress.toFixed(3), "direction:", self.direction);
+            trigger: servicesStickyContainer,
+            start: "top top",
+            end: "+=200%", // Exact value used in Beam AI
+            pin: servicesSection,
+            pinSpacing: true,
+            anticipatePin: 1, // Prevents jerky start
+            scrub: 0.1, // Exact value for ultra-smooth scrolling like Beam AI
+            markers: false,
+            invalidateOnRefresh: true,
+            onEnter: () => {
+                // When entering the section, set up initial states
+                serviceCards.forEach(card => card.classList.add('active'));
             }
         });
-
-        const cardsPerRow = 3;
-        const yOffsetBetweenStackedCards = 15; // Vertical pixels between stacked cards
-        const scaleReductionPerRow = 0.05; // How much smaller each subsequent stacked row becomes
-
-        serviceCards.forEach((card, index) => {
-            const rowIndex = Math.floor(index / cardsPerRow); // 0 for first row, 1 for second, etc.
-            // const colIndex = index % cardsPerRow; // 0, 1, 2 for column position
-
-            // Cards in row 0 don't need to move initially, they are the base of the stack.
-            // Cards in row 1 will move up to stack on row 0.
-            // Cards in row 2 will move up to stack on row 1.
+        
+        // Initial load animation - fade cards in staggered
+        gsap.set(serviceCards, {
+            opacity: 0,
+            y: 50,
+            scale: 0.95
+        });
+        
+        gsap.to(serviceCards, {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            stagger: 0.05, // Exactly like Beam AI
+            duration: 0.5,
+            ease: "power2.out",
+            delay: 0.2
+        });
+        
+        // =============== THE KEY PART: EXACT BEAM AI STACKING ANIMATION ===============
+        // Create a master timeline for stacking
+        const stackTimeline = gsap.timeline({
+            scrollTrigger: {
+                trigger: servicesStickyContainer,
+                start: "top top", 
+                end: "+=200%",
+                scrub: 0.1,
+                invalidateOnRefresh: true
+            }
+        });
+        
+        // First, the first row stays put, subsequent rows move up and under in 3D space
+        for (let row = 1; row < rows; row++) {
+            // Select cards in this row
+            const rowCards = Array.from(serviceCards).filter((_, i) => 
+                Math.floor(i / cardsPerRow) === row
+            );
             
-            // Stagger the start of the animation for each row slightly.
-            // The animation for a card should effectively start when its row is about to be 'covered'.
-            let rowScrollStart = rowIndex * (card.offsetHeight / 2); // Start when half of the previous row is scrolled by
-
-            gsap.to(card, {
-                scrollTrigger: {
-                    trigger: servicesStickyContainer, // Animate relative to the overall scroll through the sticky container
-                    start: () => `top+=${rowScrollStart} top`, // Start animation a bit staggered by row
-                    end: () => `+=${servicesSection.offsetHeight * 0.75}`, // End animation partway through the pinned section scroll
-                    scrub: true,
-                    // markers: {startColor: "purple", endColor: "fuchsia", indent: (index * 10) + 50}, // For debugging card-specific triggers
-                },
-                // Move cards up. Row 0 stays (or moves minimally if desired).
-                // Subsequent rows move up to stack on top of the previous row.
-                y: () => (rowIndex > 0) ? - (card.offsetHeight * rowIndex - (yOffsetBetweenStackedCards * rowIndex)) : 0,
-                // Scale down cards in subsequent rows to give a depth effect.
-                scale: () => 1 - (rowIndex * scaleReductionPerRow),
-                opacity: 1, // Ensure opacity is 1
-                ease: "none",
-                transformOrigin: "center bottom" // Scale from the bottom center for a nice stacking feel
+            // Move entire row up and under previous row with Beam AI's exact transforms
+            stackTimeline.to(rowCards, {
+                y: `-=${row * 100}`, // Exact Beam AI offset value
+                z: `-=${row * 50}`, // Exact Beam AI z-depth value
+                scale: 1 - (row * 0.05), // Exact Beam AI scale reduction
+                rotationX: -5 * row, // Exact Beam AI rotation value
+                opacity: 1 - (row * 0.1), // Exact Beam AI opacity reduction
+                ease: "none", // Critical for smooth scrubbing
+                duration: 1 / rows // Normalize duration based on number of rows
+            }, 0); // Start at same time
+        }
+        
+        // Apply the exact hover effect from Beam AI
+        serviceCards.forEach((card, index) => {
+            const rowIndex = Math.floor(index / cardsPerRow);
+            
+            // Enhanced hover effects exactly like Beam AI
+            card.addEventListener('mouseenter', () => {
+                // First, cancel any existing animations
+                gsap.killTweensOf(card);
+                
+                // Apply exact Beam AI hover state
+                gsap.to(card, {
+                    y: `${gsap.getProperty(card, 'y') - 10}px`, // Lift exactly 10px from current position
+                    scale: gsap.getProperty(card, 'scale') * 1.02, // Grow by exactly 2%
+                    boxShadow: '0 30px 60px rgba(0, 0, 0, 0.25)', // Exact Beam AI shadow
+                    duration: 0.2,
+                    ease: 'power2.out',
+                    overwrite: 'auto'
+                });
             });
+            
+            card.addEventListener('mouseleave', () => {
+                // Get the current stack position from the ScrollTrigger progress
+                const progress = ScrollTrigger.getAll()
+                    .find(st => st.vars.trigger === servicesStickyContainer)
+                    ?.progress() || 0;
+                
+                // Calculate exact position based on current scroll progress
+                const baseY = rowIndex === 0 ? 0 : -(rowIndex * 100 * progress);
+                const baseScale = rowIndex === 0 ? 1 : (1 - (rowIndex * 0.05 * progress));
+                const baseRotX = rowIndex === 0 ? 0 : (-5 * rowIndex * progress);
+                
+                // Return to exact Beam AI scroll-based position
+                gsap.to(card, {
+                    y: baseY,
+                    scale: baseScale,
+                    rotationX: baseRotX,
+                    boxShadow: '0 10px 30px rgba(0, 0, 0, 0.15)',
+                    duration: 0.3,
+                    ease: 'power3.out',
+                    overwrite: 'auto'
+                });
+            });
+        });
+        
+        // Handle window resize - exactly like Beam AI
+        window.addEventListener('resize', () => {
+            // Beam AI recalculates on resize with a slight delay
+            ScrollTrigger.refresh();
         });
     }
     // --- End GSAP Card Stacking ---
@@ -277,12 +390,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Preloader code removed
 });
 
-// Initialize AOS (Animate On Scroll)
-AOS.init({
-    duration: 800, // Animation duration
-    easing: 'ease-in-out', // Easing function
-    once: true // Whether animation should happen only once - while scrolling down
-});
+// GSAP animations are used instead of AOS
 
 // GSAP Hero Animation for Index Page
 window.addEventListener('load', function() {
@@ -295,93 +403,34 @@ window.addEventListener('load', function() {
         // Proceed only if elements exist and heroImageContainer is visible (for large screens)
         if (heroIllustrationImg && heroImageContainer && heroContent && window.getComputedStyle(heroImageContainer).display !== 'none') {
 
-            // 1. Calculate final position and size of the illustration
-            // Temporarily set up for measurement
-            gsap.set(heroImageContainer, { display: 'block', opacity: 0 }); // Ensure it's in layout but hidden
-            gsap.set(heroIllustrationImg, { 
-                position: 'relative', 
-                width: '100%', // As per .img-fluid
-                height: 'auto',
-                display: 'block', 
-                opacity: 0 // Keep it hidden during measurement
-            });
-
-            const finalRect = heroIllustrationImg.getBoundingClientRect();
-            const finalX = finalRect.left;
-            const finalY = finalRect.top;
+            // Calculate final dimensions and position once
+            const finalRect = heroImageContainer.getBoundingClientRect();
             const finalWidth = finalRect.width;
             const finalHeight = finalRect.height;
 
-            // 2. Set initial state of the illustration for animation - OPTION 1: From Above with faster setup
-            // To change animation style, comment this block and uncomment one of the options below
+            // Set initial state of the illustration for animation: Off-screen right, faded out
             gsap.set(heroIllustrationImg, {
                 position: 'fixed',
-                top: '-10%', // Start closer to the viewport for faster appearance
-                left: '50%',
-                xPercent: -50,
-                yPercent: 0,
-                width: finalWidth * 1.1, // Less scaling for faster animation
-                height: finalHeight * 1.1,
-                opacity: 0.2, // Start with slight visibility for smoother appearance
-                rotation: -5, // Minimal tilt for faster straightening
-                zIndex: 1000,
-                display: 'block'
-            });
-            
-            /* OPTION 2: From Bottom with Spin
-            gsap.set(heroIllustrationImg, {
-                position: 'fixed',
-                top: '130%', // Start below the viewport
-                left: '50%',
-                xPercent: -50,
-                yPercent: 0,
-                width: finalWidth * 0.5, // Start smaller
-                height: finalHeight * 0.5,
-                opacity: 0.3,
-                rotation: 180, // Start upside down
-                zIndex: 1000,
-                display: 'block'
-            });
-            */
-            
-            /* OPTION 3: Fade In from Center (Minimal Movement)
-            gsap.set(heroIllustrationImg, {
-                position: 'fixed',
-                top: '50%',
-                left: '50%',
-                xPercent: -50,
-                yPercent: -50,
-                width: finalWidth * 0.8, // Start smaller
-                height: finalHeight * 0.8,
                 opacity: 0,
-                scale: 0.8,
+                left: window.innerWidth, // Start off-screen to the right
+                top: finalRect.top,      // Align with final top position
+                width: finalWidth,       // Start at final width
+                height: finalHeight,     // Start at final height
+                xPercent: 0, 
+                yPercent: 0,
                 zIndex: 1000,
-                display: 'block'
+                display: 'block' // Ensure it's visible for GSAP to animate
             });
-            */
 
             // 3. Create GSAP Timeline
             const tl = gsap.timeline();
 
-            // Animate illustration to its final place and size with enhanced animation
+            // Animate illustration to its final position and fade in
             tl.to(heroIllustrationImg, {
-                duration: 0.5,
-                top: '50%',
-                yPercent: -50,
+                duration: 1.2, // Adjust duration as needed for smooth animation
                 opacity: 1,
-                rotation: 0,
-                scale: 1.3,
-                ease: "back.out(1.4)",
-            })
-            .to(heroIllustrationImg, {
-                duration: 0.3, // Reduced from 0.5 to 0.3 seconds for faster animation
-                x: finalX - (window.innerWidth / 2) + (finalWidth / 2), // Target center of image to final center
-                y: finalY - (window.innerHeight / 2) + (finalHeight / 2),
-                width: finalWidth,
-                height: finalHeight,
-                opacity: 1,
-                ease: "power1.out", // Changed to power1.out for faster easing
-
+                left: finalRect.left, // Animate to final 'left' position
+                ease: "power2.out",
                 onComplete: () => {
                     // Reset illustration to flow naturally in its container
                     gsap.set(heroIllustrationImg, {
@@ -404,7 +453,6 @@ window.addEventListener('load', function() {
             // This allows the CSS animations to handle the text animations
             .set(heroContent, { 
                 opacity: 1, // Just make sure the container is visible
-                clearProps: "opacity" // Clear the opacity property to let CSS handle it
             });
         }
     }

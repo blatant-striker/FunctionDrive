@@ -19,8 +19,7 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- AOS Animation -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Animation styles handled by GSAP and custom CSS -->
     
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/style.css">
@@ -29,11 +28,15 @@
     <link rel="preload" href="css/style.css" as="style">
     <link rel="preload" href="js/main.js" as="script">
 
+    <!-- GSAP & ScrollTrigger -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
     <!-- Prefetch other pages -->
-    <link rel="prefetch" href="index.html" as="document">
-    <link rel="prefetch" href="about.html" as="document">
-    <link rel="prefetch" href="services.html" as="document">
-    <link rel="prefetch" href="team.html" as="document">
+    <link rel="prefetch" href="index.html">
+    <link rel="prefetch" href="services.html">
+    <link rel="prefetch" href="about.html">
+    <link rel="prefetch" href="team.html">
 </head>
 <body>
     <!-- Animated Background -->
@@ -48,7 +51,7 @@
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
         <div class="container">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="index.html">
                 <div class="navbar-logo">
                     <img src="images/Function_Drive_logo_no_background(PNG).png" alt="Function Drive" height="50">
                     <span>FUNCTION DRIVE</span>
@@ -140,14 +143,14 @@
     <section class="contact-form-section py-5 bg-darker">
         <div class="container">
             <div class="row justify-content-center">
-                <div class="col-lg-8 text-center mb-5" data-aos="fade-up">
+                <div class="col-lg-8 text-center mb-5">
                     <h2>Get In Touch</h2>
                     <p class="lead">Have a question or want to discuss how we can help your business? Fill out the form below and we'll get back to you as soon as possible.</p>
                 </div>
             </div>
             
             <div class="row justify-content-center">
-                <div class="col-lg-8" data-aos="fade-up" data-aos-delay="100">
+                <div class="col-lg-8">
                     <div class="contact-form">
                         <form id="contactForm">
                             <div class="row">
@@ -224,12 +227,12 @@
     <section class="faq-section py-5">
         <div class="container">
             <div class="section-title mb-5">
-                <h2 data-aos="fade-up">Frequently Asked Questions</h2>
-                <p data-aos="fade-up" data-aos-delay="100">Find answers to common questions about our services.</p>
+                <h2>Frequently Asked Questions</h2>
+                <p>Find answers to common questions about our services.</p>
             </div>
             
             <div class="row justify-content-center">
-                <div class="col-lg-8" data-aos="fade-up" data-aos-delay="200">
+                <div class="col-lg-8">
                     <div class="accordion" id="faqAccordion">
                         <div class="accordion-item">
                             <h2 class="accordion-header" id="headingOne">
@@ -384,58 +387,5 @@
     
     <!-- Custom JS -->
     <script src="js/main.js"></script>
-    
-    <script>
-        // Initialize AOS
-        AOS.init({
-            duration: 800,
-            easing: 'ease-in-out',
-            once: true
-        });
-        
-        // Form validation
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Basic validation
-            let isValid = true;
-            const name = document.getElementById('name');
-            const email = document.getElementById('email');
-            const message = document.getElementById('message');
-            
-            if (!name.value.trim()) {
-                isValid = false;
-                name.classList.add('is-invalid');
-            } else {
-                name.classList.remove('is-invalid');
-            }
-            
-            if (!email.value.trim() || !isValidEmail(email.value)) {
-                isValid = false;
-                email.classList.add('is-invalid');
-            } else {
-                email.classList.remove('is-invalid');
-            }
-            
-            if (!message.value.trim()) {
-                isValid = false;
-                message.classList.add('is-invalid');
-            } else {
-                message.classList.remove('is-invalid');
-            }
-            
-            if (isValid) {
-                // In a real scenario, you would send the form data to a server
-                // For demo purposes, we'll just show a success message
-                this.innerHTML = '<div class="alert alert-success">Thank you for your message! We\'ll get back to you soon.</div>';
-            }
-        });
-        
-        // Email validation helper function
-        function isValidEmail(email) {
-            const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            return regex.test(email);
-        }
-    </script>
 </body>
 </html>

@@ -1,0 +1,359 @@
+// Main JavaScript for Function Drive - Optimized
+
+// Wait for DOM to be fully loaded
+document.addEventListener('DOMContentLoaded', function() {
+    // Register GSAP plugins
+    gsap.registerPlugin(ScrollTrigger);
+    
+    // Set active nav link based on current page
+    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+    const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
+    
+    navLinks.forEach(link => {
+        const linkHref = link.getAttribute('href');
+        if (linkHref === currentPage) {
+            link.classList.add('active');
+        }
+    });
+    
+    // Theme Toggle Functionality
+    const themeToggle = document.getElementById('theme-toggle');
+    
+    // Check for saved theme preference or use default (dark)
+    const savedTheme = localStorage.getItem('theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+    
+    // Toggle theme when button is clicked
+    themeToggle.addEventListener('click', () => {
+        const currentTheme = document.documentElement.getAttribute('data-theme');
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        
+        document.documentElement.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+        
+        // Update star animation elements based on theme
+        updateStarAnimationElements(newTheme);
+    });
+    
+    // Function to create or remove star animation elements based on theme
+    function updateStarAnimationElements(theme) {
+        const animatedBackground = document.querySelector('.animated-background');
+        if (!animatedBackground) return;
+        
+        // Clear existing star layers first
+        const existingStarLayers = animatedBackground.querySelectorAll('.stars-layer-1, .stars-layer-2, .stars-layer-3, .shooting-star, .bright-stars');
+        existingStarLayers.forEach(layer => layer.remove());
+        
+        // Only add star elements in dark mode
+        if (theme !== 'light') {
+            // Create special bright stars layer
+            const brightStars = document.createElement('div');
+            brightStars.className = 'bright-stars';
+            animatedBackground.appendChild(brightStars);
+            
+            // Create regular star layers
+            for (let i = 1; i <= 3; i++) {
+                const starLayer = document.createElement('div');
+                starLayer.className = `stars-layer-${i}`;
+                animatedBackground.appendChild(starLayer);
+            }
+            
+            // Create shooting stars
+            for (let i = 1; i <= 3; i++) {
+                const shootingStar = document.createElement('div');
+                shootingStar.className = `shooting-star shooting-star-${i}`;
+                animatedBackground.appendChild(shootingStar);
+            }
+        }
+    }
+    
+    // Initialize star animation elements based on current theme
+    updateStarAnimationElements(savedTheme);
+    
+    // Navbar scroll effect
+    const navbar = document.querySelector('.navbar');
+    
+    window.addEventListener('scroll', function() {
+        if (window.scrollY > 50) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
+    });
+
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            const targetId = this.getAttribute('href');
+            if (targetId === '#') return;
+            
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+                window.scrollTo({
+                    top: targetElement.offsetTop - 80,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+
+    // Fade-in animation for elements
+    const fadeElements = document.querySelectorAll('.fade-up');
+    
+    function checkFade() {
+        fadeElements.forEach(element => {
+            const elementTop = element.getBoundingClientRect().top;
+            const windowHeight = window.innerHeight;
+            
+            if (elementTop < windowHeight - 100) {
+                element.classList.add('active');
+            }
+        });
+    }
+    
+    // Check on initial load
+    checkFade();
+    
+    // Check on scroll
+    window.addEventListener('scroll', checkFade);
+
+    // Service card hover effect
+    const serviceCards = document.querySelectorAll('.service-card');
+    
+    serviceCards.forEach(card => {
+        card.addEventListener('mouseenter', function() {
+            this.querySelector('.service-icon').classList.add('floating');
+        });
+        
+        card.addEventListener('mouseleave', function() {
+            this.querySelector('.service-icon').classList.remove('floating');
+        });
+    });
+
+    // Counter animation for stats
+    const stats = document.querySelectorAll('.stat-item h3');
+    
+    function animateCounter(el) {
+        const target = parseInt(el.getAttribute('data-count'));
+        const duration = 2000; // milliseconds
+        const stepTime = 50;
+        const steps = duration / stepTime;
+        const increment = target / steps;
+        let current = 0;
+        
+        const timer = setInterval(() => {
+            current += increment;
+            el.textContent = Math.floor(current);
+            
+            if (current >= target) {
+                el.textContent = target.toLocaleString();
+                clearInterval(timer);
+            }
+        }, stepTime);
+    }
+    
+    // Intersection Observer for counter animation
+    if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateCounter(entry.target);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+        
+        stats.forEach(stat => {
+            observer.observe(stat);
+        });
+    }
+    
+    // Testimonial carousel
+    let currentTestimonial = 0;
+    const testimonials = document.querySelectorAll('.testimonial-card');
+    const totalTestimonials = testimonials.length;
+    
+    if (totalTestimonials > 0) {
+        // Show only the first testimonial initially
+        testimonials.forEach((testimonial, index) => {
+            if (index !== 0) {
+                testimonial.style.display = 'none';
+            }
+        });
+        
+        // Set up next/prev buttons if they exist
+        const nextBtn = document.querySelector('.testimonial-next');
+        const prevBtn = document.querySelector('.testimonial-prev');
+        
+        if (nextBtn) {
+            nextBtn.addEventListener('click', function() {
+                testimonials[currentTestimonial].style.display = 'none';
+                currentTestimonial = (currentTestimonial + 1) % totalTestimonials;
+                testimonials[currentTestimonial].style.display = 'block';
+            });
+        }
+        
+        if (prevBtn) {
+            prevBtn.addEventListener('click', function() {
+                testimonials[currentTestimonial].style.display = 'none';
+                currentTestimonial = (currentTestimonial - 1 + totalTestimonials) % totalTestimonials;
+                testimonials[currentTestimonial].style.display = 'block';
+            });
+        }
+    }
+
+    // --- GSAP Card Stacking Animation ---
+    const servicesSection = document.querySelector('#services');
+    const servicesStickyContainer = document.querySelector('#services-sticky-container');
+    
+    if (servicesSection && servicesStickyContainer && serviceCards.length > 0) {
+        // Create a master timeline for the stacking animation
+        const stackingTimeline = gsap.timeline({
+            scrollTrigger: {
+                trigger: servicesSection,
+                start: "top 70%", // Start when top of services section reaches 70% from top of viewport
+                end: "center 20%", // End when center of services section reaches 20% from top of viewport
+                scrub: 1, // Smooth scrubbing effect with 1 second catch-up
+                markers: false // Set to true for debugging
+            }
+        });
+        
+        // Animation to reduce the section height as cards stack
+        stackingTimeline.to(servicesSection, {
+            height: "60vh", // Reduce section height as cards stack
+            ease: "power1.inOut"
+        }, 0); // Start at the same time as card animations
+        
+        // Configure scale reduction and vertical spacing
+        const scaleReductionPerRow = 0.08; // Each row reduces scale by this amount
+        const yOffsetBetweenStackedCards = 20; // Pixels of separation between stacked cards
+        
+        // Apply GSAP animations to each card
+        serviceCards.forEach((card, index) => {
+            const rowIndex = Math.floor(index / 3); // Assuming 3 cards per row
+            const columnIndex = index % 3; // Get column index for horizontal offset
+            
+            // Calculate final positions
+            // Top row (rowIndex 0) stays in place, subsequent rows move up to stack
+            const finalY = rowIndex > 0 
+                ? -(card.offsetHeight * rowIndex - (yOffsetBetweenStackedCards * rowIndex)) 
+                : 0;
+                
+            // Add horizontal centering for stacked cards (only for rows that move up)
+            const finalX = rowIndex > 0 
+                ? (columnIndex - 1) * 20 // Spread cards slightly (-20px, 0px, 20px)
+                : 0;
+            
+            // Stagger the animations by row with increasing delay
+            stackingTimeline.to(card, {
+                y: finalY,
+                x: finalX,
+                scale: 1 - (rowIndex * scaleReductionPerRow),
+                opacity: 1,
+                ease: "power1.inOut",
+                transformOrigin: "center bottom", // Scale from bottom center
+                delay: index * 0.02 // Small delay between each card
+            }, 0.15 * rowIndex); // Stagger timing by row
+        });
+        
+        // Add an animation to pull up the next section when cards are stacked
+        const aboutSection = document.querySelector('#about');
+        if (aboutSection) {
+            // Create a separate timeline for the section transition
+            gsap.to(aboutSection, {
+                scrollTrigger: {
+                    trigger: servicesSection,
+                    start: "center 40%", // Start when center of services reaches 40% of viewport
+                    end: "bottom 20%",   // End when bottom of services reaches 20% of viewport
+                    scrub: 1.5,          // Smooth scrubbing with longer catch-up for smoother feel
+                    markers: false        // Set to true for debugging
+                },
+                marginTop: "-200px",     // Pull the next section up as stacking completes
+                ease: "power2.inOut"     // More natural easing
+            });
+            
+            // Also add subtle fade-in for the about section
+            gsap.fromTo(aboutSection, 
+                { opacity: 0.7 },
+                {
+                    scrollTrigger: {
+                        trigger: aboutSection,
+                        start: "top 80%", // Start when top of about section reaches 80% of viewport
+                        end: "top 40%",   // End when top of about section reaches 40% of viewport
+                        scrub: 1
+                    },
+                    opacity: 1,
+                    ease: "power1.inOut"
+                }
+            );
+        }
+    }
+});
+
+// GSAP Hero Animation for Index Page
+window.addEventListener('load', function() {
+    const currentPagePath = window.location.pathname.split('/').pop() || 'index.html';
+    if (currentPagePath === 'index.html') {
+        const heroIllustrationImg = document.getElementById('hero-illustration-img');
+        const heroImageContainer = document.getElementById('hero-image-container');
+        const heroContent = document.querySelector('.hero-content');
+
+        // Proceed only if elements exist and heroImageContainer is visible (for large screens)
+        if (heroIllustrationImg && heroImageContainer && heroContent && window.getComputedStyle(heroImageContainer).display !== 'none') {
+
+            // Calculate final dimensions and position once
+            const finalRect = heroImageContainer.getBoundingClientRect();
+            const finalWidth = finalRect.width;
+            const finalHeight = finalRect.height;
+
+            // Set initial state of the illustration for animation: Off-screen right, faded out
+            gsap.set(heroIllustrationImg, {
+                position: 'fixed',
+                opacity: 0,
+                left: window.innerWidth, // Start off-screen to the right
+                top: finalRect.top,      // Align with final top position
+                width: finalWidth,       // Start at final width
+                height: finalHeight,     // Start at final height
+                xPercent: 0, 
+                yPercent: 0,
+                zIndex: 1000,
+                display: 'block' // Ensure it's visible for GSAP to animate
+            });
+
+            // Create GSAP Timeline
+            const tl = gsap.timeline();
+
+            // Animate illustration to its final position and fade in
+            tl.to(heroIllustrationImg, {
+                duration: 1.2, // Adjust duration as needed for smooth animation
+                opacity: 1,
+                left: finalRect.left, // Animate to final 'left' position
+                ease: "power2.out",
+                onComplete: () => {
+                    // Reset illustration to flow naturally in its container
+                    gsap.set(heroIllustrationImg, {
+                        position: 'relative',
+                        top: 'auto',
+                        left: 'auto',
+                        x: 0, 
+                        y: 0,
+                        xPercent: 0,
+                        yPercent: 0,
+                        zIndex: 'auto',
+                        width: '100%', // Back to .img-fluid like behavior
+                        height: 'auto'
+                    });
+                    // Make the container visible now that the image is in place
+                    gsap.to(heroImageContainer, { opacity: 1, duration: 0.3 });
+                }
+            })
+            // Don't animate hero content here since we're using CSS animations
+            // This allows the CSS animations to handle the text animations
+            .set(heroContent, { 
+                opacity: 1, // Just make sure the container is visible
+            });
+        }
+    }
+});
