@@ -24,6 +24,33 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/style.css">
     
+    <!-- Card Stack Styles for Services Section -->
+    <style>
+        /* Card Stack Styles - SIMPLIFIED */
+        .stack-card-group {
+            position: relative;
+            transition: transform 0.5s ease, opacity 0.4s ease;
+            transform: translateY(50px);
+            opacity: 0;
+        }
+        
+        .stack-card-group.active {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        
+        .stack-card-group.stacked {
+            transform: perspective(1000px) rotateX(5deg);
+        }
+        
+        /* Reverse stacking classes - higher numbers = higher in stack */
+        .stack-card-group.stacked-group-5 { transform: perspective(1000px) rotateX(5deg) translateY(0px); }
+        .stack-card-group.stacked-group-4 { transform: perspective(1000px) rotateX(5deg) translateY(20px); }
+        .stack-card-group.stacked-group-3 { transform: perspective(1000px) rotateX(5deg) translateY(40px); }
+        .stack-card-group.stacked-group-2 { transform: perspective(1000px) rotateX(5deg) translateY(60px); }
+        .stack-card-group.stacked-group-1 { transform: perspective(1000px) rotateX(5deg) translateY(80px); }
+    </style>
+    
     <!-- Preload critical assets -->
     <link rel="preload" href="css/style.css" as="style">
     <link rel="preload" href="js/main.js" as="script">
@@ -38,7 +65,7 @@
     <link rel="prefetch" href="contact.html">
     <link rel="prefetch" href="team.html">
 </head>
-<body>
+<body class="index-page">
     <!-- Animated Background -->
     <div class="animated-background">
         <div class="blob blob-1"></div>
@@ -105,7 +132,347 @@
         </div>
     </section>
     
-    <!-- Services Section placeholder - removed for redesign -->
+    <!-- Services Section -->
+    <section id="services" class="services py-5">
+        <div class="container">
+            <div class="section-title text-center mb-5">
+                <h2 data-aos="fade-up">Our Strategic Capabilities</h2>
+                <p data-aos="fade-up" data-aos-delay="100">Explore our comprehensive suite of AI-powered solutions and services</p>
+            </div>
+            
+            <div class="row service-cards-grid">
+                <!-- Service Card 1 -->
+                <div class="col-md-4 col-sm-6 mb-4" data-aos="fade-up" data-aos-delay="100">
+                    <a href="services.html#service-1" class="service-card-link">
+                        <div class="service-card grid-card glass-component p-4 h-100">
+                            <div class="service-icon">
+                                <i class="fas fa-robot"></i>
+                            </div>
+                            <div class="service-card-content">
+                                <h3>AI-Powered Chatbots</h3>
+                                <p>Customized AI agents with persistent contextual memory for enhanced customer support</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                
+                <!-- Service Card 2 -->
+                <div class="col-md-4 col-sm-6 mb-4" data-aos="fade-up" data-aos-delay="150">
+                    <a href="services.html#service-2" class="service-card-link">
+                        <div class="service-card grid-card glass-component p-4 h-100">
+                            <div class="service-icon">
+                                <i class="fas fa-comments"></i>
+                            </div>
+                            <div class="service-card-content">
+                                <h3>Intelligent Voice Systems</h3>
+                                <p>Multilingual, intent-aware voice interfaces with real-time routing logic</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                
+                <!-- Service Card 3 -->
+                <div class="col-md-4 col-sm-6 mb-4" data-aos="fade-up" data-aos-delay="200">
+                    <a href="services.html#service-3" class="service-card-link">
+                        <div class="service-card grid-card glass-component p-4 h-100">
+                            <div class="service-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <div class="service-card-content">
+                                <h3>Lead Generation Workflows</h3>
+                                <p>Multi-platform lead pipelines for reliable conversion with minimal human input</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                
+                <!-- Service Card 4 -->
+                <div class="col-md-4 col-sm-6 mb-4" data-aos="fade-up" data-aos-delay="250">
+                    <a href="services.html#service-4" class="service-card-link">
+                        <div class="service-card grid-card glass-component p-4 h-100">
+                            <div class="service-icon">
+                                <i class="fas fa-cogs"></i>
+                            </div>
+                            <div class="service-card-content">
+                                <h3>Business Process Automation</h3>
+                                <p>Low-code automations across HR, finance, operations, and compliance</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                
+                <!-- Service Card 5 -->
+                <div class="col-md-4 col-sm-6 mb-4" data-aos="fade-up" data-aos-delay="300">
+                    <a href="services.html#service-5" class="service-card-link">
+                        <div class="service-card grid-card glass-component p-4 h-100">
+                            <div class="service-icon">
+                                <i class="fas fa-user-plus"></i>
+                            </div>
+                            <div class="service-card-content">
+                                <h3>Client Onboarding Pipelines</h3>
+                                <p>Workflow-linked form intake and document collection systems</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                
+                <!-- Service Card 6 -->
+                <div class="col-md-4 col-sm-6 mb-4" data-aos="fade-up" data-aos-delay="350">
+                    <a href="services.html#service-6" class="service-card-link">
+                        <div class="service-card grid-card glass-component p-4 h-100">
+                            <div class="service-icon">
+                                <i class="fas fa-brain"></i>
+                            </div>
+                            <div class="service-card-content">
+                                <h3>Executive AI Assistants</h3>
+                                <p>Email triage, scheduling, and Slack-based query bots with internal data access</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                
+                <!-- Service Card 7 -->
+                <div class="col-md-4 col-sm-6 mb-4" data-aos="fade-up" data-aos-delay="400">
+                    <a href="services.html#service-7" class="service-card-link">
+                        <div class="service-card grid-card glass-component p-4 h-100">
+                            <div class="service-icon">
+                                <i class="fas fa-database"></i>
+                            </div>
+                            <div class="service-card-content">
+                                <h3>Market Intelligence Systems</h3>
+                                <p>Structured and real-time market scraping tools with analytics dashboards</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                
+                <!-- Service Card 8 -->
+                <div class="col-md-4 col-sm-6 mb-4" data-aos="fade-up" data-aos-delay="450">
+                    <a href="services.html#service-8" class="service-card-link">
+                        <div class="service-card grid-card glass-component p-4 h-100">
+                            <div class="service-icon">
+                                <i class="fas fa-laptop-code"></i>
+                            </div>
+                            <div class="service-card-content">
+                                <h3>Full-Code Web Development</h3>
+                                <p>Code-driven, SEO-optimized, and scalable frontend architectures</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                
+                <!-- Service Card 9 -->
+                <div class="col-md-4 col-sm-6 mb-4" data-aos="fade-up" data-aos-delay="500">
+                    <a href="services.html#service-9" class="service-card-link">
+                        <div class="service-card grid-card glass-component p-4 h-100">
+                            <div class="service-icon">
+                                <i class="fas fa-tachometer-alt"></i>
+                            </div>
+                            <div class="service-card-content">
+                                <h3>Custom Dashboards</h3>
+                                <p>Internal dashboards for project management, support, and KPIs</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                
+                <!-- Service Card 10 -->
+                <div class="col-md-4 col-sm-6 mb-4" data-aos="fade-up" data-aos-delay="550">
+                    <a href="services.html#service-10" class="service-card-link">
+                        <div class="service-card grid-card glass-component p-4 h-100">
+                            <div class="service-icon">
+                                <i class="fas fa-code-branch"></i>
+                            </div>
+                            <div class="service-card-content">
+                                <h3>SaaS Product Engineering</h3>
+                                <p>MVP-to-market SaaS platforms with multi-tenant architecture</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                
+                <!-- Service Card 11 -->
+                <div class="col-md-4 col-sm-6 mb-4" data-aos="fade-up" data-aos-delay="600">
+                    <a href="services.html#service-11" class="service-card-link">
+                        <div class="service-card grid-card glass-component p-4 h-100">
+                            <div class="service-icon">
+                                <i class="fas fa-graduation-cap"></i>
+                            </div>
+                            <div class="service-card-content">
+                                <h3>Training Workshops</h3>
+                                <p>Prompt engineering, cybersecurity literacy, and platform automation training</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                
+                <!-- Service Card 12 -->
+                <div class="col-md-4 col-sm-6 mb-4" data-aos="fade-up" data-aos-delay="650">
+                    <a href="services.html#service-12" class="service-card-link">
+                        <div class="service-card grid-card glass-component p-4 h-100">
+                            <div class="service-icon">
+                                <i class="fas fa-terminal"></i>
+                            </div>
+                            <div class="service-card-content">
+                                <h3>System-Level Automation</h3>
+                                <p>Automated system checks, backups, and scripted updates</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                
+                <!-- Service Card 13 -->
+                <div class="col-md-4 col-sm-6 mb-4" data-aos="fade-up" data-aos-delay="700">
+                    <a href="services.html#service-13" class="service-card-link">
+                        <div class="service-card grid-card glass-component p-4 h-100">
+                            <div class="service-icon">
+                                <i class="fas fa-window-restore"></i>
+                            </div>
+                            <div class="service-card-content">
+                                <h3>Browser Automation Agents</h3>
+                                <p>End-to-end automation of browser-based workflows and data pulls</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                
+                <!-- Service Card 14 -->
+                <div class="col-md-4 col-sm-6 mb-4" data-aos="fade-up" data-aos-delay="750">
+                    <a href="services.html#service-14" class="service-card-link">
+                        <div class="service-card grid-card glass-component p-4 h-100">
+                            <div class="service-icon">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <div class="service-card-content">
+                                <h3>Cybersecurity Infrastructure</h3>
+                                <p>Zero-trust architecture, VPN enforcement, and penetration testing</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                
+                <!-- Service Card 15 -->
+                <div class="col-md-4 col-sm-6 mb-4" data-aos="fade-up" data-aos-delay="800">
+                    <a href="services.html#service-15" class="service-card-link">
+                        <div class="service-card grid-card glass-component p-4 h-100">
+                            <div class="service-icon">
+                                <i class="fas fa-palette"></i>
+                            </div>
+                            <div class="service-card-content">
+                                <h3>Design Systems</h3>
+                                <p>Cohesive brand systems spanning print, digital, and product UI</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                
+                <!-- Service Card 16 -->
+                <div class="col-md-4 col-sm-6 mb-4" data-aos="fade-up" data-aos-delay="850">
+                    <a href="services.html#service-16" class="service-card-link">
+                        <div class="service-card grid-card glass-component p-4 h-100">
+                            <div class="service-icon">
+                                <i class="fas fa-video"></i>
+                            </div>
+                            <div class="service-card-content">
+                                <h3>Visual Content Production</h3>
+                                <p>Story-driven marketing visuals and performance media assets</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                
+                <!-- Service Card 17 -->
+                <div class="col-md-4 col-sm-6 mb-4" data-aos="fade-up" data-aos-delay="900">
+                    <a href="services.html#service-17" class="service-card-link">
+                        <div class="service-card grid-card glass-component p-4 h-100">
+                            <div class="service-icon">
+                                <i class="fas fa-bezier-curve"></i>
+                            </div>
+                            <div class="service-card-content">
+                                <h3>UX/UI Product Design</h3>
+                                <p>Research-backed product flows, prototypes, and developer-ready files</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                
+                <!-- Service Card 18 -->
+                <div class="col-md-4 col-sm-6 mb-4" data-aos="fade-up" data-aos-delay="950">
+                    <a href="services.html#service-18" class="service-card-link">
+                        <div class="service-card grid-card glass-component p-4 h-100">
+                            <div class="service-icon">
+                                <i class="fas fa-tools"></i>
+                            </div>
+                            <div class="service-card-content">
+                                <h3>Operational Software Tools</h3>
+                                <p>Lightweight internal tools for budget approvals and task routing</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                
+                <!-- Service Card 19 -->
+                <div class="col-md-4 col-sm-6 mb-4" data-aos="fade-up" data-aos-delay="1000">
+                    <a href="services.html#service-19" class="service-card-link">
+                        <div class="service-card grid-card glass-component p-4 h-100">
+                            <div class="service-icon">
+                                <i class="fas fa-bullhorn"></i>
+                            </div>
+                            <div class="service-card-content">
+                                <h3>Marketing Automation</h3>
+                                <p>Email sequences, ad retargeting workflows, and funnel optimization</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                
+                <!-- Service Card 20 -->
+                <div class="col-md-4 col-sm-6 mb-4" data-aos="fade-up" data-aos-delay="1050">
+                    <a href="services.html#service-20" class="service-card-link">
+                        <div class="service-card grid-card glass-component p-4 h-100">
+                            <div class="service-icon">
+                                <i class="fas fa-project-diagram"></i>
+                            </div>
+                            <div class="service-card-content">
+                                <h3>IT Strategy Consulting</h3>
+                                <p>Infrastructure planning, implementation support, and diagnostics</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                
+                <!-- Service Card 21 -->
+                <div class="col-md-4 col-sm-6 mb-4" data-aos="fade-up" data-aos-delay="1100">
+                    <a href="services.html#service-21" class="service-card-link">
+                        <div class="service-card grid-card glass-component p-4 h-100">
+                            <div class="service-icon">
+                                <i class="fas fa-network-wired"></i>
+                            </div>
+                            <div class="service-card-content">
+                                <h3>IT Infrastructure Deployment</h3>
+                                <p>Networking hardware, workstations, and structured cabling</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                
+                <!-- View All Services Card -->
+                <div class="col-md-4 col-sm-6 mb-4 mx-auto" data-aos="fade-up" data-aos-delay="1150">
+                    <div class="service-card grid-card glass-component p-4 h-100 text-center view-all-card">
+                        <div class="service-icon mx-auto mb-3">
+                            <i class="fas fa-th-large"></i>
+                        </div>
+                        <div class="service-card-content">
+                            <h3>Explore All Services</h3>
+                            <p>Discover our complete range of AI automation and digital transformation solutions</p>
+                            <a href="services.html" class="btn btn-primary mt-3">View All Services</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
     <!-- About Section -->
     <section id="about" class="about">
         <div class="container">
@@ -301,9 +668,15 @@
                                     </button>
                                 </div>
                             </div>
+                            <div class="made-with" id="footer-credits">
+                                Made with <img src="images/pixel-heart.png" alt="heart" class="pixel-heart"> by Function Drive
+                            </div>
                         </div>
                     </div>
                 </div>
+            </div>
+            <div class="footer-copyright">
+                © 2025 Function Drive. All rights reserved.
             </div>
         </div>
     </footer>
@@ -323,6 +696,393 @@
             duration: 800,
             easing: 'ease-in-out',
             once: true
+        });
+        
+        // Card Stacking Animation for Services Section
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize GSAP ScrollTrigger
+            gsap.registerPlugin(ScrollTrigger);
+            
+            // Reference to the services container
+            const servicesContainer = document.querySelector('.service-cards-grid');
+            if (!servicesContainer) return;
+            
+            // Get all service cards
+            const serviceCards = Array.from(document.querySelectorAll('.service-cards-grid > div'));
+            if (serviceCards.length === 0) return;
+            
+            // Set a more compact fixed card height for better visual appeal
+            let fixedCardHeight = 240; // Reduced height for better visual balance
+            
+            function forceAllCardsToSameHeight() {
+                const allCardContainers = document.querySelectorAll('.service-cards-grid > div');
+                const allCards = document.querySelectorAll('.service-cards-grid .service-card');
+                
+                // Set height on containers
+                allCardContainers.forEach(container => {
+                    container.style.height = fixedCardHeight + 'px';
+                    container.style.minHeight = fixedCardHeight + 'px';
+                    container.style.maxHeight = fixedCardHeight + 'px';
+                    container.style.display = 'flex';
+                });
+                
+                // Set height and optimize layout on cards
+                allCards.forEach(card => {
+                    // Card height and layout
+                    card.style.height = '100%';
+                    card.style.minHeight = '100%';
+                    card.style.maxHeight = '100%';
+                    card.style.display = 'flex';
+                    card.style.flexDirection = 'column';
+                    card.style.alignItems = 'center'; // Horizontal center
+                    card.style.justifyContent = 'center'; // Vertical center
+                    card.style.padding = '1.5rem'; // Even padding all around
+                    card.style.transition = 'all 0.3s ease'; // Smoother transitions
+                    
+                    // Optimize icon styling
+                    const icon = card.querySelector('.service-icon');
+                    if (icon) {
+                        icon.style.fontSize = '2rem'; // Slightly larger icon
+                        icon.style.marginBottom = '0.85rem'; // Adjusted spacing
+                        icon.style.textAlign = 'center'; // Center the icon
+                        icon.style.width = '100%'; // Full width for alignment
+                        // No custom color to maintain dark mode compatibility
+                    }
+                    
+                    // Optimize content styling for better use of space
+                    const content = card.querySelector('.service-card-content');
+                    if (content) {
+                        content.style.display = 'flex';
+                        content.style.flexDirection = 'column';
+                        content.style.justifyContent = 'center'; // Center content vertically
+                        content.style.alignItems = 'center'; // Center horizontally as well
+                        content.style.textAlign = 'center'; // Center text
+                        content.style.flex = '1'; // Take up available space
+                        
+                        // Title styling
+                        const title = content.querySelector('h3');
+                        if (title) {
+                            title.style.fontSize = '1.2rem'; // Slightly smaller title
+                            title.style.marginBottom = '0.6rem'; // Adjusted spacing
+                            title.style.fontWeight = '600'; // Slightly bolder
+                            title.style.textAlign = 'center'; // Ensure centered
+                            title.style.width = '100%'; // Full width
+                        }
+                        
+                        // Description styling
+                        const desc = content.querySelector('p');
+                        if (desc) {
+                            desc.style.fontSize = '0.95rem'; // Slightly smaller text
+                            desc.style.lineHeight = '1.4'; // Tighter line height
+                            desc.style.marginBottom = '0'; // No bottom margin needed
+                            desc.style.textAlign = 'center'; // Ensure centered
+                            desc.style.maxWidth = '90%'; // Slightly narrower for better readability
+                            desc.style.margin = '0 auto'; // Center the description
+                            // No custom color to maintain dark mode compatibility
+                        }
+                    }
+                });
+            }
+            
+            // Apply height initially
+            forceAllCardsToSameHeight();
+            
+            // Apply on resize too
+            window.addEventListener('resize', function() {
+                if (window.innerWidth < 768) {
+                    fixedCardHeight = 200; // Mobile size - more compact
+                } else if (window.innerWidth < 992) {
+                    fixedCardHeight = 220; // Tablet size - more compact
+                } else {
+                    fixedCardHeight = 240; // Desktop size - more compact
+                }
+                forceAllCardsToSameHeight();
+            });
+            
+            // Clear the container
+            const originalContent = servicesContainer.innerHTML;
+            servicesContainer.innerHTML = '';
+            
+            // Create a wrapper for the stack container
+            const wrapper = document.createElement('div');
+            wrapper.className = 'card-stack-wrapper';
+            wrapper.style.position = 'relative';
+            wrapper.style.zIndex = '1';
+            wrapper.style.marginBottom = '100px';
+            servicesContainer.parentNode.insertBefore(wrapper, servicesContainer);
+            wrapper.appendChild(servicesContainer);
+            
+            // Group cards into rows (for our stack effect)
+            const cardGroups = [];
+            const groupSize = 3; // 3 cards per row on desktop
+            
+            // Create card groups from the original service cards - exclude the last card
+            const lastCardIndex = serviceCards.length - 1;
+            let lastCard = null;
+            
+            // Remove the last card and save it for later (if there are cards)
+            if (serviceCards.length > 0) {
+                lastCard = serviceCards[lastCardIndex];
+                // Remove last card from DOM temporarily
+                if (lastCard && lastCard.parentNode) {
+                    lastCard.parentNode.removeChild(lastCard);
+                }
+            }
+            
+            // Process all cards except the last one
+            for (let i = 0; i < serviceCards.length - 1; i += groupSize) {
+                const group = document.createElement('div');
+                group.className = 'stack-card-group';
+                group.setAttribute('data-group-index', Math.floor(i / groupSize));
+                servicesContainer.appendChild(group);
+                cardGroups.push(group);
+                
+                // Add up to 3 cards to this group
+                for (let j = i; j < i + groupSize && j < serviceCards.length - 1; j++) {
+                    const card = serviceCards[j];
+                    card.classList.remove('col-md-4', 'col-sm-6', 'mb-4');
+                    card.classList.add('stack-card');
+                    card.removeAttribute('data-aos');
+                    card.removeAttribute('data-aos-delay');
+                    group.appendChild(card);
+                }
+                
+                // Add data attribute for ordering
+                group.setAttribute('data-original-index', cardGroups.length - 1);
+            }
+            
+            // We don't need the last card anymore since we have a dedicated 'Explore All Services' button
+            // The lastCard variable will just be discarded
+            
+            // Apply fixed height again after rearranging
+            setTimeout(forceAllCardsToSameHeight, 100);
+            
+            // Global array to track z-index order (your key improvement)
+            let cardZIndexOrder = [];
+            
+            // Function to update stack depth (stacking effect)
+            function updateStackDepth() {
+                const stackedGroups = document.querySelectorAll('.stack-card-group.stacked');
+                
+                // First, remove all stacking classes
+                document.querySelectorAll('.stack-card-group').forEach(group => {
+                    group.classList.remove('stacked-group-1', 'stacked-group-2', 'stacked-group-3', 'stacked-group-4', 'stacked-group-5');
+                    // We don't reset z-index here to maintain order during transitions
+                });
+                
+                // Only calculate z-index if we don't already have an order established
+                if (cardZIndexOrder.length === 0 || cardZIndexOrder.length !== stackedGroups.length) {
+                    // Reset the tracking array
+                    cardZIndexOrder = [];
+                    
+                    // Establish z-index order (higher index = front position)
+                    stackedGroups.forEach((group, index) => {
+                        const zIndex = 500 + index; // Higher index = higher z-index = front position
+                        cardZIndexOrder.push({
+                            element: group,
+                            zIndex: zIndex
+                        });
+                    });
+                }
+                
+                // Apply z-index and stacking classes based on our tracking array
+                cardZIndexOrder.forEach((item, index) => {
+                    // Apply the z-index from our tracking array
+                    item.element.style.zIndex = item.zIndex;
+                    
+                    // Only apply visual stacking classes to stacked elements
+                    if (item.element.classList.contains('stacked') && index < 5) {
+                        // Clear previous classes first
+                        for (let i = 1; i <= 5; i++) {
+                            item.element.classList.remove(`stacked-group-${i}`);
+                        }
+                        
+                        // Apply the appropriate stacking class with delay
+                        setTimeout(() => {
+                            const classNumber = index + 1;
+                            item.element.classList.add(`stacked-group-${classNumber}`);
+                            forceAllCardsToSameHeight();
+                        }, index * 80);
+                    }
+                });
+            }
+            
+            // Configure each card group for stacking animation
+            cardGroups.forEach((group, index) => {
+                // Set consistent height
+                group.style.height = fixedCardHeight + 'px';
+                
+                // Create GSAP timeline for the group
+                const groupTimeline = gsap.timeline({
+                    scrollTrigger: {
+                        trigger: group,
+                        start: 'top 70%',
+                        end: 'top 15%',
+                        scrub: 0.5,
+                        toggleActions: 'play none none reverse',
+                        onEnter: () => {
+                            // Add active and stacked classes
+                            group.classList.add('active'); 
+                            group.classList.add('stacked');
+                            // Update stacking order
+                            updateStackDepth();
+                            // Ensure heights are consistent
+                            forceAllCardsToSameHeight();
+                        },
+                        onLeaveBack: () => {
+                            // Using your fixed approach for destacking
+                            // Get the group's index within stacked groups
+                            const groupIndex = Array.from(document.querySelectorAll('.stack-card-group.stacked')).indexOf(group);
+                            
+                            // Preserve the z-index during animation
+                            if (groupIndex !== -1) {
+                                const preservedZIndex = 500 + groupIndex;
+                                group.style.zIndex = preservedZIndex;
+                            }
+                            
+                            // Remove classes
+                            group.classList.remove('stacked');
+                            
+                            // Delay removing active class
+                            setTimeout(() => {
+                                group.classList.remove('active');
+                            }, 350);
+                            
+                            // Remove stacking classes
+                            for (let i = 1; i <= 5; i++) {
+                                group.classList.remove(`stacked-group-${i}`);
+                            }
+                        }
+                    }
+                });
+                
+                // Add stacking effect when scrolling past
+                ScrollTrigger.create({
+                    trigger: group,
+                    start: 'top 15%',
+                    endTrigger: servicesContainer,
+                    end: 'bottom 15%',
+                    toggleClass: {targets: group, className: 'stacked'},
+                    onEnter: () => {
+                        updateStackDepth();
+                        forceAllCardsToSameHeight();
+                    },
+                    onLeaveBack: () => updateStackDepth()
+                });
+            });
+            
+            // Create a timeline for parallax effect
+            const stackTimeline = gsap.timeline({
+                scrollTrigger: {
+                    trigger: servicesContainer,
+                    start: 'top top',
+                    end: 'bottom bottom',
+                    scrub: 1
+                }
+            });
+            
+            // Add smooth parallax to the stack wrapper
+            stackTimeline.to('.card-stack-wrapper', {
+                rotateX: 5,
+                ease: 'none'
+            });
+            
+            // Add a stylish 'Explore All Services' button after the stack
+            const exploreButton = document.createElement('div');
+            exploreButton.className = 'explore-services-button';
+            
+            // Create a modern, stylish button that matches the site's design
+            exploreButton.innerHTML = `
+                <div class="explore-button-container">
+                    <a href="services.html" class="explore-all-btn">
+                        <span class="btn-text">Explore All Services</span>
+                        <span class="btn-icon"><i class="fas fa-arrow-right"></i></span>
+                    </a>
+                </div>
+            `;
+            
+            // Style the button container
+            exploreButton.style.textAlign = 'center';
+            exploreButton.style.marginTop = '3rem';
+            exploreButton.style.marginBottom = '3rem';
+            exploreButton.style.position = 'relative';
+            exploreButton.style.zIndex = '10'; // Make sure it's above the stack
+            
+            // Style the button itself
+            const buttonStyle = document.createElement('style');
+            buttonStyle.textContent = `
+                .explore-button-container {
+                    display: inline-block;
+                    position: relative;
+                }
+                .explore-all-btn {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    background: linear-gradient(45deg, var(--primary) 0%, #8c43ff 100%);
+                    color: white;
+                    font-weight: 600;
+                    font-size: 1.1rem;
+                    padding: 1rem 2rem;
+                    border-radius: 50px;
+                    text-decoration: none;
+                    box-shadow: 0 10px 25px rgba(140, 67, 255, 0.3);
+                    transition: all 0.3s ease;
+                    position: relative;
+                    overflow: hidden;
+                    z-index: 1;
+                }
+                .explore-all-btn:hover {
+                    transform: translateY(-3px);
+                    box-shadow: 0 15px 30px rgba(140, 67, 255, 0.4);
+                    color: white;
+                }
+                .explore-all-btn:active {
+                    transform: translateY(0);
+                }
+                .btn-text {
+                    transition: transform 0.3s ease;
+                }
+                .btn-icon {
+                    margin-left: 0.75rem;
+                    transition: transform 0.3s ease;
+                }
+                .explore-all-btn:hover .btn-icon {
+                    transform: translateX(5px);
+                }
+                
+                /* Add a glow effect on hover */
+                .explore-all-btn::before {
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background: linear-gradient(45deg, rgba(140, 67, 255, 0.5) 0%, rgba(97, 94, 240, 0.5) 100%);
+                    opacity: 0;
+                    transition: opacity 0.3s ease;
+                    z-index: -1;
+                }
+                .explore-all-btn:hover::before {
+                    opacity: 1;
+                }
+            `;
+            document.head.appendChild(buttonStyle);
+            
+            // Add a nice animation for the button
+            exploreButton.style.opacity = '0';
+            exploreButton.style.transform = 'translateY(20px)';
+            exploreButton.style.transition = 'opacity 0.7s ease, transform 0.7s ease';
+            
+            // Insert the button after the card stack wrapper
+            wrapper.parentNode.insertBefore(exploreButton, wrapper.nextSibling);
+            
+            // Animate it in after a short delay
+            setTimeout(() => {
+                exploreButton.style.opacity = '1';
+                exploreButton.style.transform = 'translateY(0)';
+            }, 500);
         });
     </script>
 </body>

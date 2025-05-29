@@ -1,0 +1,1423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Services - Function Drive | Your Function | Our Drive</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="images/Function_Drive_logo_no_background(PNG).png">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Animation styles handled by GSAP and custom CSS -->
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- Page-specific styles -->
+    <style>
+        /* Card Stack Styles - SIMPLIFIED */
+        .stack-card-group {
+            position: relative;
+            transition: transform 0.5s ease, opacity 0.4s ease;
+            transform: translateY(50px);
+            opacity: 0;
+        }
+        
+        .stack-card-group.active {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        
+        .stack-card-group.stacked {
+            transform: perspective(1000px) rotateX(5deg);
+        }
+        
+        /* Reverse stacking classes - higher numbers = higher in stack */
+        .stack-card-group.stacked-group-5 { transform: perspective(1000px) rotateX(5deg) translateY(0px); }
+        .stack-card-group.stacked-group-4 { transform: perspective(1000px) rotateX(5deg) translateY(20px); }
+        .stack-card-group.stacked-group-3 { transform: perspective(1000px) rotateX(5deg) translateY(40px); }
+        .stack-card-group.stacked-group-2 { transform: perspective(1000px) rotateX(5deg) translateY(60px); }
+        .stack-card-group.stacked-group-1 { transform: perspective(1000px) rotateX(5deg) translateY(80px); }
+        
+        /* Minimal style for Executive Overview, Client-Centric Rationale, Tangible Client Outcomes */
+        .minimal-section {
+            background: rgba(var(--card-bg-rgb), 0.18);
+            border: 1px solid rgba(var(--text-rgb), 0.04);
+            border-radius: 18px;
+            box-shadow: none;
+            padding: 2.2rem 2rem 2.2rem 2rem;
+            margin-bottom: 2.5rem;
+            transition: box-shadow 0.25s;
+        }
+        .minimal-section:hover {
+            box-shadow: 0 6px 32px rgba(0,0,0,0.06);
+        }
+        .minimal-section h2 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 1.1rem;
+            letter-spacing: 0.01em;
+            color: var(--primary);
+            border-left: 4px solid var(--primary);
+            padding-left: 0.75rem;
+            background: none;
+        }
+        .minimal-section ul, .minimal-section ol {
+            margin-bottom: 0.7rem;
+        }
+        .minimal-section ul li, .minimal-section ol li {
+            font-size: 1.06rem;
+            margin-bottom: 0.4rem;
+            color: var(--text);
+            line-height: 1.7;
+        }
+        .minimal-section p {
+            font-size: 1.08rem;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+        }
+        .minimal-section .section-label {
+            color: var(--secondary);
+            font-size: 1.02rem;
+            font-weight: 500;
+            border: none;
+            padding-left: 0;
+            margin-bottom: 0.6rem;
+        }
+        .minimal-section .section-label::after {
+            background: var(--secondary);
+            width: 18px;
+            height: 2px;
+            left: 0;
+        }
+        /* Responsive minimal section */
+        @media (max-width: 600px) {
+            .minimal-section {
+                padding: 1.1rem 0.7rem 1.2rem 0.7rem;
+            }
+        }
+
+        /* Enhanced styling for Strategic Capabilities section */
+        .capabilities-header {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 1.5rem;
+        }
+        
+        .capabilities-header h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.8rem;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .accent-bar {
+            height: 4px;
+            width: 80px;
+            background: var(--gradient);
+            margin: 0 auto;
+            border-radius: 2px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .accent-bar::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.8), transparent);
+            animation: shimmer 2s infinite;
+        }
+        
+        @keyframes shimmer {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+        
+        .capabilities-tagline {
+            font-size: 1.4rem;
+            font-weight: 400;
+            margin-top: 1rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            color: var(--text-muted);
+        }
+        
+        /* Enhanced glass components */
+        .glass-component {
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            background: rgba(var(--card-bg-rgb), 0.5);
+            border: 1px solid rgba(var(--text-rgb), 0.05);
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .glass-component:hover {
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+            transform: translateY(-5px);
+        }
+        
+        /* Light mode adjustments */
+        [data-theme="light"] .capabilities-header h1 {
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: none;
+        }
+        
+        [data-theme="light"] .capabilities-tagline {
+            color: var(--text-muted);
+        }
+        
+        /* Section labels with better contrast */
+        .section-label {
+            display: inline-block;
+            padding: 0.3rem 0;
+            font-weight: 600;
+            color: var(--primary);
+            position: relative;
+        }
+        
+        .section-label::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 30px;
+            height: 2px;
+            background: var(--gradient);
+            border-radius: 1px;
+        }
+    </style>
+    
+    <!-- Preload critical assets -->
+    <link rel="preload" href="css/style.css" as="style">
+    <link rel="preload" href="js/main.js" as="script">
+
+    <!-- GSAP & ScrollTrigger -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <!-- Prefetch other pages -->
+    <link rel="prefetch" href="index.html">
+    <link rel="prefetch" href="about.html">
+    <link rel="prefetch" href="contact.html">
+    <link rel="prefetch" href="team.html">
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="animated-background">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+    <!-- Grid Background -->
+    <div class="grid-background"></div>
+    
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <div class="navbar-logo">
+                    <img src="images/Function_Drive_logo_no_background(PNG).png" alt="Function Drive" height="50">
+                    <span>FUNCTION DRIVE</span>
+                </div>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="services.html">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <button id="theme-toggle" class="btn theme-toggle" aria-label="Toggle Theme">
+                            <i class="fas fa-moon dark-icon"></i>
+                            <i class="fas fa-sun light-icon"></i>
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <h1 data-aos="fade-up">Our Services</h1>
+                    <nav aria-label="breadcrumb" data-aos="fade-up" data-aos-delay="100">
+                        <ol class="breadcrumb justify-content-center">
+                            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Services</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services-page" class="services-page-section py-5">
+        <div class="container">
+            <div class="section-title text-center mb-5">
+                <div class="capabilities-header" data-aos="fade-up">
+                    <h1>Our Strategic Capabilities</h1>
+                    <div class="accent-bar"></div>
+                </div>
+                <p data-aos="fade-up" data-aos-delay="100" class="lead capabilities-tagline">Integrated AI Systems, Software Engineering, and Enterprise IT Solutions for Scalable Transformation.</p>
+            </div>
+
+            <div class="executive-overview minimal-section" data-aos="fade-up" data-aos-delay="200">
+                <h2>Executive Overview</h2>
+                <p>FUNCTION DRIVE is a premier technology consultancy specializing in advanced artificial intelligence solutions, full-spectrum software engineering, and robust IT infrastructure design. Our mission is to help growth-stage organizations, established enterprises, and high-performance teams unlock operational efficiency through intelligent automation, strategic data infrastructure, and future-ready digital systems.</p>
+                <p>Through our proprietary AI platforms, including Model Context Protocol (MCP) servers, and hands-on expertise in full-code development and deployment, FUNCTION DRIVE delivers comprehensive solutions ranging from autonomous machine agents to in-person network rollouts. We serve as transformation partners—designing, deploying, and scaling intelligent systems that enable digital maturity and measurable impact.</p>
+            </div>
+
+            <div class="client-rationale minimal-section" data-aos="fade-up" data-aos-delay="200">
+                <h2>Client-Centric Rationale</h2>
+                
+                <div class="row">
+                    <div class="col-md-6">
+                        <h4>Systemic Challenges Addressed:</h4>
+                        <ul>
+                            <li>Organizational inefficiency due to manual workflows and siloed teams</li>
+                            <li>Fragmented data ecosystems lacking integration and interoperability</li>
+                            <li>Unscalable SaaS dependencies yielding poor return on investment</li>
+                            <li>Absence of in-house capabilities for automation and intelligent system design</li>
+                            <li>Legacy digital interfaces creating subpar customer experiences</li>
+                            <li>Underdeveloped cybersecurity posture increasing institutional risk</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="col-md-6">
+                        <h4>Our Strategic Value Proposition:</h4>
+                        <ul>
+                            <li>Fully automated workflows and knowledge-processing systems</li>
+                            <li>Autonomous agents embedded with contextual memory via MCP infrastructure</li>
+                            <li>Bespoke tools replacing subscription-heavy SaaS ecosystems</li>
+                            <li>Workforce training modules to cultivate internal technical fluency</li>
+                            <li>In-person technical implementation to reduce operational downtime</li>
+                            <li>Strategic IT consultation preventing future-scale architectural rework</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="client-outcomes minimal-section" data-aos="fade-up" data-aos-delay="200">
+                <h2>Tangible Client Outcomes</h2>
+                
+                <div class="row">
+                    <div class="col-md-4">
+                        <h4>Organizational Efficiency</h4>
+                        <ul>
+                            <li>Elimination of repetitive labor through intelligent task automation</li>
+                            <li>Codification of business logic into self-regulating workflows</li>
+                            <li>Consolidation of disparate systems via centralized dashboards</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="col-md-4">
+                        <h4>Financial Optimization</h4>
+                        <ul>
+                            <li>Material reduction of recurring SaaS expenditure</li>
+                            <li>Revenue enhancement through accelerated lead capture and response</li>
+                            <li>Lowered reliance on outsourced engineering and support contractors</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="col-md-4">
+                        <h4>Strategic Advancement</h4>
+                        <ul>
+                            <li>Enhanced competitive posture through accelerated digital adoption</li>
+                            <li>Scalable customer experience infrastructure supporting growth</li>
+                            <li>Strengthened governance model with data-driven decision support</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="service-portfolio mb-5">
+                <h2 class="text-center mb-4" data-aos="fade-up">ENTERPRISE SERVICE PORTFOLIO</h2>
+                <p class="text-center mb-5" data-aos="fade-up" data-aos-delay="100">Explore our comprehensive suite of AI-powered solutions and services designed to transform your business operations</p>
+                
+                <div class="services-grid row service-cards-grid" id="card-stack-container">
+                    <!-- Service 1 -->
+                    <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="100">
+                        <div class="service-card grid-card glass-component" id="service-1">
+                            <div class="service-header text-center mb-3">
+                                <div class="service-icon mb-2">
+                                    <i class="fas fa-robot"></i>
+                                </div>
+                                <h3>AI-Powered Chatbots</h3>
+                            </div>
+                            <div class="service-details">
+                                <p class="stack-label"><strong>Core Stack:</strong></p>
+                                <p class="tech-stack">GPT-4, Claude, LangChain, Pinecone, MCP Servers, Rasa</p>
+                                
+                                <div class="service-deliverables mt-3">
+                                    <h5 class="section-label">Deliverables:</h5>
+                                    <ul class="compact-list">
+                                        <li>Fully customized AI agents aligned with institutional knowledge graphs</li>
+                                        <li>Persistent contextual memory for long-range conversations and workflows</li>
+                                        <li>Deployment across CRM, helpdesk, Slack, and website ecosystems</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="service-impact mt-3">
+                                    <h5 class="section-label">Impact:</h5>
+                                    <ul class="compact-list">
+                                        <li>Accelerated issue resolution with no wait time</li>
+                                        <li>Scalable support operations with minimal marginal cost</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Service 2 -->
+                    <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="150">
+                        <div class="service-card grid-card glass-component" id="service-2">
+                            <div class="service-header text-center mb-3">
+                                <div class="service-icon mb-2">
+                                    <i class="fas fa-comments"></i>
+                                </div>
+                                <h3>Intelligent Voice Systems</h3>
+                            </div>
+                            <div class="service-details">
+                                <p class="stack-label"><strong>Core Stack:</strong></p>
+                                <p class="tech-stack">Twilio, Dialogflow, ElevenLabs, Whisper, Google Cloud Speech</p>
+                                
+                                <div class="service-deliverables mt-3">
+                                    <h5 class="section-label">Deliverables:</h5>
+                                    <ul class="compact-list">
+                                        <li>Multilingual, intent-aware voice interfaces with real-time routing logic</li>
+                                        <li>Call transcriptions and analytic dashboards for compliance and insights</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="service-impact mt-3">
+                                    <h5 class="section-label">Impact:</h5>
+                                    <ul class="compact-list">
+                                        <li>Reduced staffing costs in customer service</li>
+                                        <li>Enhanced accessibility through always-on voice interaction</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Service 3 -->
+                    <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="200">
+                        <div class="service-card grid-card glass-component" id="service-3">
+                            <div class="service-header text-center mb-3">
+                                <div class="service-icon mb-2">
+                                    <i class="fas fa-chart-line"></i>
+                                </div>
+                                <h3>Lead Generation Workflows</h3>
+                            </div>
+                            <div class="service-details">
+                                <p class="stack-label"><strong>Core Stack:</strong></p>
+                                <p class="tech-stack">LinkedIn Helper, Clay, Apollo, GPT-4, Instantly.ai</p>
+                                
+                                <div class="service-deliverables mt-3">
+                                    <h5 class="section-label">Deliverables:</h5>
+                                    <ul class="compact-list">
+                                        <li>Multi-platform lead pipelines including scraping, enrichment, and outreach</li>
+                                        <li>CRM-integrated A/B-tested sequences for high-value prospecting</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="service-impact mt-3">
+                                    <h5 class="section-label">Impact:</h5>
+                                    <ul class="compact-list">
+                                        <li>Reliable lead conversion with minimal human input</li>
+                                        <li>Reduces the cost per acquisition and scales sales pipeline throughput</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Service 4 -->
+                    <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="250">
+                        <div class="service-card grid-card glass-component" id="service-4">
+                            <div class="service-header text-center mb-3">
+                                <div class="service-icon mb-2">
+                                    <i class="fas fa-cogs"></i>
+                                </div>
+                                <h3>Business Process Automation</h3>
+                            </div>
+                            <div class="service-details">
+                                <p class="stack-label"><strong>Core Stack:</strong></p>
+                                <p class="tech-stack">Zapier, Make, n8n, Notion API, Google Apps Script</p>
+                                
+                                <div class="service-deliverables mt-3">
+                                    <h5 class="section-label">Deliverables:</h5>
+                                    <ul class="compact-list">
+                                        <li>Low-code automations across HR, finance, operations, and compliance</li>
+                                        <li>Dynamic approval chains and cross-platform data sync</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="service-impact mt-3">
+                                    <h5 class="section-label">Impact:</h5>
+                                    <ul class="compact-list">
+                                        <li>Boosts operational velocity while minimizing task-level error</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Service 5 -->
+                    <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="300">
+                        <div class="service-card grid-card glass-component" id="service-5">
+                            <div class="service-header text-center mb-3">
+                                <div class="service-icon mb-2">
+                                    <i class="fas fa-user-plus"></i>
+                                </div>
+                                <h3>Client Onboarding Pipelines</h3>
+                            </div>
+                            <div class="service-details">
+                                <p class="stack-label"><strong>Core Stack:</strong></p>
+                                <p class="tech-stack">Tally, Typeform, Slack, Notion, DocuSign</p>
+                                
+                                <div class="service-deliverables mt-3">
+                                    <h5 class="section-label">Deliverables:</h5>
+                                    <ul class="compact-list">
+                                        <li>Workflow-linked form intake, document collection, and onboarding triggers</li>
+                                        <li>Auto-generated onboarding summaries and task distributions</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="service-impact mt-3">
+                                    <h5 class="section-label">Impact:</h5>
+                                    <ul class="compact-list">
+                                        <li>Enhances client satisfaction while reducing friction in service activation</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Service 6 -->
+                    <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="350">
+                        <div class="service-card grid-card glass-component" id="service-6">
+                            <div class="service-header text-center mb-3">
+                                <div class="service-icon mb-2">
+                                    <i class="fas fa-brain"></i>
+                                </div>
+                                <h3>Executive AI Assistants</h3>
+                            </div>
+                            <div class="service-details">
+                                <p class="stack-label"><strong>Core Stack:</strong></p>
+                                <p class="tech-stack">OpenAI Assistants API, MCP, Slack, Notion, Google Workspace</p>
+                                
+                                <div class="service-deliverables mt-3">
+                                    <h5 class="section-label">Deliverables:</h5>
+                                    <ul class="compact-list">
+                                        <li>Email triage, scheduling, and summary extraction</li>
+                                        <li>Slack-based query bots with access to internal datasets</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="service-impact mt-3">
+                                    <h5 class="section-label">Impact:</h5>
+                                    <ul class="compact-list">
+                                        <li>Reduces cognitive load on leadership and increases responsiveness</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Service 7 -->
+                    <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="400">
+                        <div class="service-card grid-card glass-component" id="service-7">
+                            <div class="service-header text-center mb-3">
+                                <div class="service-icon mb-2">
+                                    <i class="fas fa-database"></i>
+                                </div>
+                                <h3>Market Intelligence Systems</h3>
+                            </div>
+                            <div class="service-details">
+                                <p class="stack-label"><strong>Core Stack:</strong></p>
+                                <p class="tech-stack">Python (Selenium, Playwright), Apify, Pandas, Power BI</p>
+                                
+                                <div class="service-deliverables mt-3">
+                                    <h5 class="section-label">Deliverables:</h5>
+                                    <ul class="compact-list">
+                                        <li>Structured and real-time market scraping tools</li>
+                                        <li>Analytics dashboards customized per role and objective</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="service-impact mt-3">
+                                    <h5 class="section-label">Impact:</h5>
+                                    <ul class="compact-list">
+                                        <li>Strategic visibility into pricing, sentiment, and competitor movements</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Service 8 -->
+                    <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="450">
+                        <div class="service-card grid-card glass-component" id="service-8">
+                            <div class="service-header text-center mb-3">
+                                <div class="service-icon mb-2">
+                                    <i class="fas fa-laptop-code"></i>
+                                </div>
+                                <h3>Full-Code Web Development</h3>
+                            </div>
+                            <div class="service-details">
+                                <p class="stack-label"><strong>Core Stack:</strong></p>
+                                <p class="tech-stack">HTML5, CSS3, JavaScript, React, GSAP, Next.js</p>
+                                
+                                <div class="service-deliverables mt-3">
+                                    <h5 class="section-label">Deliverables:</h5>
+                                    <ul class="compact-list">
+                                        <li>Code-driven, SEO-optimized, and scalable frontend architectures</li>
+                                        <li>Backend-agnostic API and CMS integration</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="service-impact mt-3">
+                                    <h5 class="section-label">Impact:</h5>
+                                    <ul class="compact-list">
+                                        <li>Professional digital presence optimized for performance and conversion</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Service 9 -->
+                    <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="500">
+                        <div class="service-card grid-card glass-component" id="service-9">
+                            <div class="service-header text-center mb-3">
+                                <div class="service-icon mb-2">
+                                    <i class="fas fa-tachometer-alt"></i>
+                                </div>
+                                <h3>Custom Dashboards</h3>
+                            </div>
+                            <div class="service-details">
+                                <p class="stack-label"><strong>Core Stack:</strong></p>
+                                <p class="tech-stack">Retool, Appsmith, Firebase, Supabase, PostgreSQL, D3.js</p>
+                                
+                                <div class="service-deliverables mt-3">
+                                    <h5 class="section-label">Deliverables:</h5>
+                                    <ul class="compact-list">
+                                        <li>Internal dashboards for project management, support, and KPIs</li>
+                                        <li>Configurable access control and data visualization modules</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="service-impact mt-3">
+                                    <h5 class="section-label">Impact:</h5>
+                                    <ul class="compact-list">
+                                        <li>Reduced tool sprawl and increased operational clarity</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Service 10 -->
+                    <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="550">
+                        <div class="service-card grid-card glass-component" id="service-10">
+                            <div class="service-header text-center mb-3">
+                                <div class="service-icon mb-2">
+                                    <i class="fas fa-code-branch"></i>
+                                </div>
+                                <h3>SaaS Product Engineering</h3>
+                            </div>
+                            <div class="service-details">
+                                <p class="stack-label"><strong>Core Stack:</strong></p>
+                                <p class="tech-stack">Node.js, Docker, GraphQL, Redis, Stripe, Supabase</p>
+                                
+                                <div class="service-deliverables mt-3">
+                                    <h5 class="section-label">Deliverables:</h5>
+                                    <ul class="compact-list">
+                                        <li>MVP-to-market SaaS platforms with multi-tenant architecture</li>
+                                        <li>Payment integration, role-based access, audit logging</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="service-impact mt-3">
+                                    <h5 class="section-label">Impact:</h5>
+                                    <ul class="compact-list">
+                                        <li>Accelerated launch cycles with investor-ready infrastructure</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Service 11 -->
+                    <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="600">
+                        <div class="service-card grid-card glass-component" id="service-11">
+                            <div class="service-header text-center mb-3">
+                                <div class="service-icon mb-2">
+                                    <i class="fas fa-graduation-cap"></i>
+                                </div>
+                                <h3>Training Workshops</h3>
+                            </div>
+                            <div class="service-details">
+                                <p class="stack-label"><strong>Focus Areas:</strong></p>
+                                <p class="tech-stack">Prompt engineering, cybersecurity literacy, platform automation</p>
+                                
+                                <div class="service-deliverables mt-3">
+                                    <h5 class="section-label">Delivery Modes:</h5>
+                                    <ul class="compact-list">
+                                        <li>Instructor-led virtual sessions</li>
+                                        <li>On-site intensive workshops</li>
+                                        <li>Custom training manuals and resources</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="service-impact mt-3">
+                                    <h5 class="section-label">Impact:</h5>
+                                    <ul class="compact-list">
+                                        <li>Enhances internal tech competence and reduces training outsourcing</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Service 12 -->
+                    <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="650">
+                        <div class="service-card grid-card glass-component" id="service-12">
+                            <div class="service-header text-center mb-3">
+                                <div class="service-icon mb-2">
+                                    <i class="fas fa-terminal"></i>
+                                </div>
+                                <h3>System-Level Automation</h3>
+                            </div>
+                            <div class="service-details">
+                                <p class="stack-label"><strong>Core Stack:</strong></p>
+                                <p class="tech-stack">Bash, PowerShell, Python, pyautogui, Task Scheduler</p>
+                                
+                                <div class="service-deliverables mt-3">
+                                    <h5 class="section-label">Deliverables:</h5>
+                                    <ul class="compact-list">
+                                        <li>Automated system checks, backups, and scripted updates</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="service-impact mt-3">
+                                    <h5 class="section-label">Impact:</h5>
+                                    <ul class="compact-list">
+                                        <li>Improved uptime, predictable system behavior, and secure operations</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Service 13 -->
+                    <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="700">
+                        <div class="service-card grid-card glass-component" id="service-13">
+                            <div class="service-header text-center mb-3">
+                                <div class="service-icon mb-2">
+                                    <i class="fas fa-window-restore"></i>
+                                </div>
+                                <h3>Browser Automation Agents</h3>
+                            </div>
+                            <div class="service-details">
+                                <p class="stack-label"><strong>Core Stack:</strong></p>
+                                <p class="tech-stack">Automa, Robomotion, Selenium, Puppeteer</p>
+                                
+                                <div class="service-deliverables mt-3">
+                                    <h5 class="section-label">Deliverables:</h5>
+                                    <ul class="compact-list">
+                                        <li>End-to-end automation of browser-based workflows and data pulls</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="service-impact mt-3">
+                                    <h5 class="section-label">Impact:</h5>
+                                    <ul class="compact-list">
+                                        <li>Cost-effective method for manual task replication at scale</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Service 14 -->
+                    <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="750">
+                        <div class="service-card grid-card glass-component" id="service-14">
+                            <div class="service-header text-center mb-3">
+                                <div class="service-icon mb-2">
+                                    <i class="fas fa-shield-alt"></i>
+                                </div>
+                                <h3>Cybersecurity Infrastructure</h3>
+                            </div>
+                            <div class="service-details">
+                                <p class="stack-label"><strong>Core Stack:</strong></p>
+                                <p class="tech-stack">Cisco, pfSense, Fortinet, CrowdStrike, Zabbix</p>
+                                
+                                <div class="service-deliverables mt-3">
+                                    <h5 class="section-label">Deliverables:</h5>
+                                    <ul class="compact-list">
+                                        <li>Zero-trust architecture, VPN enforcement, SIEM integrations</li>
+                                        <li>Penetration testing and remediation</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="service-impact mt-3">
+                                    <h5 class="section-label">Impact:</h5>
+                                    <ul class="compact-list">
+                                        <li>Strengthened security posture and improved audit readiness</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Service 15 -->
+                    <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="800">
+                        <div class="service-card grid-card glass-component" id="service-15">
+                            <div class="service-header text-center mb-3">
+                                <div class="service-icon mb-2">
+                                    <i class="fas fa-palette"></i>
+                                </div>
+                                <h3>Design Systems</h3>
+                            </div>
+                            <div class="service-details">
+                                <p class="stack-label"><strong>Core Stack:</strong></p>
+                                <p class="tech-stack">Figma, Adobe Illustrator, Photoshop</p>
+                                
+                                <div class="service-deliverables mt-3">
+                                    <h5 class="section-label">Deliverables:</h5>
+                                    <ul class="compact-list">
+                                        <li>Cohesive brand systems spanning print, digital, and product UI</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="service-impact mt-3">
+                                    <h5 class="section-label">Impact:</h5>
+                                    <ul class="compact-list">
+                                        <li>Establishes visual trust and improves user recognition and recall</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Service 16 -->
+                    <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="850">
+                        <div class="service-card grid-card glass-component" id="service-16">
+                            <div class="service-header text-center mb-3">
+                                <div class="service-icon mb-2">
+                                    <i class="fas fa-film"></i>
+                                </div>
+                                <h3>Visual Content Production</h3>
+                            </div>
+                            <div class="service-details">
+                                <p class="stack-label"><strong>Core Stack:</strong></p>
+                                <p class="tech-stack">Premiere Pro, After Effects, Runway ML, DaVinci Resolve</p>
+                                
+                                <div class="service-deliverables mt-3">
+                                    <h5 class="section-label">Deliverables:</h5>
+                                    <ul class="compact-list">
+                                        <li>Story-driven marketing visuals and performance media assets</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="service-impact mt-3">
+                                    <h5 class="section-label">Impact:</h5>
+                                    <ul class="compact-list">
+                                        <li>Improves click-through rates, retention, and brand storytelling</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Service 17 -->
+                    <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="900">
+                        <div class="service-card grid-card glass-component" id="service-17">
+                            <div class="service-header text-center mb-3">
+                                <div class="service-icon mb-2">
+                                    <i class="fas fa-desktop"></i>
+                                </div>
+                                <h3>UX/UI Product Design</h3>
+                            </div>
+                            <div class="service-details">
+                                <p class="stack-label"><strong>Core Stack:</strong></p>
+                                <p class="tech-stack">Figma, Adobe XD, Zeplin, Framer</p>
+                                
+                                <div class="service-deliverables mt-3">
+                                    <h5 class="section-label">Deliverables:</h5>
+                                    <ul class="compact-list">
+                                        <li>Research-backed product flows, prototypes, and developer-ready files</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="service-impact mt-3">
+                                    <h5 class="section-label">Impact:</h5>
+                                    <ul class="compact-list">
+                                        <li>Minimizes development cycles and maximizes end-user satisfaction</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Service 18 -->
+                    <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="950">
+                        <div class="service-card grid-card glass-component" id="service-18">
+                            <div class="service-header text-center mb-3">
+                                <div class="service-icon mb-2">
+                                    <i class="fas fa-tools"></i>
+                                </div>
+                                <h3>Operational Software Tools</h3>
+                            </div>
+                            <div class="service-details">
+                                <p class="stack-label"><strong>Core Stack:</strong></p>
+                                <p class="tech-stack">Google Apps Script, Notion API, Airtable, Firebase</p>
+                                
+                                <div class="service-deliverables mt-3">
+                                    <h5 class="section-label">Deliverables:</h5>
+                                    <ul class="compact-list">
+                                        <li>Lightweight internal tools for budget approvals, task routing, and tracking</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="service-impact mt-3">
+                                    <h5 class="section-label">Impact:</h5>
+                                    <ul class="compact-list">
+                                        <li>Streamlines internal operations and reduces spreadsheet reliance</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Service 19 -->
+                    <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="1000">
+                        <div class="service-card grid-card glass-component" id="service-19">
+                            <div class="service-header text-center mb-3">
+                                <div class="service-icon mb-2">
+                                    <i class="fas fa-bullhorn"></i>
+                                </div>
+                                <h3>Marketing Automation</h3>
+                            </div>
+                            <div class="service-details">
+                                <p class="stack-label"><strong>Core Stack:</strong></p>
+                                <p class="tech-stack">HubSpot, Mailchimp, ConvertKit, Meta Ads</p>
+                                
+                                <div class="service-deliverables mt-3">
+                                    <h5 class="section-label">Deliverables:</h5>
+                                    <ul class="compact-list">
+                                        <li>Email sequences, ad retargeting workflows, funnel optimization</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="service-impact mt-3">
+                                    <h5 class="section-label">Impact:</h5>
+                                    <ul class="compact-list">
+                                        <li>Boosts lead engagement while optimizing campaign cost-efficiency</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Service 20 -->
+                    <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="1050">
+                        <div class="service-card grid-card glass-component" id="service-20">
+                            <div class="service-header text-center mb-3">
+                                <div class="service-icon mb-2">
+                                    <i class="fas fa-project-diagram"></i>
+                                </div>
+                                <h3>IT Strategy Consulting</h3>
+                            </div>
+                            <div class="service-details">
+                                <p class="stack-label"><strong>Scope:</strong></p>
+                                <p class="tech-stack">Infrastructure planning, implementation support, diagnostics</p>
+                                
+                                <div class="service-deliverables mt-3">
+                                    <h5 class="section-label">Deliverables:</h5>
+                                    <ul class="compact-list">
+                                        <li>Strategic IT roadmaps and technical debt analysis</li>
+                                        <li>Vendor evaluation and system architecture plans</li>
+                                        <li>Implementation guidance and prioritization frameworks</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="service-impact mt-3">
+                                    <h5 class="section-label">Impact:</h5>
+                                    <ul class="compact-list">
+                                        <li>Empowers businesses to make informed, scalable technology investments</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Service 21 -->
+                    <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="1100">
+                        <div class="service-card grid-card glass-component" id="service-21">
+                            <div class="service-header text-center mb-3">
+                                <div class="service-icon mb-2">
+                                    <i class="fas fa-network-wired"></i>
+                                </div>
+                                <h3>IT Infrastructure Deployment</h3>
+                            </div>
+                            <div class="service-details">
+                                <p class="stack-label"><strong>Scope:</strong></p>
+                                <p class="tech-stack">Networking hardware, workstations, structured cabling</p>
+                                
+                                <div class="service-deliverables mt-3">
+                                    <h5 class="section-label">Deliverables:</h5>
+                                    <ul class="compact-list">
+                                        <li>Network infrastructure setup and configuration</li>
+                                        <li>Server deployment and workstation provisioning</li>
+                                        <li>Physical and virtual security implementation</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="service-impact mt-3">
+                                    <h5 class="section-label">Impact:</h5>
+                                    <ul class="compact-list">
+                                        <li>Enables turnkey physical setup for hybrid and multi-site offices</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="services-cta text-center mt-5">
+                    <h3>FUNCTION DRIVE empowers businesses to scale with precision, automate with confidence, and operate at the frontier of intelligent systems design.</h3>
+                    <p class="lead mt-3">Let's build your future-ready infrastructure today.</p>
+                    <a href="contact.html" class="btn btn-primary mt-3">Get in Touch</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="js/main.js"></script>
+    
+    <!-- Card Stacking Animation Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // STEP 1: APPLY FIXED HEIGHT TO ALL CARDS BEFORE ANY OTHER PROCESSING
+            // This ensures every card has exactly the same height
+            let fixedCardHeight = 700; // Increased height to fit all content, including AI-Powered Chatbots
+            
+            function forceAllCardsToSameHeight() {
+                console.log("Forcing all cards to have the same height: " + fixedCardHeight + "px");
+                
+                // Target all service cards and their containers
+                const allCardContainers = document.querySelectorAll('.services-page-section .col-lg-4');
+                const allCards = document.querySelectorAll('.services-page-section .service-card');
+                
+                // First, set fixed height on all containers
+                allCardContainers.forEach(container => {
+                    container.style.height = fixedCardHeight + 'px';
+                    container.style.minHeight = fixedCardHeight + 'px';
+                    container.style.maxHeight = fixedCardHeight + 'px';
+                    container.style.display = 'flex';
+                });
+                
+                // Then, make all cards take up 100% of their container height
+                allCards.forEach(card => {
+                    card.style.height = '100%';
+                    card.style.minHeight = '100%';
+                    card.style.maxHeight = '100%';
+                    card.style.display = 'flex';
+                    card.style.flexDirection = 'column';
+                    
+                    // Distribute content evenly
+                    const details = card.querySelector('.service-details');
+                    if (details) {
+                        details.style.flex = '1';
+                        details.style.display = 'flex';
+                        details.style.flexDirection = 'column';
+                        details.style.justifyContent = 'space-between';
+                    }
+                });
+            }
+            
+            // Apply fixed height immediately
+            forceAllCardsToSameHeight();
+            
+            // Also apply on window load and resize to ensure consistency
+            window.addEventListener('load', forceAllCardsToSameHeight);
+            window.addEventListener('resize', function() {
+                // Adjust card height based on screen width
+                if (window.innerWidth < 768) {
+                    fixedCardHeight = 500; // Mobile - shorter cards
+                } else if (window.innerWidth < 992) {
+                    fixedCardHeight = 580; // Tablet - medium height cards
+                } else {
+                    fixedCardHeight = 650; // Desktop - full height cards
+                }
+                forceAllCardsToSameHeight();
+            });
+            
+            // Initialize GSAP and ScrollTrigger
+            gsap.registerPlugin(ScrollTrigger);
+            
+            // Reference to the container
+            const container = document.getElementById('card-stack-container');
+            const serviceCards = Array.from(document.querySelectorAll('#card-stack-container > div'));
+            
+            // Clear the container
+            container.innerHTML = '';
+            
+            // Create a wrapper for the card stack container
+            const wrapper = document.createElement('div');
+            wrapper.className = 'card-stack-wrapper';
+            wrapper.style.position = 'relative'; // Ensure proper stacking context
+            wrapper.style.zIndex = '1'; // Base z-index for the wrapper
+            wrapper.style.marginBottom = '150px'; // Add significant bottom margin for better spacing
+            wrapper.style.paddingBottom = '0px'; // Add padding to bottom as well
+            container.parentNode.insertBefore(wrapper, container);
+            wrapper.appendChild(container);
+            
+            // Group cards into rows of 3 (or appropriate number for responsive design)
+            const cardGroups = [];
+            const groupSize = 3; // Number of cards per row/group
+            
+            for (let i = 0; i < serviceCards.length; i += groupSize) {
+                const group = document.createElement('div');
+                group.className = 'stack-card-group';
+                group.setAttribute('data-group-index', Math.floor(i / groupSize));
+                container.appendChild(group);
+                cardGroups.push(group);
+                
+                // Add up to 3 cards to this group
+                for (let j = i; j < i + groupSize && j < serviceCards.length; j++) {
+                    const card = serviceCards[j];
+                    card.classList.remove('col-lg-4', 'col-md-6', 'mb-4');
+                    card.classList.add('stack-card');
+                    // Remove AOS attributes since we're using GSAP
+                    card.removeAttribute('data-aos');
+                    card.removeAttribute('data-aos-delay');
+                    group.appendChild(card);
+                }
+                
+                // Add data attribute to help with proper stacking order
+                group.setAttribute('data-original-index', cardGroups.length - 1);
+            }
+            
+            // Apply fixed height again after rearranging cards
+            setTimeout(forceAllCardsToSameHeight, 100);
+            
+            // Configure each card group for the stacking animation
+            cardGroups.forEach((group, index) => {
+                // Set consistent height for each group
+                group.style.height = fixedCardHeight + 'px';
+                
+                // Create a GSAP timeline for each group
+                const groupTimeline = gsap.timeline({
+                    scrollTrigger: {
+                        trigger: group,
+                        start: 'top 70%',
+                        end: 'top 15%',
+                        scrub: 0.5,
+                        toggleActions: 'play none none reverse',
+                        onEnter: () => {
+                            // Simply add active class and trigger stack update
+                            group.classList.add('active'); 
+                            group.classList.add('stacked');
+                            // Update stacking order immediately
+                            updateStackDepth();
+                            // Ensure heights are consistent
+                            forceAllCardsToSameHeight();
+                        },
+                        onLeaveBack: () => {
+                            // CRITICAL FIX: Instead of removing classes immediately, preserve z-index
+                            // Get the group's index within the stacked groups
+                            const groupIndex = Array.from(stackedGroups).indexOf(group);
+                            
+                            // Store the calculated z-index value (the same formula used in updateStackDepth)
+                            if (groupIndex !== -1) {
+                                const preservedZIndex = 500 + groupIndex;
+                                // Force this z-index to stay during the entire animation
+                                group.style.zIndex = preservedZIndex;
+                            }
+                            
+                            // Now remove the stacked class (keeps the z-index we just set)
+                            group.classList.remove('stacked');
+                            
+                            // Remove active class after a short delay to complete animation
+                            setTimeout(() => {
+                                group.classList.remove('active');
+                            }, 350);
+                            
+                            // Remove stacking classes
+                            for (let i = 1; i <= 5; i++) {
+                                group.classList.remove(`stacked-group-${i}`);
+                            }
+                        }
+                    }
+                });
+                
+                // Add stacking effect when scrolling past the group
+                ScrollTrigger.create({
+                    trigger: group,
+                    start: 'top 15%',
+                    endTrigger: container,
+                    end: 'bottom 15%',
+                    toggleClass: {targets: group, className: 'stacked'},
+                    onEnter: () => {
+                        updateStackDepth();
+                        // Reapply fixed heights
+                        forceAllCardsToSameHeight();
+                    },
+                    onLeaveBack: () => updateStackDepth()
+                });
+            });
+            
+            // Function to update the stacking depth effect
+            // Global array to track the z-index order of cards (avoids relying on DOM order)
+            let cardZIndexOrder = [];
+            
+            function updateStackDepth() {
+                const stackedGroups = document.querySelectorAll('.stack-card-group.stacked');
+                
+                // First, remove all stacking classes
+                document.querySelectorAll('.stack-card-group').forEach(group => {
+                    group.classList.remove('stacked-group-1', 'stacked-group-2', 'stacked-group-3', 'stacked-group-4');
+                    // We no longer reset z-index here to maintain stacking order during transitions
+                });
+                
+                // Only calculate z-index if we don't already have an order established
+                // This prevents the z-index from changing during destacking
+                if (cardZIndexOrder.length === 0 || cardZIndexOrder.length !== stackedGroups.length) {
+                    // Reset the tracking array
+                    cardZIndexOrder = [];
+                    
+                    // Establish z-index order (assign higher z-index to later cards)
+                    stackedGroups.forEach((group, index) => {
+                        const zIndex = 500 + index; // Higher index = higher z-index = front position
+                        cardZIndexOrder.push({
+                            element: group,
+                            zIndex: zIndex
+                        });
+                    });
+                }
+                
+                // Apply z-index and stacking classes based on our tracking array
+                cardZIndexOrder.forEach((item, index) => {
+                    // Apply the z-index from our tracking array
+                    item.element.style.zIndex = item.zIndex;
+                    
+                    // Only apply visual stacking classes to stacked elements
+                    if (item.element.classList.contains('stacked') && index < 5) {
+                        // Clear previous classes first
+                        for (let i = 1; i <= 5; i++) {
+                            item.element.classList.remove(`stacked-group-${i}`);
+                        }
+                        
+                        // Apply the appropriate stacking class with a delay
+                        setTimeout(() => {
+                            const classNumber = index + 1;
+                            item.element.classList.add(`stacked-group-${classNumber}`);
+                            forceAllCardsToSameHeight();
+                        }, index * 80);
+                    }
+                });
+            }
+            
+            // Create a timeline for the entire stack effect
+            const stackTimeline = gsap.timeline({
+                scrollTrigger: {
+                    trigger: container,
+                    start: 'top top',
+                    end: 'bottom bottom',
+                    scrub: 1
+                }
+            });
+            
+            // Add smooth parallax effect to the stack wrapper
+            stackTimeline.to('.card-stack-wrapper', {
+                rotateX: 5,
+                ease: 'none'
+            });
+            
+            // Adjust the stacking effect on resize to handle variable card heights
+            window.addEventListener('resize', function() {
+                // Force a refresh of ScrollTrigger
+                ScrollTrigger.refresh();
+                // Update the stack depth after a short delay
+                setTimeout(updateStackDepth, 300);
+                // Reapply fixed heights
+                forceAllCardsToSameHeight();
+            });
+            
+            // Create a transition to the next section
+            const servicesCta = document.querySelector('.services-cta');
+            if (servicesCta) {
+                ScrollTrigger.create({
+                    trigger: servicesCta,
+                    start: 'top 80%',
+                    animation: gsap.from(servicesCta, {
+                        y: 100,
+                        opacity: 0,
+                        duration: 1.5,
+                        ease: 'power2.out'
+                    }),
+                    toggleActions: 'play none none none'
+                });
+            }
+        });
+    </script>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <!-- Glass dividers -->
+        <div class="glass-divider left"></div>
+        <div class="glass-divider right"></div>
+        <div class="container">
+            <div class="row footer-main">
+                <div class="col-md-4 footer-brand">
+                    <div class="footer-logo">
+                        <img src="images/Function_Drive_logo_no_background(PNG).png" alt="Function Drive" height="40">
+                        <span>FUNCTION DRIVE</span>
+                    </div>
+                    <p>We help businesses leverage AI and automation to streamline workflows, reduce costs, and boost productivity.</p>
+                    <div class="footer-social">
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                
+                <div class="col-md-8">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <h4>Services</h4>
+                            <ul class="footer-links">
+                                <li><a href="services.html">AI Chatbots</a></li>
+                                <li><a href="services.html">Workflow Automation</a></li>
+                                <li><a href="services.html">Lead Generation</a></li>
+                                <li><a href="services.html">Client Onboarding</a></li>
+                                <li><a href="services.html">Data Scraping</a></li>
+                            </ul>
+                        </div>
+                        
+                        <div class="col-md-4">
+                            <h4>Company</h4>
+                            <ul class="footer-links">
+                                <li><a href="about.html">About Us</a></li>
+                                <li><a href="about.html#team">Our Team</a></li>
+                                <li><a href="#">Careers</a></li>
+                                <li><a href="contact.html">Contact</a></li>
+                            </ul>
+                        </div>
+                        
+                        <div class="col-md-4">
+                            <h4>Newsletter</h4>
+                            <p>Subscribe to our newsletter for the latest updates on AI automation.</p>
+                            <div class="newsletter-form">
+                                <div class="input-group">
+                                    <input type="email" class="form-control" placeholder="Email" required>
+                                    <button class="btn btn-arrow" type="submit">
+                                        <i class="fas fa-arrow-right"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="made-with" id="footer-credits">
+                                Made with <img src="images/pixel-heart.png" alt="heart" class="pixel-heart"> by Function Drive
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-copyright">
+                &copy; 2025 Function Drive. All rights reserved.
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- AOS Animation -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <!-- Custom JS -->
+    <script src="js/main.js"></script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize AOS
+            AOS.init({
+                duration: 800,
+                easing: 'ease-in-out',
+                once: true
+            });
+            
+            // Explicitly initialize theme toggle functionality
+            const themeToggle = document.getElementById('theme-toggle');
+            if (themeToggle) {
+                // Apply saved theme on page load
+                const savedTheme = localStorage.getItem('theme') || 'dark';
+                document.documentElement.setAttribute('data-theme', savedTheme);
+                
+                // Add click event listener
+                themeToggle.addEventListener('click', () => {
+                    const currentTheme = document.documentElement.getAttribute('data-theme');
+                    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+                    
+                    document.documentElement.setAttribute('data-theme', newTheme);
+                    localStorage.setItem('theme', newTheme);
+                    
+                    // Update star animation elements if that function exists
+                    if (typeof updateStarAnimationElements === 'function') {
+                        updateStarAnimationElements(newTheme);
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
