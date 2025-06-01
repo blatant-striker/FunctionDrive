@@ -244,10 +244,65 @@ function initHeroAnimation() {
     const heroImageContainer = document.getElementById('hero-image-container');
     const heroContent = document.querySelector('.hero-content');
 
-    // Proceed only if elements exist and heroImageContainer is visible (for large screens)
-    if (!heroIllustrationImg || !heroImageContainer || !heroContent || 
-        window.getComputedStyle(heroImageContainer).display === 'none') return;
+    // Check if we're on a mobile device (hero image container hidden)
+    const isMobile = heroImageContainer && window.getComputedStyle(heroImageContainer).display === 'none';
     
+    // First animate the content regardless of screen size
+    // Animate hero content elements with GSAP for better control
+    // Ensure all elements start hidden
+    const heroTagline = heroContent.querySelector('h3.tagline');
+    const heroHeading = heroContent.querySelector('h1');
+    const heroParagraph = heroContent.querySelector('p');
+    const heroButtons = heroContent.querySelector('.hero-buttons');
+    
+    if (heroTagline) gsap.set(heroTagline, { opacity: 0, y: 20 });
+    if (heroHeading) gsap.set(heroHeading, { opacity: 0, y: 20 });
+    if (heroParagraph) gsap.set(heroParagraph, { opacity: 0, y: 20 });
+    if (heroButtons) gsap.set(heroButtons, { opacity: 0, y: 20 });
+    
+    // Create a sequence of animations for the hero content
+    const contentTimeline = gsap.timeline({ delay: 0.3 });
+    
+    if (heroTagline) {
+        contentTimeline.to(heroTagline, {
+            duration: 0.5,
+            opacity: 1,
+            y: 0,
+            ease: "power2.out"
+        });
+    }
+    
+    if (heroHeading) {
+        contentTimeline.to(heroHeading, {
+            duration: 0.5,
+            opacity: 1,
+            y: 0,
+            ease: "power2.out"
+        }, "-=0.3"); // Overlap with previous animation
+    }
+    
+    if (heroParagraph) {
+        contentTimeline.to(heroParagraph, {
+            duration: 0.5,
+            opacity: 1,
+            y: 0,
+            ease: "power2.out"
+        }, "-=0.3");
+    }
+    
+    if (heroButtons) {
+        contentTimeline.to(heroButtons, {
+            duration: 0.5,
+            opacity: 1,
+            y: 0,
+            ease: "power2.out"
+        }, "-=0.3");
+    }
+    
+    // If on mobile, we're done (no hero image animation)
+    if (isMobile || !heroIllustrationImg || !heroImageContainer) return;
+    
+    // For desktop/tablet, continue with hero image animation
     // Store original dimensions to ensure consistent sizing
     const originalWidth = getComputedStyle(heroIllustrationImg).width;
     const originalHeight = getComputedStyle(heroIllustrationImg).height;
@@ -305,57 +360,6 @@ function initHeroAnimation() {
             });
         }
     });
-    
-    // Animate hero content elements with GSAP for better control
-    // First, ensure all elements start hidden
-    const heroTagline = heroContent.querySelector('h3.tagline');
-    const heroHeading = heroContent.querySelector('h1');
-    const heroParagraph = heroContent.querySelector('p');
-    const heroButtons = heroContent.querySelector('.hero-buttons');
-    
-    if (heroTagline) gsap.set(heroTagline, { opacity: 0, y: 20 });
-    if (heroHeading) gsap.set(heroHeading, { opacity: 0, y: 20 });
-    if (heroParagraph) gsap.set(heroParagraph, { opacity: 0, y: 20 });
-    if (heroButtons) gsap.set(heroButtons, { opacity: 0, y: 20 });
-    
-    // Create a sequence of animations for the hero content
-    const contentTimeline = gsap.timeline({ delay: 0.3 }); // Start after image begins moving
-    
-    if (heroTagline) {
-        contentTimeline.to(heroTagline, {
-            duration: 0.5,
-            opacity: 1,
-            y: 0,
-            ease: "power2.out"
-        });
-    }
-    
-    if (heroHeading) {
-        contentTimeline.to(heroHeading, {
-            duration: 0.5,
-            opacity: 1,
-            y: 0,
-            ease: "power2.out"
-        }, "-=0.3"); // Overlap with previous animation
-    }
-    
-    if (heroParagraph) {
-        contentTimeline.to(heroParagraph, {
-            duration: 0.5,
-            opacity: 1,
-            y: 0,
-            ease: "power2.out"
-        }, "-=0.3");
-    }
-    
-    if (heroButtons) {
-        contentTimeline.to(heroButtons, {
-            duration: 0.5,
-            opacity: 1,
-            y: 0,
-            ease: "power2.out"
-        }, "-=0.3");
-    }
 }
 
 // Initialize hero animation with small delay for proper rendering
