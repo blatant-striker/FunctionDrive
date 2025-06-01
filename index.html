@@ -24,32 +24,7 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/style.css">
     
-    <!-- Card Stack Styles for Services Section -->
-    <style>
-        /* Card Stack Styles - SIMPLIFIED */
-        .stack-card-group {
-            position: relative;
-            transition: transform 0.5s ease, opacity 0.4s ease;
-            transform: translateY(50px);
-            opacity: 0;
-        }
-        
-        .stack-card-group.active {
-            transform: translateY(0);
-            opacity: 1;
-        }
-        
-        .stack-card-group.stacked {
-            transform: perspective(1000px) rotateX(5deg);
-        }
-        
-        /* Reverse stacking classes - higher numbers = higher in stack */
-        .stack-card-group.stacked-group-5 { transform: perspective(1000px) rotateX(5deg) translateY(0px); }
-        .stack-card-group.stacked-group-4 { transform: perspective(1000px) rotateX(5deg) translateY(20px); }
-        .stack-card-group.stacked-group-3 { transform: perspective(1000px) rotateX(5deg) translateY(40px); }
-        .stack-card-group.stacked-group-2 { transform: perspective(1000px) rotateX(5deg) translateY(60px); }
-        .stack-card-group.stacked-group-1 { transform: perspective(1000px) rotateX(5deg) translateY(80px); }
-    </style>
+    <!-- Card Stack Styles moved to main style.css for better maintainability -->
     
     <!-- Preload critical assets -->
     <link rel="preload" href="css/style.css" as="style">
@@ -58,6 +33,9 @@
     <!-- GSAP & ScrollTrigger -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    
+    <!-- Lottie Animation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
 
     <!-- Prefetch other pages -->
     <link rel="prefetch" href="about.html">
@@ -85,7 +63,11 @@
                 </div>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
+                <div id="burger-menu" class="burger-menu-icon">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
@@ -142,7 +124,7 @@
             
             <div class="row service-cards-grid">
                 <!-- Service Card 1 -->
-                <div class="col-md-4 col-sm-6 mb-4" data-aos="fade-up" data-aos-delay="100">
+                <div class="col-lg-4 col-md-6 col-sm-6 mb-4" data-aos="fade-up" data-aos-delay="100">
                     <a href="services.html#service-1" class="service-card-link">
                         <div class="service-card grid-card glass-component p-4 h-100">
                             <div class="service-icon">
@@ -157,7 +139,7 @@
                 </div>
                 
                 <!-- Service Card 2 -->
-                <div class="col-md-4 col-sm-6 mb-4" data-aos="fade-up" data-aos-delay="150">
+                <div class="col-lg-4 col-md-6 col-sm-6 mb-4" data-aos="fade-up" data-aos-delay="150">
                     <a href="services.html#service-2" class="service-card-link">
                         <div class="service-card grid-card glass-component p-4 h-100">
                             <div class="service-icon">
@@ -172,7 +154,7 @@
                 </div>
                 
                 <!-- Service Card 3 -->
-                <div class="col-md-4 col-sm-6 mb-4" data-aos="fade-up" data-aos-delay="200">
+                <div class="col-lg-4 col-md-6 col-sm-6 mb-4" data-aos="fade-up" data-aos-delay="200">
                     <a href="services.html#service-3" class="service-card-link">
                         <div class="service-card grid-card glass-component p-4 h-100">
                             <div class="service-icon">
@@ -187,7 +169,7 @@
                 </div>
                 
                 <!-- Service Card 4 -->
-                <div class="col-md-4 col-sm-6 mb-4" data-aos="fade-up" data-aos-delay="250">
+                <div class="col-lg-4 col-md-6 col-sm-6 mb-4" data-aos="fade-up" data-aos-delay="250">
                     <a href="services.html#service-4" class="service-card-link">
                         <div class="service-card grid-card glass-component p-4 h-100">
                             <div class="service-icon">
@@ -202,7 +184,7 @@
                 </div>
                 
                 <!-- Service Card 5 -->
-                <div class="col-md-4 col-sm-6 mb-4" data-aos="fade-up" data-aos-delay="300">
+                <div class="col-lg-4 col-md-6 col-sm-6 mb-4" data-aos="fade-up" data-aos-delay="300">
                     <a href="services.html#service-5" class="service-card-link">
                         <div class="service-card grid-card glass-component p-4 h-100">
                             <div class="service-icon">
@@ -217,7 +199,7 @@
                 </div>
                 
                 <!-- Service Card 6 -->
-                <div class="col-md-4 col-sm-6 mb-4" data-aos="fade-up" data-aos-delay="350">
+                <div class="col-lg-4 col-md-6 col-sm-6 mb-4" data-aos="fade-up" data-aos-delay="350">
                     <a href="services.html#service-6" class="service-card-link">
                         <div class="service-card grid-card glass-component p-4 h-100">
                             <div class="service-icon">
@@ -232,7 +214,7 @@
                 </div>
                 
                 <!-- Service Card 7 -->
-                <div class="col-md-4 col-sm-6 mb-4" data-aos="fade-up" data-aos-delay="400">
+                <div class="col-lg-4 col-md-6 col-sm-6 mb-4" data-aos="fade-up" data-aos-delay="400">
                     <a href="services.html#service-7" class="service-card-link">
                         <div class="service-card grid-card glass-component p-4 h-100">
                             <div class="service-icon">
@@ -247,7 +229,7 @@
                 </div>
                 
                 <!-- Service Card 8 -->
-                <div class="col-md-4 col-sm-6 mb-4" data-aos="fade-up" data-aos-delay="450">
+                <div class="col-lg-4 col-md-6 col-sm-6 mb-4" data-aos="fade-up" data-aos-delay="450">
                     <a href="services.html#service-8" class="service-card-link">
                         <div class="service-card grid-card glass-component p-4 h-100">
                             <div class="service-icon">
@@ -262,7 +244,7 @@
                 </div>
                 
                 <!-- Service Card 9 -->
-                <div class="col-md-4 col-sm-6 mb-4" data-aos="fade-up" data-aos-delay="500">
+                <div class="col-lg-4 col-md-6 col-sm-6 mb-4" data-aos="fade-up" data-aos-delay="500">
                     <a href="services.html#service-9" class="service-card-link">
                         <div class="service-card grid-card glass-component p-4 h-100">
                             <div class="service-icon">
@@ -277,7 +259,7 @@
                 </div>
                 
                 <!-- Service Card 10 -->
-                <div class="col-md-4 col-sm-6 mb-4" data-aos="fade-up" data-aos-delay="550">
+                <div class="col-lg-4 col-md-6 col-sm-6 mb-4" data-aos="fade-up" data-aos-delay="550">
                     <a href="services.html#service-10" class="service-card-link">
                         <div class="service-card grid-card glass-component p-4 h-100">
                             <div class="service-icon">
@@ -292,7 +274,7 @@
                 </div>
                 
                 <!-- Service Card 11 -->
-                <div class="col-md-4 col-sm-6 mb-4" data-aos="fade-up" data-aos-delay="600">
+                <div class="col-lg-4 col-md-6 col-sm-6 mb-4" data-aos="fade-up" data-aos-delay="600">
                     <a href="services.html#service-11" class="service-card-link">
                         <div class="service-card grid-card glass-component p-4 h-100">
                             <div class="service-icon">
@@ -307,7 +289,7 @@
                 </div>
                 
                 <!-- Service Card 12 -->
-                <div class="col-md-4 col-sm-6 mb-4" data-aos="fade-up" data-aos-delay="650">
+                <div class="col-lg-4 col-md-6 col-sm-6 mb-4" data-aos="fade-up" data-aos-delay="650">
                     <a href="services.html#service-12" class="service-card-link">
                         <div class="service-card grid-card glass-component p-4 h-100">
                             <div class="service-icon">
@@ -322,7 +304,7 @@
                 </div>
                 
                 <!-- Service Card 13 -->
-                <div class="col-md-4 col-sm-6 mb-4" data-aos="fade-up" data-aos-delay="700">
+                <div class="col-lg-4 col-md-6 col-sm-6 mb-4" data-aos="fade-up" data-aos-delay="700">
                     <a href="services.html#service-13" class="service-card-link">
                         <div class="service-card grid-card glass-component p-4 h-100">
                             <div class="service-icon">
@@ -337,7 +319,7 @@
                 </div>
                 
                 <!-- Service Card 14 -->
-                <div class="col-md-4 col-sm-6 mb-4" data-aos="fade-up" data-aos-delay="750">
+                <div class="col-lg-4 col-md-6 col-sm-6 mb-4" data-aos="fade-up" data-aos-delay="750">
                     <a href="services.html#service-14" class="service-card-link">
                         <div class="service-card grid-card glass-component p-4 h-100">
                             <div class="service-icon">
@@ -352,7 +334,7 @@
                 </div>
                 
                 <!-- Service Card 15 -->
-                <div class="col-md-4 col-sm-6 mb-4" data-aos="fade-up" data-aos-delay="800">
+                <div class="col-lg-4 col-md-6 col-sm-6 mb-4" data-aos="fade-up" data-aos-delay="800">
                     <a href="services.html#service-15" class="service-card-link">
                         <div class="service-card grid-card glass-component p-4 h-100">
                             <div class="service-icon">
@@ -367,7 +349,7 @@
                 </div>
                 
                 <!-- Service Card 16 -->
-                <div class="col-md-4 col-sm-6 mb-4" data-aos="fade-up" data-aos-delay="850">
+                <div class="col-lg-4 col-md-6 col-sm-6 mb-4" data-aos="fade-up" data-aos-delay="850">
                     <a href="services.html#service-16" class="service-card-link">
                         <div class="service-card grid-card glass-component p-4 h-100">
                             <div class="service-icon">
@@ -382,7 +364,7 @@
                 </div>
                 
                 <!-- Service Card 17 -->
-                <div class="col-md-4 col-sm-6 mb-4" data-aos="fade-up" data-aos-delay="900">
+                <div class="col-lg-4 col-md-6 col-sm-6 mb-4" data-aos="fade-up" data-aos-delay="900">
                     <a href="services.html#service-17" class="service-card-link">
                         <div class="service-card grid-card glass-component p-4 h-100">
                             <div class="service-icon">
@@ -397,7 +379,7 @@
                 </div>
                 
                 <!-- Service Card 18 -->
-                <div class="col-md-4 col-sm-6 mb-4" data-aos="fade-up" data-aos-delay="950">
+                <div class="col-lg-4 col-md-6 col-sm-6 mb-4" data-aos="fade-up" data-aos-delay="950">
                     <a href="services.html#service-18" class="service-card-link">
                         <div class="service-card grid-card glass-component p-4 h-100">
                             <div class="service-icon">
@@ -412,7 +394,7 @@
                 </div>
                 
                 <!-- Service Card 19 -->
-                <div class="col-md-4 col-sm-6 mb-4" data-aos="fade-up" data-aos-delay="1000">
+                <div class="col-lg-4 col-md-6 col-sm-6 mb-4" data-aos="fade-up" data-aos-delay="1000">
                     <a href="services.html#service-19" class="service-card-link">
                         <div class="service-card grid-card glass-component p-4 h-100">
                             <div class="service-icon">
@@ -427,7 +409,7 @@
                 </div>
                 
                 <!-- Service Card 20 -->
-                <div class="col-md-4 col-sm-6 mb-4" data-aos="fade-up" data-aos-delay="1050">
+                <div class="col-lg-4 col-md-6 col-sm-6 mb-4" data-aos="fade-up" data-aos-delay="1050">
                     <a href="services.html#service-20" class="service-card-link">
                         <div class="service-card grid-card glass-component p-4 h-100">
                             <div class="service-icon">
@@ -442,7 +424,7 @@
                 </div>
                 
                 <!-- Service Card 21 -->
-                <div class="col-md-4 col-sm-6 mb-4" data-aos="fade-up" data-aos-delay="1100">
+                <div class="col-lg-4 col-md-6 col-sm-6 mb-4" data-aos="fade-up" data-aos-delay="1100">
                     <a href="services.html#service-21" class="service-card-link">
                         <div class="service-card grid-card glass-component p-4 h-100">
                             <div class="service-icon">
@@ -615,9 +597,9 @@
     
     <!-- Footer -->
     <footer class="footer">
-        <!-- Glass dividers -->
-        <div class="glass-divider left"></div>
-        <div class="glass-divider right"></div>
+        <!-- Glass dividers (only visible on screens 1530px and above) -->
+        <div class="glass-divider left large-screen-only"></div>
+        <div class="glass-divider right large-screen-only"></div>
         <div class="container">
             <div class="row footer-main">
                 <div class="col-md-4 footer-brand">
@@ -789,6 +771,7 @@
             
             // Apply on resize too
             window.addEventListener('resize', function() {
+                // Update card height
                 if (window.innerWidth < 768) {
                     fixedCardHeight = 200; // Mobile size - more compact
                 } else if (window.innerWidth < 992) {
@@ -797,6 +780,33 @@
                     fixedCardHeight = 240; // Desktop size - more compact
                 }
                 forceAllCardsToSameHeight();
+                
+                // Update card spacing for mobile
+                const cardGroups = document.querySelectorAll('.stack-card-group');
+                cardGroups.forEach(group => {
+                    if (window.innerWidth < 768) {
+                        group.style.marginBottom = '2.5rem';
+                    } else {
+                        group.style.marginBottom = '';
+                    }
+                });
+                
+                // Update group size and reload if needed
+                let newGroupSize;
+                if (window.innerWidth < 768) {
+                    newGroupSize = 1; // 1 card per group on mobile
+                } else if (window.innerWidth < 992) {
+                    newGroupSize = 2; // 2 cards per group on tablet
+                } else {
+                    newGroupSize = 3; // 3 cards per group on desktop
+                }
+                
+                // If group size has changed and we're not in the middle of an animation,
+                // reload the page to apply the new layout
+                if (typeof window.currentGroupSize !== 'undefined' && 
+                    window.currentGroupSize !== newGroupSize) {
+                    location.reload();
+                }
             });
             
             // Clear the container
@@ -808,15 +818,27 @@
             wrapper.className = 'card-stack-wrapper';
             wrapper.style.position = 'relative';
             wrapper.style.zIndex = '1';
-            wrapper.style.marginBottom = '100px';
+            wrapper.style.marginBottom = '20px';
             servicesContainer.parentNode.insertBefore(wrapper, servicesContainer);
             wrapper.appendChild(servicesContainer);
             
-            // Group cards into rows (for our stack effect)
-            const cardGroups = [];
-            const groupSize = 3; // 3 cards per row on desktop
+            // For the card stacking effect, set how many cards per group based on screen size
+            let groupSize = 3; // Default 3 cards per group on desktop
             
-            // Create card groups from the original service cards - exclude the last card
+            // Adjust group size based on screen width for responsive layouts
+            if (window.innerWidth < 768) {
+                groupSize = 1; // 1 card per group on mobile
+            } else if (window.innerWidth < 992) {
+                groupSize = 2; // 2 cards per group on tablet
+            }
+            
+            // Store the current group size globally for resize detection
+            window.currentGroupSize = groupSize;
+            
+            // Define the cardGroups array to store our groups
+            const cardGroups = [];
+            
+            // Define lastCardIndex and lastCard
             const lastCardIndex = serviceCards.length - 1;
             let lastCard = null;
             
@@ -849,6 +871,11 @@
                 
                 // Add data attribute for ordering
                 group.setAttribute('data-original-index', cardGroups.length - 1);
+                
+                // Add extra bottom margin on mobile screens
+                if (window.innerWidth < 768) {
+                    group.style.marginBottom = '2.5rem';
+                }
             }
             
             // We don't need the last card anymore since we have a dedicated 'Explore All Services' button

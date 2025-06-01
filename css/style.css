@@ -1,4 +1,4 @@
-/* Main Styles for Function Drive - AI Automation Agency Website - Optimized */
+/* Main Styles for Function Drive - AI Automation Agency Website - Optimized and Consolidated */
 :root {
   /* Dark Mode (Default) */
   --primary: #ff6b6b;
@@ -71,6 +71,62 @@ body {
   border-bottom: 1px solid transparent;
 }
 
+/* Responsive navbar adjustments */
+@media (max-width: 1000px) {
+  .navbar {
+    padding: 0.8rem 1.5rem;
+  }
+  
+  .navbar-logo img {
+    height: 45px;
+  }
+  
+  .navbar-logo span {
+    font-size: 1.2rem;
+  }
+}
+
+/* Center navbar items in collapsed state (for all screens where navbar is collapsed) */
+@media (max-width: 991px) {
+  .navbar-collapse .navbar-nav {
+    text-align: center;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+  
+  .navbar-collapse .nav-item {
+    margin: 0.5rem 0;
+  }
+  
+  .navbar-collapse .theme-toggle {
+    margin: 0.5rem auto;
+  }
+  
+  /* Improve mobile menu appearance */
+  .navbar-collapse {
+    background-color: rgba(var(--bg-color-rgb), 0.95);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 10px;
+    padding: 1rem;
+    margin-top: 0.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    padding: 0.7rem 1rem;
+  }
+  
+  .navbar-logo img {
+    height: 40px;
+  }
+  
+  .navbar-logo span {
+    font-size: 1.1rem;
+  }
+}
+
 .navbar.scrolled {
   background-color: rgba(18, 18, 18, 0.2);
   backdrop-filter: blur(25px);
@@ -102,6 +158,7 @@ body {
 
 [data-theme="light"] .navbar-dark .navbar-toggler-icon {
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%280, 0, 0, 0.55%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+  display: none;
 }
 
 .navbar-brand {
@@ -384,6 +441,53 @@ body {
   gap: 1rem;
 }
 
+/* Responsive hero section adjustments */
+@media (max-width: 1000px) {
+  .hero-content h1 {
+    font-size: 3rem;
+  }
+  
+  .hero-content h3.tagline {
+    font-size: 1.3rem;
+  }
+  
+  .hero-content p {
+    font-size: 1.1rem;
+    max-width: 90%;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-content h1 {
+    font-size: 2.5rem;
+  }
+  
+  .hero-content h3.tagline {
+    font-size: 1.2rem;
+  }
+  
+  .hero-content p {
+    font-size: 1rem;
+    max-width: 95%;
+  }
+  
+  .hero-buttons {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .hero-content h1 {
+    font-size: 2rem;
+  }
+  
+  .hero-content h3.tagline {
+    font-size: 1.1rem;
+  }
+}
+
 [data-theme="light"] .tagline {
   color: var(--secondary);
   font-weight: 600;
@@ -539,6 +643,103 @@ body {
 
 .btn-primary:hover::before {
   opacity: 1;
+}
+
+/* Burger Menu Styles */
+.burger-menu-icon {
+    width: 30px;
+    height: 24px;
+    position: relative;
+    margin: 0px auto;
+    transform: rotate(0deg);
+    transition: .5s ease-in-out;
+    cursor: pointer;
+    z-index: 1000;
+}
+
+.burger-menu-icon span {
+    display: block;
+    position: absolute;
+    height: 3px;
+    width: 100%;
+    background: #fff;
+    border-radius: 9px;
+    opacity: 1;
+    left: 0;
+    transform: rotate(0deg);
+    transition: .4s ease-in-out;
+}
+
+/* Dark/Light theme support */
+[data-theme="light"] .burger-menu-icon span {
+    background: #222;
+}
+
+.burger-menu-icon span:nth-child(1) {
+    top: 0px;
+}
+
+.burger-menu-icon span:nth-child(2) {
+    top: 8px;
+}
+
+.burger-menu-icon span:nth-child(3) {
+    top: 16px;
+}
+
+/* Animation for hamburger transformation */
+.burger-menu-icon.open span:nth-child(1) {
+    top: 0px;
+    transform: translateY(1px);
+    height: 6px;
+    border-radius: 10px 10px 0 0;
+    width: 100%;
+    background: #f8a031; /* Top bun color */
+}
+
+[data-theme="light"] .burger-menu-icon.open span:nth-child(1) {
+    background: #f8a031; /* Top bun color - same for light theme */
+}
+
+.burger-menu-icon.open span:nth-child(2) {
+    top: 7px;
+    height: 5px;
+    background: #5e3b1f; /* Patty color */
+    border-radius: 2px;
+    width: 90%;
+    left: 5%;
+}
+
+[data-theme="light"] .burger-menu-icon.open span:nth-child(2) {
+    background: #5e3b1f; /* Patty color - same for light theme */
+}
+
+.burger-menu-icon.open span:nth-child(3) {
+    top: 13px;
+    height: 6px;
+    border-radius: 0 0 10px 10px;
+    background: #e67e00; /* Bottom bun color */
+    width: 100%;
+}
+
+[data-theme="light"] .burger-menu-icon.open span:nth-child(3) {
+    background: #e67e00; /* Bottom bun color - same for light theme */
+}
+
+.navbar-toggler {
+    padding: 0.25rem;
+    border: none;
+    background: transparent;
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.navbar-toggler:focus {
+    box-shadow: none;
+}
+
+.navbar-toggler-icon {
+    display: none;
 }
 
 /* Common button focus styles */
@@ -781,6 +982,8 @@ body {
   bottom: 0;
   opacity: 1;
 }
+
+
 
 /* Ensure the image container has proper positioning for the overlay */
 .founder-img {
@@ -1329,19 +1532,98 @@ body {
 .footer-logo {
   display: flex;
   align-items: center;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
 }
 
 .footer-logo img {
-  height: 55px;
+  height: 45px;
+  margin-right: 0.5rem;
 }
 
 .footer-logo span {
-  font-size: 1.3rem;
-  font-weight: 800;
+  font-size: 1.25rem;
+  font-weight: 700;
   color: white;
-  letter-spacing: 1px;
-  text-transform: uppercase;
+}
+
+.footer h4 {
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  color: white;
+}
+
+/* Responsive footer styling */
+@media (max-width: 1000px) {
+  .footer {
+    padding: 3rem 0 2rem;
+  }
+  
+  .footer-logo img {
+    height: 40px;
+  }
+  
+  .footer-logo span {
+    font-size: 1.15rem;
+  }
+  
+  .footer h4 {
+    margin-bottom: 1.2rem;
+    font-size: 1.1rem;
+  }
+  
+  .footer-social {
+    margin-bottom: 2rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .footer {
+    padding: 2.5rem 0 1.5rem;
+    text-align: center;
+  }
+  
+  .footer-logo {
+    justify-content: center;
+    margin-bottom: 1rem;
+  }
+  
+  .footer h4 {
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .footer-social {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+  }
+  
+  .col-md-4 {
+    margin-bottom: 1.5rem;
+  }
+  
+  .newsletter-form .input-group {
+    max-width: 300px;
+    margin: 1rem auto;
+  }
+}
+
+@media (max-width: 576px) {
+  .footer {
+    padding: 2rem 0 1rem;
+  }
+  
+  .footer p {
+    font-size: 0.95rem;
+  }
+  
+  .footer-links li {
+    margin-bottom: 0.6rem;
+  }
+  
+  .footer-links a {
+    font-size: 0.9rem;
+  }
 }
 
 .footer-brand p {
@@ -1445,6 +1727,119 @@ body {
 [data-theme="light"] .footer {
   background-color: #000;
   color: white;
+  padding: 4rem 0 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Footer decorative lines - ONLY visible on desktop 1530px and above */
+.footer::before,
+.footer::after {
+  content: '';
+  position: absolute;
+  width: 150px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  top: 50%;
+  opacity: 0; /* Completely hidden by default */
+  visibility: hidden; /* Ensure it's fully hidden */
+  display: none; /* Triple protection to ensure it's hidden */
+}
+
+.footer::before {
+  left: -50px;
+  transform: rotate(45deg);
+}
+
+.footer::after {
+  right: -50px;
+  transform: rotate(-45deg);
+}
+
+/* Only show line streaks on screens 1530px and above */
+@media (min-width: 1531px) {
+  .footer::before,
+  .footer::after {
+    display: block;
+    visibility: visible;
+    opacity: 1;
+  }
+  
+  .footer .glass-divider {
+    display: block;
+    visibility: visible;
+    opacity: 1;
+  }
+}
+
+/* Hide elements below 1530px with large-screen-only class */
+.large-screen-only {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+}
+
+/* Glass dividers - COMPLETELY HIDDEN below 1530px */
+.glass-divider {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  position: absolute;
+  width: 0 !important;
+  height: 0 !important;
+  border: none !important;
+  background: none !important;
+  box-shadow: none !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  margin: -1px !important;
+  padding: 0 !important;
+}
+
+/* Left glass divider specifics */
+.glass-divider.left {
+  display: none !important;
+}
+
+/* Right glass divider specifics */
+.glass-divider.right {
+  display: none !important;
+}
+
+/* Only show large-screen-only elements at 1530px and above */
+@media (min-width: 1531px) {
+  .large-screen-only {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+  
+  /* ONLY display glass dividers on large screens */
+  .glass-divider {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    position: absolute;
+    width: 200px !important;
+    height: 1px !important;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent) !important;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1) !important;
+    overflow: visible !important;
+    clip: auto !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    top: 50% !important;
+  }
+  
+  .glass-divider.left {
+    left: -50px !important;
+    transform: rotate(45deg) !important;
+  }
+  
+  .glass-divider.right {
+    right: -50px !important;
+    transform: rotate(-45deg) !important;
+  }
 }
 
 [data-theme="light"] .footer-links a {
@@ -3461,6 +3856,8 @@ section:not(.hero):hover {
 [data-theme="light"] .custom-accordion .accordion-button.collapsed,
 [data-theme="light"] .custom-accordion .accordion-button:not(.collapsed) {
   background: rgba(255, 255, 255, 0.0) !important;
+
+
   background-color: rgba(255, 255, 255, 0.0) !important;
   background-image: none !important;
   border: 0 !important;
@@ -3609,6 +4006,641 @@ section:not(.hero):hover {
   border-color: transparent !important;
   outline: none !important;
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* ==========================================
+   CARD STACKING STYLES FOR SERVICES SECTION
+   ========================================== */
+
+/* Card Stack Styles - Base */
+.stack-card-group {
+  position: relative;
+  transition: transform 0.5s ease, opacity 0.4s ease;
+  transform: translateY(50px);
+  opacity: 0;
+}
+
+.stack-card-group.active {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.stack-card-group.stacked {
+  transform: perspective(1000px) rotateX(5deg);
+}
+
+/* Reverse stacking classes - higher numbers = higher in stack */
+.stack-card-group.stacked-group-5 { transform: perspective(1000px) rotateX(5deg) translateY(0px); }
+.stack-card-group.stacked-group-4 { transform: perspective(1000px) rotateX(5deg) translateY(20px); }
+.stack-card-group.stacked-group-3 { transform: perspective(1000px) rotateX(5deg) translateY(40px); }
+.stack-card-group.stacked-group-2 { transform: perspective(1000px) rotateX(5deg) translateY(60px); }
+.stack-card-group.stacked-group-1 { transform: perspective(1000px) rotateX(5deg) translateY(80px); }
+
+/* Card stack wrapper styling */
+.card-stack-wrapper {
+  position: relative;
+  z-index: 1;
+  margin-bottom: 150px; /* Increased margin for better spacing */
+  padding-bottom: 0px; /* Added padding as specified in memory */
+}
+
+/* Responsive card stacking for tablets and mobile */
+@media (max-width: 1000px) {
+  /* Adjust card stacking to be less pronounced on smaller screens */
+  .stack-card-group.stacked-group-5 { transform: perspective(800px) rotateX(3deg) translateY(0px); }
+  .stack-card-group.stacked-group-4 { transform: perspective(800px) rotateX(3deg) translateY(15px); }
+  .stack-card-group.stacked-group-3 { transform: perspective(800px) rotateX(3deg) translateY(30px); }
+  .stack-card-group.stacked-group-2 { transform: perspective(800px) rotateX(3deg) translateY(45px); }
+  .stack-card-group.stacked-group-1 { transform: perspective(800px) rotateX(3deg) translateY(60px); }
+  
+  .card-stack-wrapper {
+    margin-bottom: 100px; /* Reduce spacing on smaller screens */
+  }
+}
+
+@media (max-width: 768px) {
+  /* Less extreme stacking effect for mobile devices */
+  .stack-card-group.stacked-group-5 { transform: perspective(600px) rotateX(2deg) translateY(0px); }
+  .stack-card-group.stacked-group-4 { transform: perspective(600px) rotateX(2deg) translateY(10px); }
+  .stack-card-group.stacked-group-3 { transform: perspective(600px) rotateX(2deg) translateY(20px); }
+  .stack-card-group.stacked-group-2 { transform: perspective(600px) rotateX(2deg) translateY(30px); }
+  .stack-card-group.stacked-group-1 { transform: perspective(600px) rotateX(2deg) translateY(40px); }
+  
+  .card-stack-wrapper {
+    margin-bottom: 80px; /* Further reduce spacing on mobile */
+  }
+}
+
+/* Stack card styling for index page */
+.index-page .service-cards-grid .service-card {
+  height: 100%;
+  min-height: 100%;
+  max-height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+/* Prevent cluttered appearance on smaller screens */
+@media (max-width: 1000px) {
+  .index-page .service-cards-grid .col-lg-4 {
+    padding: 0 20px;
+    margin-bottom: 30px;
+  }
+  
+  .index-page .service-cards-grid .service-card {
+    padding: 1.5rem 1rem;
+  }
+  
+  .index-page .service-card-content p {
+    font-size: 0.9rem;
+    max-width: 85%;
+  }
+}
+
+@media (max-width: 768px) {
+  .index-page .service-cards-grid .col-lg-4 {
+    padding: 0 15px;
+    margin-bottom: 25px;
+  }
+  
+  .service-cards-grid {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .service-cards-grid .col-lg-4 {
+    width: 90%;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media (max-width: 576px) {
+  .index-page .service-cards-grid .col-lg-4 {
+    padding: 0 10px;
+    margin-bottom: 20px;
+  }
+  
+  .service-cards-grid .col-lg-4 {
+    width: 95%;
+  }
+}
+
+.index-page .service-icon {
+  font-size: 2rem;
+  margin-bottom: 0.85rem;
+  text-align: center;
+  width: 100%;
+}
+
+.index-page .service-card-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  flex: 1;
+}
+
+.index-page .service-card-content h3 {
+  font-size: 1.2rem;
+  margin-bottom: 0.6rem;
+  font-weight: 600;
+  text-align: center;
+  width: 100%;
+}
+
+.index-page .service-card-content p {
+  font-size: 0.95rem;
+  line-height: 1.4;
+  margin-bottom: 0;
+  text-align: center;
+  max-width: 90%;
+  margin: 0 auto;
+}
+
+/* Services page specific styles */
+.services-page-section .service-card {
+  height: 700px; /* Fixed 700px height for service cards as specified in memory */
+  min-height: 700px;
+  max-height: 700px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Responsive service card heights for smaller screens */
+@media (max-width: 1000px) {
+  .services-page-section .service-card {
+    height: 650px;
+    min-height: 650px;
+    max-height: 650px;
+  }
+}
+
+@media (max-width: 768px) {
+  .services-page-section .service-card {
+    height: 600px;
+    min-height: 600px;
+    max-height: 600px;
+    padding: 1.5rem 1rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .services-page-section .service-card {
+    height: auto;
+    min-height: 550px;
+    max-height: none;
+    padding: 1.2rem 0.8rem;
+  }
+}
+
+.services-page-section .service-details {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Explore button styling */
+.explore-button-container {
+  display: inline-block;
+  position: relative;
+}
+
+.explore-all-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(45deg, var(--primary) 0%, #8c43ff 100%);
+  color: white;
+  font-weight: 600;
+  font-size: 1.1rem;
+  padding: 1rem 2rem;
+  border-radius: 50px;
+  text-decoration: none;
+  box-shadow: 0 10px 25px rgba(140, 67, 255, 0.3);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+/* Responsive explore button */
+@media (max-width: 1000px) {
+  .explore-all-btn {
+    font-size: 1rem;
+    padding: 0.9rem 1.8rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .explore-all-btn {
+    font-size: 0.95rem;
+    padding: 0.85rem 1.6rem;
+    width: 90%;
+    max-width: 280px;
+    margin: 0 auto;
+    justify-content: center;
+  }
+  
+  .explore-services-button {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .explore-all-btn {
+    font-size: 0.9rem;
+    padding: 0.8rem 1.5rem;
+  }
+}
+
+.explore-all-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 30px rgba(140, 67, 255, 0.4);
+  color: white;
+}
+
+.explore-all-btn:active {
+  transform: translateY(0);
+}
+
+.btn-text {
+  transition: transform 0.3s ease;
+}
+
+.btn-icon {
+  margin-left: 0.75rem;
+  transition: transform 0.3s ease;
+}
+
+.explore-all-btn:hover .btn-icon {
+  transform: translateX(5px);
+}
+
+/* Add a glow effect on hover */
+.explore-all-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, rgba(140, 67, 255, 0.5) 0%, rgba(97, 94, 240, 0.5) 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: -1;
+}
+
+.explore-all-btn:hover::before {
+  opacity: 1;
+}
+
+.explore-services-button {
+  text-align: center;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+  position: relative;
+  z-index: 10;
+}
+
+/* Services Page Additional Styles */
+/* Minimal section styling for Executive Overview, Client-Centric Rationale, Tangible Client Outcomes */
+.minimal-section {
+  background: rgba(var(--card-bg-rgb), 0.18);
+  border: 1px solid rgba(var(--text-rgb), 0.04);
+  border-radius: 18px;
+  box-shadow: none;
+  padding: 2.2rem 2rem 2.2rem 2rem;
+  margin-bottom: 2.5rem;
+  transition: box-shadow 0.25s;
+}
+
+.minimal-section:hover {
+  box-shadow: 0 6px 32px rgba(0,0,0,0.06);
+}
+
+.minimal-section h2 {
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-bottom: 1.1rem;
+  letter-spacing: 0.01em;
+  color: var(--primary);
+  border-left: 4px solid var(--primary);
+  padding-left: 0.75rem;
+  background: none;
+}
+
+.minimal-section ul, .minimal-section ol {
+  margin-bottom: 0.7rem;
+}
+
+.minimal-section ul li, .minimal-section ol li {
+  font-size: 1.06rem;
+  margin-bottom: 0.4rem;
+  color: var(--text);
+  line-height: 1.7;
+}
+
+.minimal-section p {
+  font-size: 1.08rem;
+  color: var(--text-muted);
+  margin-bottom: 1rem;
+}
+
+.minimal-section .section-label {
+  color: var(--secondary);
+  font-size: 1.02rem;
+  font-weight: 500;
+  border: none;
+  padding-left: 0;
+  margin-bottom: 0.6rem;
+}
+
+.minimal-section .section-label::after {
+  background: var(--secondary);
+  width: 18px;
+  height: 2px;
+  left: 0;
+}
+
+/* Footer credits styling - Made with heart by Function Drive */
+.made-with, #footer-credits {
+  white-space: nowrap;
+  text-align: center;
+  margin-top: 1.5rem;
+  font-size: 0.9rem;
+  color: #aaa;
+  display: block;
+  width: 100%;
+}
+
+.pixel-heart {
+  width: 16px;
+  height: 16px;
+  vertical-align: middle;
+  margin: 0 4px;
+}
+
+@media (max-width: 767px) {
+  .made-with, #footer-credits {
+    text-align: center;
+    margin-top: 1.2rem;
+    margin-bottom: 0.5rem;
+  }
+}
+
+/* Responsive minimal section */
+@media (max-width: 1000px) {
+  .minimal-section {
+    padding: 1.8rem 1.8rem;
+  }
+  
+  .minimal-section h2 {
+    font-size: 1.3rem;
+  }
+  
+  .minimal-section p {
+    font-size: 1.04rem;
+  }
+  
+  .minimal-section ul li, .minimal-section ol li {
+    font-size: 1.02rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .minimal-section {
+    padding: 1.5rem 1.3rem;
+    margin-bottom: 2rem;
+  }
+  
+  .minimal-section h2 {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+  }
+  
+  .minimal-section p {
+    font-size: 1rem;
+  }
+  
+  .minimal-section ul li, .minimal-section ol li {
+    font-size: 0.98rem;
+    line-height: 1.6;
+  }
+}
+
+@media (max-width: 576px) {
+  .minimal-section {
+    padding: 1.2rem 1rem 1.2rem 1rem;
+    margin-bottom: 1.5rem;
+    border-radius: 15px;
+  }
+  
+  .minimal-section h2 {
+    font-size: 1.2rem;
+    margin-bottom: 0.8rem;
+  }
+  
+  .minimal-section .section-label {
+    font-size: 0.95rem;
+  }
+}
+
+/* Enhanced styling for Strategic Capabilities section */
+.capabilities-header {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 1.5rem;
+}
+
+.capabilities-header h1 {
+  font-size: 2.8rem;
+  font-weight: 700;
+  background: var(--gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 0.8rem;
+  position: relative;
+  z-index: 2;
+}
+
+.accent-bar {
+  height: 4px;
+  width: 80px;
+  background: var(--gradient);
+  margin: 0 auto;
+  border-radius: 2px;
+  position: relative;
+  overflow: hidden;
+}
+
+.accent-bar::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.8), transparent);
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+.capabilities-tagline {
+  font-size: 1.4rem;
+  font-weight: 400;
+  margin-top: 1rem;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  color: var(--text-muted);
+}
+
+/* Responsive capabilities section */
+@media (max-width: 1000px) {
+  .capabilities-header h1 {
+    font-size: 2.4rem;
+  }
+  
+  .capabilities-tagline {
+    font-size: 1.3rem;
+    max-width: 90%;
+  }
+  
+  .accent-bar {
+    width: 70px;
+  }
+}
+
+@media (max-width: 768px) {
+  .capabilities-header h1 {
+    font-size: 2.1rem;
+  }
+  
+  .capabilities-tagline {
+    font-size: 1.2rem;
+    max-width: 95%;
+  }
+  
+  .accent-bar {
+    width: 60px;
+    height: 3px;
+  }
+}
+
+@media (max-width: 576px) {
+  .capabilities-header h1 {
+    font-size: 1.8rem;
+  }
+  
+  .capabilities-tagline {
+    font-size: 1.1rem;
+  }
+  
+  .accent-bar {
+    width: 50px;
+  }
+}
+
+/* Enhanced glass components */
+.glass-component {
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  background: rgba(var(--card-bg-rgb), 0.5);
+  border: 1px solid rgba(var(--text-rgb), 0.05);
+  border-radius: 15px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.glass-component:hover {
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+  transform: translateY(-5px);
+}
+
+/* Responsive glass components */
+@media (max-width: 768px) {
+  .glass-component {
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-radius: 12px;
+  }
+  
+  .glass-component:hover {
+    transform: translateY(-3px);
+  }
+}
+
+/* General spacing and sectioning improvements for mobile */
+@media (max-width: 576px) {
+  .section {
+    padding: 3rem 0 !important;
+  }
+  
+  .section-title {
+    margin-bottom: 2.5rem;
+  }
+  
+  .section-title h2 {
+    font-size: 2rem;
+  }
+  
+  .container {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  
+  /* Make buttons more touch-friendly on mobile */
+  .btn, button, .nav-link, a.nav-link {
+    padding: 0.6rem 1rem;
+    margin: 0.2rem 0;
+  }
+}
+
+/* Light mode adjustments */
+[data-theme="light"] .capabilities-header h1 {
+  background: var(--gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: none;
+}
+
+[data-theme="light"] .capabilities-tagline {
+  color: var(--text-muted);
+}
+
+/* Section labels with better contrast */
+.section-label {
+  display: inline-block;
+  padding: 0.3rem 0;
+  font-weight: 600;
+  color: var(--primary);
+  position: relative;
+}
+
+.section-label::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 30px;
+  height: 2px;
+  background: var(--gradient);
+  border-radius: 1px;
 }
 
 /* Light mode adjustments for accordion with complete border removal */
