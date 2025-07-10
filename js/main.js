@@ -3,6 +3,16 @@ document.addEventListener('DOMContentLoaded', function() {
     
     const currentPage = window.location.pathname.split('/').pop() || 'index.html';
     
+    // Apply page transition if it's the index page
+    if (currentPage === 'index.html' || currentPage === '') {
+        document.body.classList.add('page-transition');
+        
+        // Use a slight delay to ensure everything is loaded before fade-in
+        setTimeout(() => {
+            document.body.classList.add('page-visible');
+        }, 100);
+    }
+    
     // Initialize all UI components
     initNavigation(currentPage);
     initThemeToggle();
@@ -13,12 +23,141 @@ document.addEventListener('DOMContentLoaded', function() {
     initTestimonialCarousel();
     initContactForm();
     initBurgerMenuAnimation();
+    initCustomCursor();
     
     // Apply saved theme or default to dark
     const savedTheme = localStorage.getItem('theme') || 'dark';
     document.documentElement.setAttribute('data-theme', savedTheme);
     updateStarAnimationElements(savedTheme);
 });
+
+function initCustomCursor() {
+    // Check if we're on mobile/tablet - if so, don't initialize custom cursor
+    if (window.innerWidth <= 768) return;
+    
+    const cursor = document.querySelector('.custom-cursor');
+    const cursorDot = document.querySelector('.cursor-dot');
+    
+    if (!cursor || !cursorDot) return;
+    
+    let mouseX = 0;
+    let mouseY = 0;
+    let cursorX = 0;
+    let cursorY = 0;
+    let cursorDotX = 0;
+    let cursorDotY = 0;
+    const cursorSpeed = 0.15; // Lower = smoother but slower
+    const cursorDotSpeed = 0.6; // Higher = more responsive dot
+    
+    // Track mouse position
+    document.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+    });
+    
+    // Animate cursor with smooth follow
+    function animateCursor() {
+        // Calculate distance between current cursor position and mouse position
+        const distX = mouseX - cursorX;
+        const distY = mouseY - cursorY;
+        
+        // Move cursor with easing
+        cursorX += distX * cursorSpeed;
+        cursorY += distY * cursorSpeed;
+        
+        // Apply position
+        cursor.style.left = `${cursorX}px`;
+        cursor.style.top = `${cursorY}px`;
+        
+        // Calculate distance for cursor dot
+        const dotDistX = mouseX - cursorDotX;
+        const dotDistY = mouseY - cursorDotY;
+        
+        // Move cursor dot with faster response
+        cursorDotX += dotDistX * cursorDotSpeed;
+        cursorDotY += dotDistY * cursorDotSpeed;
+        
+        // Apply position to dot
+        cursorDot.style.left = `${cursorDotX}px`;
+        cursorDot.style.top = `${cursorDotY}px`;
+        
+        // Continue animation
+        requestAnimationFrame(animateCursor);
+    }
+    
+    // Initialize cursor at current mouse position
+    cursorX = mouseX = cursorDotX = window.innerWidth / 2;
+    cursorY = mouseY = cursorDotY = window.innerHeight / 2;
+    
+    // Start animation loop
+    animateCursor();
+    
+    // Add hover effect for interactive elements
+    const interactiveElements = document.querySelectorAll(
+        'a, button, .btn, .nav-link, input, textarea, select, .form-control, ' + 
+        '.navbar-toggler, .theme-toggle, .accordion-button, .service-card, .founder-card, ' + 
+        '.team-card, .footer-social a, .footer-links a, .card, .glass-component'
+    );
+    
+    interactiveElements.forEach(element => {
+        element.addEventListener('mouseenter', () => {
+            cursor.classList.add('hover');
+            cursorDot.classList.add('hover');
+        });
+        
+        element.addEventListener('mouseleave', () => {
+            cursor.classList.remove('hover');
+            cursorDot.classList.remove('hover');
+        });
+    });
+    
+    // Add click effect
+    document.addEventListener('mousedown', () => {
+        cursor.classList.add('click');
+        cursorDot.classList.add('click');
+    });
+    
+    document.addEventListener('mouseup', () => {
+        cursor.classList.remove('click');
+        cursorDot.classList.remove('click');
+    });
+    
+    // Hide cursor when mouse leaves window
+    document.addEventListener('mouseleave', () => {
+        cursor.style.opacity = '0';
+        cursorDot.style.opacity = '0';
+    });
+    
+    document.addEventListener('mouseenter', () => {
+        cursor.style.opacity = '1';
+        cursorDot.style.opacity = '1';
+    });
+    
+    // Handle cursor on text selection
+    document.addEventListener('selectstart', () => {
+        cursor.classList.add('hover');
+        cursorDot.classList.add('hover');
+    });
+    
+    document.addEventListener('selectionchange', () => {
+        const selection = window.getSelection();
+        if (selection.toString().length === 0) {
+            cursor.classList.remove('hover');
+            cursorDot.classList.remove('hover');
+        }
+    });
+    
+    // Disable custom cursor on mobile devices
+    window.addEventListener('resize', () => {
+        if (window.innerWidth <= 768) {
+            cursor.style.display = 'none';
+            cursorDot.style.display = 'none';
+        } else {
+            cursor.style.display = 'block';
+            cursorDot.style.display = 'block';
+        }
+    });
+}
 
 function initNavigation(currentPage) {
     document.querySelectorAll('.navbar-nav .nav-link').forEach(link => {
