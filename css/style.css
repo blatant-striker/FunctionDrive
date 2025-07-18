@@ -53,16 +53,16 @@
   --secondary-color-rgb: 123, 94, 137;
   --accent: #f5b195; /* Peach from dawn gradient */
   --accent-color-rgb: 245, 177, 149;
-  --gradient: linear-gradient(45deg, var(--primary), var(--secondary));
+  --gradient: linear-gradient(45deg, #e3e6f3, #bfc8e6);
   --cursor-color: rgba(44, 62, 123, 0.1);
   --cursor-border: rgba(44, 62, 123, 0.8);
   --cursor-dot-color: rgba(44, 62, 123, 1);
   --cursor-hover-color: rgba(44, 62, 123, 0.2);
   --cursor-hover-border: rgba(44, 62, 123, 1);
   --cursor-hover-dot: rgba(44, 62, 123, 1);
-  --text: #ffffff; /* Bright white text */
-  --text-muted: #e0e0e0; /* Light gray for muted text */
-  --text-rgb: 255, 255, 255;
+  --text: #121212; /* Black text for light mode */
+  --text-muted: #555555; /* Dark gray for muted text */
+  --text-rgb: 18, 18, 18;
 }
 
 /* Custom cursor styles */
@@ -222,7 +222,7 @@ body {
 }
 
 [data-theme="light"] .navbar-dark .navbar-nav .nav-link {
-  color: var(--text);
+  color: white;
   font-weight: 600;
 }
 
@@ -265,7 +265,7 @@ body {
 }
 
 [data-theme="light"] .navbar-logo span {
-  color: var(--text);
+  color: white;
 }
 
 [data-theme="light"] .navbar-logo img[src*="Function_Drive_logo_no_background"] {
@@ -1374,7 +1374,7 @@ body {
 /* Testimonials Section */
 .testimonials {
   padding: 6rem 0;
-  background-color: var(--darker);
+  /* background-color: var(--darker); */
 }
 
 .testimonial-card {
@@ -2592,7 +2592,7 @@ body {
 
 /* Standard Section Background (all sections except hero) */
 section:not(.hero) {
-  background-color: rgba(var(--bg-color-rgb), 0.5);
+  /* background-color: rgba(var(--bg-color-rgb), 0.5); */
   backdrop-filter: blur(10px);
   border-radius: 10px;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
@@ -2697,7 +2697,7 @@ section:not(.hero):hover {
 [data-theme="light"] .accordion-item, 
 [data-theme="light"] .accordion-button, 
 [data-theme="light"] .contact-form {
-  background-color: rgba(255, 252, 244, 0.85);
+  background-color: rgba(135, 206, 235, 0.3);
   box-shadow: 0 8px 20px rgba(12, 20, 69, 0.1);
   backdrop-filter: blur(8px);
   border: none;
@@ -2712,7 +2712,7 @@ section:not(.hero):hover {
 [data-theme="light"] .accordion-item:hover, 
 [data-theme="light"] .accordion-button:hover, 
 [data-theme="light"] .contact-form:hover {
-  background-color: rgba(var(--bg-color-rgb), 0.6);
+  background-color: rgba(var(--bg-color-rgb), 0.8);
 }
 
 /* About Page Styling */
@@ -3336,7 +3336,7 @@ section:not(.hero):hover {
 
 /* General Purpose Glass Container */
 .glass-container {
-  background-color: rgba(var(--bg-color-rgb), 0.5);
+  /* background-color: rgba(var(--bg-color-rgb), 0.5); */
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border-radius: 10px;
@@ -3353,7 +3353,7 @@ section:not(.hero):hover {
 }
 
 [data-theme="light"] .glass-container {
-  background-color: rgba(var(--bg-color-rgb), 0.5);
+  /* background-color: rgba(var(--bg-color-rgb), 0.5); */
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
@@ -5753,4 +5753,49 @@ section:not(.hero):hover {
     padding: 1rem;
     margin-top: 0.5rem;
   }
+}
+
+[data-theme="light"] .section-title h2 {
+  color: #121212;
+  text-shadow: none;
+}
+
+[data-theme="light"] .section-title p {
+  color: #2d2d2d;
+  text-shadow: none;
+}
+
+/* Fix about content text color for better contrast */
+[data-theme="light"] .about .about-content h2 {
+  color: #121212;
+}
+
+[data-theme="light"] .about .about-content p {
+  color: #2d2d2d;
+}
+
+[data-theme="light"] .about-page .about-content h2 {
+  color: #121212;
+}
+
+[data-theme="light"] .about-page .about-content p {
+  color: #2d2d2d;
+}
+
+.navbar-logo span {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: white;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+[data-theme="light"] .about h2 {
+  color: #121212 !important; /* Black text for light mode */
+  font-weight: 600;
+}
+
+[data-theme="light"] .about p {
+  color: #2d2d2d !important; /* Dark gray for light mode */
+  line-height: 1.7;
 }
