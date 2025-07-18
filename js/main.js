@@ -36,61 +36,55 @@ function initCustomCursor() {
     if (window.innerWidth <= 768) return;
     
     const cursor = document.querySelector('.custom-cursor');
-    const cursorDot = document.querySelector('.cursor-dot');
+    const html = document.documentElement;
     
-    if (!cursor || !cursorDot) return;
+    if (!cursor) return;
     
-    let mouseX = 0;
-    let mouseY = 0;
-    let cursorX = 0;
-    let cursorY = 0;
-    let cursorDotX = 0;
-    let cursorDotY = 0;
-    const cursorSpeed = 0.15; // Lower = smoother but slower
-    const cursorDotSpeed = 0.6; // Higher = more responsive dot
-    
-    // Track mouse position
+    // Track mouse position and directly apply to cursor without smoothing
     document.addEventListener('mousemove', (e) => {
-        mouseX = e.clientX;
-        mouseY = e.clientY;
+        // Apply position directly - no smoothing
+        cursor.style.left = `${e.clientX}px`;
+        cursor.style.top = `${e.clientY}px`;
+        
+        // Reset idle timer on mouse movement
+        resetIdleTimer();
     });
     
-    // Animate cursor with smooth follow
-    function animateCursor() {
-        // Calculate distance between current cursor position and mouse position
-        const distX = mouseX - cursorX;
-        const distY = mouseY - cursorY;
-        
-        // Move cursor with easing
-        cursorX += distX * cursorSpeed;
-        cursorY += distY * cursorSpeed;
-        
-        // Apply position
-        cursor.style.left = `${cursorX}px`;
-        cursor.style.top = `${cursorY}px`;
-        
-        // Calculate distance for cursor dot
-        const dotDistX = mouseX - cursorDotX;
-        const dotDistY = mouseY - cursorDotY;
-        
-        // Move cursor dot with faster response
-        cursorDotX += dotDistX * cursorDotSpeed;
-        cursorDotY += dotDistY * cursorDotSpeed;
-        
-        // Apply position to dot
-        cursorDot.style.left = `${cursorDotX}px`;
-        cursorDot.style.top = `${cursorDotY}px`;
-        
-        // Continue animation
-        requestAnimationFrame(animateCursor);
+    // Initialize cursor at center of screen
+    cursor.style.left = `${window.innerWidth / 2}px`;
+    cursor.style.top = `${window.innerHeight / 2}px`;
+    
+    // Make cursor visible
+    cursor.style.display = 'block';
+    
+    // Add idle animation functionality
+    let idleTimer;
+    const idleTime = 5000; // 5 seconds
+    
+    function startIdleAnimation() {
+        cursor.classList.add('idle');
+        // Add CSS animation class - use heartbeat animation
+        cursor.style.animation = 'cursorHeartbeat 2.5s infinite ease-in-out';
     }
     
-    // Initialize cursor at current mouse position
-    cursorX = mouseX = cursorDotX = window.innerWidth / 2;
-    cursorY = mouseY = cursorDotY = window.innerHeight / 2;
+    function stopIdleAnimation() {
+        cursor.classList.remove('idle');
+        cursor.style.animation = 'none';
+    }
     
-    // Start animation loop
-    animateCursor();
+    function resetIdleTimer() {
+        // Clear any existing timer
+        clearTimeout(idleTimer);
+        
+        // Stop animation if it's running
+        stopIdleAnimation();
+        
+        // Set new timer
+        idleTimer = setTimeout(startIdleAnimation, idleTime);
+    }
+    
+    // Initialize idle timer
+    resetIdleTimer();
     
     // Add hover effect for interactive elements
     const interactiveElements = document.querySelectorAll(
@@ -102,48 +96,47 @@ function initCustomCursor() {
     interactiveElements.forEach(element => {
         element.addEventListener('mouseenter', () => {
             cursor.classList.add('hover');
-            cursorDot.classList.add('hover');
+            resetIdleTimer();
         });
         
         element.addEventListener('mouseleave', () => {
             cursor.classList.remove('hover');
-            cursorDot.classList.remove('hover');
+            resetIdleTimer();
         });
     });
     
     // Add click effect
     document.addEventListener('mousedown', () => {
         cursor.classList.add('click');
-        cursorDot.classList.add('click');
+        resetIdleTimer();
     });
     
     document.addEventListener('mouseup', () => {
         cursor.classList.remove('click');
-        cursorDot.classList.remove('click');
+        resetIdleTimer();
     });
     
     // Hide cursor when mouse leaves window
     document.addEventListener('mouseleave', () => {
         cursor.style.opacity = '0';
-        cursorDot.style.opacity = '0';
     });
     
     document.addEventListener('mouseenter', () => {
         cursor.style.opacity = '1';
-        cursorDot.style.opacity = '1';
+        resetIdleTimer();
     });
     
     // Handle cursor on text selection
     document.addEventListener('selectstart', () => {
         cursor.classList.add('hover');
-        cursorDot.classList.add('hover');
+        resetIdleTimer();
     });
     
     document.addEventListener('selectionchange', () => {
         const selection = window.getSelection();
         if (selection.toString().length === 0) {
             cursor.classList.remove('hover');
-            cursorDot.classList.remove('hover');
+            resetIdleTimer();
         }
     });
     
@@ -151,10 +144,13 @@ function initCustomCursor() {
     window.addEventListener('resize', () => {
         if (window.innerWidth <= 768) {
             cursor.style.display = 'none';
-            cursorDot.style.display = 'none';
+            html.style.cursor = 'auto';
+            interactiveElements.forEach(el => el.style.cursor = 'pointer');
         } else {
             cursor.style.display = 'block';
-            cursorDot.style.display = 'block';
+            html.style.cursor = 'none';
+            interactiveElements.forEach(el => el.style.cursor = 'none');
+            resetIdleTimer();
         }
     });
 }
@@ -185,8 +181,8 @@ function updateStarAnimationElements(theme) {
     const animatedBackground = document.querySelector('.animated-background');
     if (!animatedBackground) return;
     
-    // Remove existing star elements
-    animatedBackground.querySelectorAll('.stars-layer-1, .stars-layer-2, .stars-layer-3, .shooting-star, .bright-stars')
+    // Remove existing star elements and clouds
+    animatedBackground.querySelectorAll('.stars-layer-1, .stars-layer-2, .stars-layer-3, .shooting-star, .bright-stars, .cloud-1, .cloud-2, .cloud-3, .cloud-4, .cloud-5')
         .forEach(layer => layer.remove());
     
     // Only add star elements in dark mode
@@ -204,6 +200,13 @@ function updateStarAnimationElements(theme) {
             const shootingStar = document.createElement('div');
             shootingStar.className = `shooting-star shooting-star-${i}`;
             animatedBackground.appendChild(shootingStar);
+        }
+    } else {
+        // Add clouds in light mode
+        for (let i = 1; i <= 5; i++) {
+            const cloud = document.createElement('div');
+            cloud.className = `cloud-${i}`;
+            animatedBackground.appendChild(cloud);
         }
     }
 }
